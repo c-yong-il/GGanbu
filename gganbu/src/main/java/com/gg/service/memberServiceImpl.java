@@ -1,5 +1,5 @@
 package com.gg.service;
 
-public class memberServiceImpl {
+public class MemberServiceImpl {
 
 }

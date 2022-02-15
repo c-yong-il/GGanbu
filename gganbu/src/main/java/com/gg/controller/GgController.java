@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller 
-public class ggController { 
+public class GgController { 
     
     @RequestMapping(value = "/mini/pop_main") 
     public String pop_main(){ 

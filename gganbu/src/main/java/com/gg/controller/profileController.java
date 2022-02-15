@@ -1,5 +1,5 @@
 package com.gg.controller;
 
-public class profileController {
+public class ProfileController {
 
 }

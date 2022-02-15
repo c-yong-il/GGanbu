@@ -1,5 +1,5 @@
 package com.gg.service;
 
-public interface memberService {
+public interface MemberService {
 
 }

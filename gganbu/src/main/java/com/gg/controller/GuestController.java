@@ -1,5 +1,5 @@
 package com.gg.controller;
 
-public class photoController {
+public class GuestController {
 
 }
