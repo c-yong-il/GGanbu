@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gg.domain.MemberDTO;
 
 @Mapper
-public interface LoginMapper {
+public interface loginMapper {
     
     public MemberDTO loginAction(MemberDTO dto);
     
