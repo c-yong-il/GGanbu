@@ -425,10 +425,11 @@ function hpCheck(){
 	리셋 버튼 폼 초기화
 */
 function resetForm(){
-	$('#joinForm div').empty();
+	$('#joinForm .Msg').empty();
 	$('#joinForm input').css("border-color", "lightgray");
 	$('#btn_idCheck').css("border-color","white");
 }
+
 
 
 
