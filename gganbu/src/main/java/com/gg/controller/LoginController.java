@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,26 +14,35 @@ import com.gg.domain.MemberDTO;
 import com.gg.service.LoginService;
 
 @Controller 
-@RequestMapping("/login/*")
+@RequestMapping/*("/login/*")*/
 public class LoginController { 
 	
 	@Autowired
-	private LoginService lservice; 
+	private LoginService loginService; 
     
-    @RequestMapping(value = "/login/login") 
+    @GetMapping(value = "/login/login") 
     public String login(){ 
         return "/login/login"; 
     }
     
+    @GetMapping(value = "/logout/logout") 
+    public String logoutAction(HttpSession session){ 
+    	session.invalidate();
+    	return "main"; 
+    }
+    
     @PostMapping(value = "/login/login") 
     public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
-    	System.out.println("dto="+dto);
-    	MemberDTO loginUser = lservice.loginAction(dto);
-    	HttpSession session = request.getSession();
+    	MemberDTO loginUser = loginService.loginAction(dto);
     	
-    	System.out.println("user="+loginUser);
-    	System.out.println("session="+session);
-    	return "/login/login"; 
+    	if(loginUser==null) {
+    		
+    		return "login/login"; 
+    	}else {
+    		HttpSession session = request.getSession();
+    		session.setAttribute("loginUser", loginUser);
+    		return "main"; 
+    	}
     }
     
 }

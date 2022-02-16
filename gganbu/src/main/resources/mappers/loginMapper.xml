@@ -7,14 +7,14 @@
         mem_hp, mem_birth, mem_gender, mem_date, mem_status
     </sql>
     
-    <select id="loginAction" parameterType="memberDTO" resultType="memberDTO">
+    <select id="loginAction" parameterType="MemberDTO" resultType="MemberDTO">
     
     	select 
     		<include refid="memberColumns"></include>
     	from
     		member_table
     	where 
-    		mem_id = #{mem_id}
+    		mem_id = #{mem_id} and mem_pass = #{mem_pass}
     
     </select>
 

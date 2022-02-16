@@ -76,6 +76,10 @@
   }
 }
 
+#loginBtn {
+	width:100%;
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
