@@ -3,7 +3,7 @@
 <head >
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/login.css" />
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
@@ -12,28 +12,54 @@
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5">
+	            <!-- Product name-->
+	            <h2 class="fw-bolder">로그인</h2>
                 <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="/image/mini_room.png" alt="...">
+                    <!-- Product image
+                    <img class="card-img-top" src="/image/basic.jpg" alt="...">-->
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">이름</h5>
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
+                            	
+                    <form name="loginForm" action="login" method="post">
+					    <img src="/image/basic.jpg">
+					    <h1 class="h3 mb-3 fw-normal"><br></h1>
+					
+					    <div class="input-group mt-3 mb-1">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">ID</span>
+						</div>
+						<input type="text" name="mem_id" class="form-control"
+							placeholder="Input ID" aria-label="Input ID"
+							aria-describedby="basic-addon1" required>
+						</div>
+					<!-- PW입력 -->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">PW</span>
+						</div>
+						<input type="password" name="mem_pass" class="form-control"
+							placeholder="Input Password" aria-label="Input Password"
+							aria-describedby="basic-addon1" required>
+					</div>
+					<!-- 로그인 버튼 -->
+	                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                        <div class="text-center"><button class="btn btn-outline-dark mt-auto">로그인</button></div>
+	                    </div>
+
+					    <div>
+					        <a href="#">아이디 찾기</a>
+					        <a href="">비밀번호 찾기</a>
+					        <a href="">회원가입</a>    
+					    </div>
+					</form>
+                            	
                             </div>
                         </div>
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="openWindowPop()">내 미니홈피 가기</a></div>
-                    </div>
+						
                 </div>
             </div>
         </div>
