@@ -19,8 +19,8 @@ public class MyInfoServiceImpl implements MyInfoService{
 
     @Override
     public MemberDTO showInfo(String mem_id) {
-        // TODO Auto-generated method stub
-        return null;
+        
+        return myinfomapper.showInfo(mem_id);
     }
 
     @Override

@@ -7,17 +7,17 @@
         mem_hp, mem_birth, mem_gender, mem_date, mem_status
     </sql>
     
-    <select id="showInfo" parameterType="String" resultType="memberDTO">
+    <select id="showInfo" parameterType="String" resultType="MemberDTO">
     
     SELECT 
     mem_id, mem_name, mem_email1, mem_email2, 
     mem_hp, mem_birth, mem_gender, mem_date
     FROM member_table 
-    WHERE mem_id = ${mem_id};
+    WHERE mem_id = #{mem_id}
     
     </select>
     
-    <update id="editInfo" parameterType="memberDTO">
+    <update id="editInfo" parameterType="MemberDTO">
     
     UPDATE member_table SET 
     mem_pass = ${mem_pass}, 
