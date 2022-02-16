@@ -91,17 +91,19 @@
     }
     
     form[name="joinForm"] ul label {
-        background: linen;/*#f0f0ff*/
+       /* background: linen;/*#f0f0ff*/
         color: black; /*#000069 */
         width:150px;
         display:inline-block;
         text-align:center;
         padding:10px 0;
-        border-radius:5px;  
+        /* border-radius:5px;   */
         float:left; 
         margin-right:10px;
         margin-bottom:7px;
         font-weight:bold;
+        border-right:3px solid linen;
+        border-bottom:3px solid linen;
     }
     form[name="joinForm"] ul li  { clear:left; }    
    /*  input:focus {
