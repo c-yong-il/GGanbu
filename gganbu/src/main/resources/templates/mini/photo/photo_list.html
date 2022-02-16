@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/test.css" />
+<link rel="stylesheet" href="/css/photo.css" />
 <link rel="stylesheet" href="/css/reset.css" />
-<script defer type="text/javascript" src="/js/ajax.js"></script>
+
 <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<div class="container px-4 px-lg-5 mt-5">
-    <a th:href="@{'/write/' + ${params.mem_id}}">
-        <button class="btn btn-primary">글쓰기</button>
+<div class="container px-4 px-lg-5 mt-5" id="change1">
+    <a th:href="@{'/mini/photo/photo_write/' + ${params.mem_id}}">
+        <button class="btn btn-primary" onclick="acyncMovePage('/mini/photo/photo_write')">글쓰기</button>
     </a>             
 	<div th:each="params : ${list}" >
 		<section class="py-5">
@@ -35,10 +35,10 @@
 		                        </div>
 		                    </div>
 		                    <div class="button">
-			                	<a th:href="@{'/update/' + ${params.photo_num}}">
+			                	<a th:href="@{'/mini/photo/photo_update/' + ${params.photo_num}}">
 					                <button class="btn btn-primary">수정</button>
 					            </a>
-					            <form id="delete-form" th:action="@{'/delete/' + ${params.photo_num} }" method="post">
+					            <form id="delete-form" th:action="@{'/mini/photo/delete/' + ${params.photo_num} }" method="post">
 					                <input type="hidden" name="_method" value="delete"/>
 					                <button class="btn btn-warning" id="btn-delete">삭제</button>
 					            </form>               
@@ -69,7 +69,25 @@
 
 </div>
 	
-
+<script>
+function acyncMovePage(url){
+    // ajax option
+    var ajaxOption = {
+            url : url,
+            async : true,
+            type : "POST",
+            dataType : "html",
+            cache : false
+    };
+    
+    $.ajax(ajaxOption).done(function(data){
+        // Contents 영역 삭제
+        $('#change1').children().remove();
+        // Contents 영역 교체
+        $('#change1').html(data);
+    });
+}
+</script>
 
 </body>
 </html>

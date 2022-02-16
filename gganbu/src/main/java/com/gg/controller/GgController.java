@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GgController {
 
-    @RequestMapping(value = "/mini/pop_main")
+    @RequestMapping(value = "/mini/pop_main/{mem_id}")
     public String pop_main() {
         return "/mini/pop_main";
     }

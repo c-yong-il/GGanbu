@@ -44,14 +44,15 @@
    
 </footer>
 
-
 </body>
 
 <script>
 
 function openWindowPop(){
-    window.open('http://localhost:9100/mini/pop_main', '깐부월드', 
-            'width=1300, height=700, scrollbars=yes, resizable=no');
+    var url = 'http://localhost:9100/mini/pop_main/'+'${session.loginUser.mem_id}';
+	var features = "scrollbars=yes,width=1300,height=700, resizable=no"; 
+    var windowTargetName = "world";
+	window.open(url, windowTargetName, features);
 }
 
 </script>

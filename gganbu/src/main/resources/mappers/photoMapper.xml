@@ -6,7 +6,7 @@
 	<select id="listTest" parameterType="String" resultType="PhotoDTO">
 	
 		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
-		from photo_table, (select @rownum:=0) r where mem_id='id1' and photo_status='n' order by photo_date)sub 
+		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' order by photo_date)sub 
 		order by sub.rownum desc
 	
 	</select>
@@ -15,7 +15,7 @@
 	
 		INSERT INTO photo_table (photo_num, mem_id, photo_content, photo_date, photo_updatedate, photo_status) VALUES (
 			  photo_num
-			, 'id1'
+			, #{mem_id}
 			, #{photo_content}
 			, NOW()
 			, NOW()
