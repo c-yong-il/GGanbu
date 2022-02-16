@@ -68,7 +68,7 @@ function joinFormCheck(){
         birthdate.style.border = "1px solid #FF1493";
         birthdate.focus();
         return false;
-    }else if(checkCount("gender")==0){
+    }else if(checkCount("mem_gender")==0){
 		genderMsg.innerHTML = "성별을 선택해주세요";
 		genderMsg.style.color = "#FF1493";
         gender.style.border = "1px solid #FF1493";
@@ -264,11 +264,10 @@ function birthdateCheck(){
 /*
     회원가입 - 성별 유효성 체크
 */
-function checkCount(ename){
+function checkCount(gender){
 	let count, list;
 	count=0;
-	list = document.getElementsByName(ename);
-	
+	list = document.getElementsByName(gender);
 	for(let i=0; i<list.length; i++){
 		if(list[i].checked){
 			count++;
@@ -276,7 +275,6 @@ function checkCount(ename){
 	}
 	return count;
 }
-
 
 /*
     회원가입 - 이메일 주소 체크

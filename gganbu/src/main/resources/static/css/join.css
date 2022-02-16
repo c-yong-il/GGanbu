@@ -42,6 +42,13 @@
 	  background-color: gray;
 	 	color: black;
 	}    
+	.btn-outline-dark {
+		font-size:10pt;
+	 	font-weight:700;
+	 	width:130px;
+	 	padding:10px 0;
+	 	margin-right:10px;
+	}
 	
 	.btn_style2 {  
 	 	font-size:9pt;
@@ -55,8 +62,9 @@
 	 	font-weight:bold;
 	}
 	 .btn_style2:hover {
-	 	background-color: gray;
+	 	background-color: white;
 		color: black;
+		border:1px solid black;
 	}    
 	
 	.btn_style3 {

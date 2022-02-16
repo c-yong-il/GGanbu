@@ -14,8 +14,7 @@ public class JoinServiceImpl implements JoinService {
 
     @Override
     public int joinProc(MemberDTO dto) {
-        int result = 0;
-
+        int result = joinmapper.joinProc(dto);
         return result;
     }
 

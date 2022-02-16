@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gg.mapper.JoinMapper">
 
-	<insert id="joinProc" parameterType="MemberDTO">
-		insert into member_table values(#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_email1},
+	<sql id="memberColumns">
+		  mem_id
+		, mem_pass
+		, mem_name
+		, mem_email1
+		, mem_email2
+		, mem_hp
+		, mem_birth
+		, mem_gender
+		, mem_date
+		, mem_status
+	</sql>
+
+	<insert id="joinProc" parameterType="MemberDTO" >
+		insert into member_table
+		values(#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_email1},
 		#{mem_email2}, #{mem_hp}, #{mem_birth}, #{mem_gender}, now(), 'n')
 
 	</insert>
