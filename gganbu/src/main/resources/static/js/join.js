@@ -8,8 +8,8 @@
     let idUsingFlag;
 function joinFormCheck(){
     
-    let id, pass, cpass, name, birthdate, email1, email2, email3, hp;
-    let idMsg, passMsg, cpassMsg, nameMsg, birthdateMsg, emailMsg, hpMsg;
+    let id, pass, cpass, name, birthdate, email1, email2, email3, hp, gender;
+    let idMsg, passMsg, cpassMsg, nameMsg, birthdateMsg,genderMsg, emailMsg, hpMsg;
     id = document.getElementById("id");
     idMsg = document.getElementById("idMsg");
     pass = document.getElementById("pass");
@@ -20,6 +20,8 @@ function joinFormCheck(){
     nameMsg = document.getElementById("nameMsg");
     birthdate = document.getElementById("birthdate");
     birthdateMsg = document.getElementById("birthdateMsg");
+    gender = document.getElementById("gender");
+    genderMsg =document.getElementById("genderMsg");
     email1 = document.getElementById("email1");
     email2 = document.getElementById("email2");
     email3 = document.getElementById("email3");
@@ -66,7 +68,12 @@ function joinFormCheck(){
         birthdate.style.border = "1px solid #FF1493";
         birthdate.focus();
         return false;
-    }else if(email1.value == ""){
+    }else if(checkCount("gender")==0){
+		genderMsg.innerHTML = "성별을 선택해주세요";
+		genderMsg.style.color = "#FF1493";
+        gender.style.border = "1px solid #FF1493";
+		return false;
+	}else if(email1.value == ""){
         emailMsg.innerHTML = "이메일을 입력해주세요";
         emailMsg.style.color = "#FF1493";
         email1.style.border = "1px solid #FF1493";
@@ -257,22 +264,18 @@ function birthdateCheck(){
 /*
     회원가입 - 성별 유효성 체크
 */
-function genderCheck(){
-    let gender, genderMsg;
-    gender = document.getElementById("gender");
-    genderMsg = document.getElementById("genderMsg");
-    if(gender.value == ""){
-       
-        nameMsg.style.color = "#FF1493";
-        gender.style.border = "1px solid #FF1493";
-        genderMsg.innerHTML = "성별을 선택해주세요.";
-    //    $('#name').val('');
-        return false;
-        }else{
-            genderMsg.innerHTML = "";
-          /*  gender.style.border = "1px solid #ddd";*/
-        }
-    }
+function checkCount(ename){
+	let count, list;
+	count=0;
+	list = document.getElementsByName(ename);
+	
+	for(let i=0; i<list.length; i++){
+		if(list[i].checked){
+			count++;
+		}
+	}
+	return count;
+}
 
 
 /*

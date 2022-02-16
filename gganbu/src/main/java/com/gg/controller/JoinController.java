@@ -32,7 +32,6 @@ public class JoinController {
     public int checkId(@RequestParam String mem_id) {
 
         int result = joinService.checkId(mem_id);
-        System.out.println(result);
         return result;
     }
 
