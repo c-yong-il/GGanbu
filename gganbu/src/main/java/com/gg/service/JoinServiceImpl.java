@@ -10,7 +10,7 @@ import com.gg.mapper.JoinMapper;
 public class JoinServiceImpl implements JoinService {
 
     @Autowired
-    private JoinMapper joinMapper;
+    private JoinMapper joinmapper;
 
     @Override
     public int joinProc(MemberDTO dto) {
@@ -20,10 +20,8 @@ public class JoinServiceImpl implements JoinService {
     }
 
     @Override
-    public int idCheck(String mem_id) {
-        System.out.println(mem_id);
-        int result = joinMapper.idCheck(mem_id);
-        System.out.println(result);
+    public int checkId(String mem_id) {
+        int result = joinmapper.checkId(mem_id);
         return result;
     }
 }

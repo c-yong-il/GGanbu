@@ -357,8 +357,7 @@ function hpCheck(){
            data:{mem_id:userId},
            dataType:"json",
            success:function(result){
-			alert(result);
-               if(result==0){
+               if(result==1){
             alert("사용 중인 아이디입니다");
 			$('#id').css("border-color","#FF1493");
 			$('#btn_idCheck').css("border-color","white");

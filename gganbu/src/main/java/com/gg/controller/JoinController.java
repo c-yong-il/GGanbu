@@ -31,7 +31,7 @@ public class JoinController {
     @RequestMapping(value = "/idCheck", method = RequestMethod.POST)
     public int checkId(@RequestParam String mem_id) {
 
-        int result = joinService.idCheck(mem_id);
+        int result = joinService.checkId(mem_id);
         System.out.println(result);
         return result;
     }

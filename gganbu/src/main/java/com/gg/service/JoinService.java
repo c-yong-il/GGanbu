@@ -5,5 +5,5 @@ import com.gg.domain.MemberDTO;
 public interface JoinService {
     public int joinProc(MemberDTO dto);
 
-    public int idCheck(String mem_id);
+    public int checkId(String mem_id);
 }
