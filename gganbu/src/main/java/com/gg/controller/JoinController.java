@@ -18,20 +18,16 @@ public class JoinController {
     private JoinService joinService;
 
     @GetMapping(value = "/join/join")
-    public String pop_main() {
+    public String join() {
         return "join/join";
     }
 
-    @PostMapping(value = "/join/proc")
+    @PostMapping(value = "/login/join")
     public String registerMember(MemberDTO dto) {
         int result = joinService.joinProc(dto);
         if (result == 0) {
-            System.out.println("안들어갔어");
+            System.out.println("가입 실패");
         }
-        //        System.out.println(dto.getMem_id());
-        //        System.out.println(dto.getMem_pass());
-        //        System.out.println(dto.getMem_email1());
-        //        System.out.println(dto.getMem_gender());
         return "login/login";
     }
 

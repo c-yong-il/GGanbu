@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.text-center {
+ 	display:flex;
+	justify-content:flex-end; 
+}
+.diary-date {
+	border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.diarybtn {
+	width:100px;
+	/* display:flex;
+	justify-content:flex-end; */
+	border:1px solid red;
+}
