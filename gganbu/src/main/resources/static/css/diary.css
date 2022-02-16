@@ -12,3 +12,6 @@
 	justify-content:flex-end; */
 	border:1px solid red;
 }
+.btn-sm{
+	padding:2px 5px;
+}

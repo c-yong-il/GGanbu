@@ -8,7 +8,7 @@ public class GgController {
 
     @RequestMapping(value = "/mini/pop_main/{mem_id}")
     public String pop_main() {
-        return "/mini/pop_main";
+        return "mini/pop_main";
     }
 
     @RequestMapping(value = "/main")
@@ -18,21 +18,21 @@ public class GgController {
 
     @RequestMapping(value = "/mini/profile/profile")
     public String profile() {
-        return "/mini/profile/profile";
+        return "mini/profile/profile";
     }
 
     @RequestMapping(value = "/mini/diary/diary")
     public String diary() {
-        return "/mini/diary/diary";
+        return "mini/diary/diary";
     }
 
     @RequestMapping(value = "/mini/guest/guest")
     public String guest() {
-        return "/mini/guest/guest";
+        return "mini/guest/guest";
     }
 
     @RequestMapping(value = "/mini/photo/photo_list")
     public String photo() {
-        return "/mini/photo/photo_list";
+        return "mini/photo/photo_list";
     }
 }
