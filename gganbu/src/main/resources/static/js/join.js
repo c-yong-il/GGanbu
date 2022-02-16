@@ -361,21 +361,18 @@ function hpCheck(){
            dataType:"json",
            success:function(result){
                if(result==1){
-            alert("사용 중인 아이디입니다");
 			$('#id').css("border-color","#FF1493");
 			$('#btn_idCheck').css("border-color","white");
+			$('#idMsg').html("이미 사용 중인 아이디입니다");
             $('#id').html("");
             $('#id').focus();
-            //     $('#idMsg').html('사용불가');
-            //     $('#idMsg').attr('color','#FF1493');
             idUsingFlag=1;
                }else{
-            alert("사용 가능한 아이디입니다");
-       //     $('#pass').focus();
+            $('#idMsg').html("사용 가능한 아이디입니다");
+            $('#idMsg').css('color','blue');
+       		$('#pass').focus();
             idDupliCheckFlag=1;
             $('#btn_idCheck').css("border-color","white");
-            //     $('#idMsg').html('사용가능');
-            //     $('#idMsg').attr('color','green');
                }
            },
            error:function(request, status, error){
