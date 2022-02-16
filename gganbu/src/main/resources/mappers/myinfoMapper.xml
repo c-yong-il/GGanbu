@@ -10,7 +10,7 @@
     <select id="showInfo" parameterType="String" resultType="MemberDTO">
     
     SELECT 
-    mem_id, mem_name, mem_email1, mem_email2, 
+    mem_id, mem_pass, mem_name, mem_email1, mem_email2, 
     mem_hp, mem_birth, mem_gender, mem_date
     FROM member_table 
     WHERE mem_id = #{mem_id}
@@ -20,21 +20,20 @@
     <update id="editInfo" parameterType="MemberDTO">
     
     UPDATE member_table SET 
-    mem_pass = ${mem_pass}, 
-    mem_email1 = ${mem_email1}, 
-    mem_email2 = ${mem_email2}, 
-    mem_hp = ${mem_hp}, 
+    mem_pass = #{mem_pass}, 
+    mem_email1 = #{mem_email1}, 
+    mem_email2 = #{mem_email2}, 
+    mem_hp = #{mem_hp}, 
     FROM member_table 
-    WHERE mem_id = ${mem_id};
+    WHERE mem_id = #{mem_id};
     
     </update>
     
-    <update id="exitInfo" parameterType="memberDTO">
+    <update id="exitMember" parameterType="String">
     
     UPDATE member_table SET
     mem_status = 'Y'
-    FROM member_table 
-    WHERE mem_id = ${mem_id};
+    WHERE mem_id = #{mem_id};
     
     </update>
 

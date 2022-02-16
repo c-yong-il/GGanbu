@@ -30,9 +30,9 @@ public class MyInfoServiceImpl implements MyInfoService{
     }
 
     @Override
-    public int exitMember(MemberDTO dto) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int exitMember(String mem_id) {
+        
+        return myinfomapper.exitMember(mem_id);
     }
 
 }

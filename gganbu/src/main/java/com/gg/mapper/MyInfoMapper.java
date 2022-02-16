@@ -13,7 +13,7 @@ public interface MyInfoMapper {
     
     public int editInfo(MemberDTO dto);
     
-    public int exitMember(MemberDTO dto);
+    public int exitMember(String mem_id);
 
     
 }

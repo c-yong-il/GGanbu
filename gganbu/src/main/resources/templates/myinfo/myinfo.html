@@ -23,32 +23,31 @@
                             </li>
                             <li>
                                 <label>*비밀번호</label>
-                                 <input class="form-control" type="password" name="mem_pass" id="pass" onblur="passSameCheck()" onKeyup="passCheck()" readonly>
+                                 <input class="form-control" type="password" name="mem_pass" id="pass" th:value="${dto.mem_pass}" onblur="passSameCheck()" onKeyup="passCheck()">
                                 <div id="passMsg" class="Msg"></div>
                             </li>
                             <li>
                                 <label>*비밀번호 확인</label>
-                                <input class="form-control" type="password" name="mem_cpass" id="cpass" onblur="passSameCheck()" onKeyup="cpassCheck()" readonly>
+                                <input class="form-control" type="password" name="mem_cpass" id="cpass" th:value="${dto.mem_pass}" onblur="passSameCheck()" onKeyup="cpassCheck()">
                                 <div id="cpassMsg" class="Msg"></div>
                             </li>
                             <li>
                                 <label>*성명</label>
-                                <input class="form-control" type="text" name="mem_name" id="name" onKeyup="nameCheck()" readonly>
+                                <input class="form-control" type="text" name="mem_name" id="name" onKeyup="nameCheck()" th:value="${dto.mem_name}" readonly>
                             </li>
                             <li>
                                 <label>*생년월일</label>
-                                <input class="form-control" type="text" name="mem_birth" id="birthdate" onchange="birthdateCheck()" readonly>
+                                <input class="form-control" type="text" name="mem_birth" id="birthdate" onchange="birthdateCheck()" th:value="${dto.mem_birth}" readonly>
                             </li>
                             <li>
                                 <label>*성별</label>
                                 <div class="gender">
-                                    <input type="radio" name="mem_gender"  value="m" readonly>남자
-                                    <input type="radio" name="mem_gender"  value="f" readonly>여자
+                                    <input class="form-control" type="text" name="mem_gender" th:value="${dto.mem_gender}" readonly>
                                 </div>
                             <li>
                                 <label>*이메일</label>
-                                <input type="text" name="mem_email1" class="form-control email" id="email1" onchange="emailCheck()" readonly> @
-                                <input type="text" name="mem_email2" class="form-control email" id="email2" onchange="emailCheck()" readonly>
+                                <input type="text" name="mem_email1" class="form-control email" id="email1" onchange="emailCheck()" th:value="${dto.mem_email1}"> @
+                                <input type="text" name="mem_email2" class="form-control email" id="email2" onchange="emailCheck()" th:value="${dto.mem_email2}">
                                 <select class="form-select form-select-sm email" id="email3" onchange="emailSelectCheck()">
                                     <option value="choice">선택</option>
                                     <option value="naver.com">네이버</option>
@@ -60,12 +59,12 @@
                             </li>
                             <li>
                                 <label>*휴대폰</label>
-                                <input class="form-control" type="text" name="mem_hp" id="hp" onKeyup="hpCheck()" onkeypress="if(event.keyCode==13){ joinFormCheck();}" readonly>
+                                <input class="form-control" type="text" name="mem_hp" id="hp" onKeyup="hpCheck()" onkeypress="if(event.keyCode==13){ joinFormCheck();}" th:value="${dto.mem_hp}">
                                 <div id="hpMsg" class="Msg"></div>
                             </li>
                             <li>
-                                <button type="submit" class="btn btn-outline-dark" onclick="editmyinfoCheck()">수정하기</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="exitMember()">회원탈퇴</button>
+                                <button type="submit" class="btn btn-outline-dark" value="수정" formaction="/myinfo/update" onclick="editmyinfoCheck()">수정하기</button>
+                                <button type="submit" class="btn btn-outline-dark" value="탈퇴" formaction="/myinfo/exit" onclick="exitMember()">회원탈퇴</button>
                             </li>
                         </ul>   
                     </form>

@@ -15,15 +15,25 @@ import com.gg.service.MyInfoService;
 public class MyInfoController { 
     
     @Autowired
-    private MyInfoService myinfo;
+    private MyInfoService myinfoservice;
 
     @RequestMapping(value = "/myinfo/myinfo")
     public String main(HttpSession session, Model model){
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-        System.out.println(dto.getMem_id());
-        MemberDTO dto2 = myinfo.showInfo(dto.getMem_id());
+        MemberDTO dto2 = myinfoservice.showInfo(dto.getMem_id());
         model.addAttribute("dto", dto2);
         return "myinfo/myinfo"; 
+    }
+    
+    @RequestMapping(value = "/myinfo/exit")
+    public String withdrawal(HttpSession session, Model model) {
+        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+        System.out.println(dto.getMem_id());
+        session.invalidate();
+        int delete = myinfoservice.exitMember(dto.getMem_id());
+        System.out.println(dto.getMem_status());
+        System.out.println(delete);
+        return "/main";
     }
     
     @PostMapping(" myinfo/myinfo")
