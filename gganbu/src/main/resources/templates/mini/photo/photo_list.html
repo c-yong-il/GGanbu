@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/test.css" />
+<link rel="stylesheet" href="/css/reset.css" />
+<script defer type="text/javascript" src="/js/ajax.js"></script>
+<script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="container px-4 px-lg-5 mt-5">
+    <a th:href="@{'/write/' + ${params.mem_id}}">
+        <button class="btn btn-primary">글쓰기</button>
+    </a>             
+	<div th:each="params : ${list}" >
+		<section class="py-5">
+		    <div class="container px-4 px-lg-5 mt-5">
+		        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		            <div class="col mb-5">
+		           		
+		                <div class="card h-100">
+		                	
+			                <div class="date">
+			                	<span th:text="${params.rownum}"></span>
+			                	<span th:text="${params.photo_date}"></span>                
+			                </div>
+		                    <!-- Product details-->
+		                    <div class="card-body p-4">
+		                        <div class="text-center">
+		                            <!-- Product reviews-->
+		                            <div class="d-flex justify-content-center small text-warning mb-2">
+		                                <div class="bi-star-fill" th:utext=${params.photo_content}></div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="button">
+			                	<a th:href="@{'/update/' + ${params.photo_num}}">
+					                <button class="btn btn-primary">수정</button>
+					            </a>
+					            <form id="delete-form" th:action="@{'/delete/' + ${params.photo_num} }" method="post">
+					                <input type="hidden" name="_method" value="delete"/>
+					                <button class="btn btn-warning" id="btn-delete">삭제</button>
+					            </form>               
+		                	</div>
+		                    <!-- Product actions-->
+		                    <div class="card-footer border-top-0 bg-transparent">
+		                        <div class="d-center">
+		                        	<label>댓글</label>
+		                        	<input type="text" class="text">
+		                        	<a class="btn btn-outline-dark mt-auto">등록</a>
+		                        	<div>
+		                        		<table border=1>
+		                        			<tr>
+		                        				<td width=15%>wlfkfqkfrhkd93</td>
+		                        				<td >가나다라마바사아자차카타파하</td>
+		                        				<td width=15%>2022-02-22</td>
+		                        			</tr>
+		                        		</table>
+		                        	</div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+	</div>
+
+</div>
+	
+
+
+</body>
+</html>

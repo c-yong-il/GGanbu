@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main_pop.css" />
+<link rel="stylesheet" href="/test.css" />
 <link rel="stylesheet" href="/css/reset.css" />
+<script src="/js/photo.js"></script>
 <script defer type="text/javascript" src="/js/ajax.js"></script>
 <script defer src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
@@ -15,16 +16,21 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-
-<div id="change2" class="container">
-	<form>
-		<div class="form-group">
-		  <textarea class="form-control summernote" rows="5" id="content"></textarea>
-		</div>
+	
+	<form action="/write/{mem_id}" method="post">
+	    <div class="card-body p-4">
+	        <div class="text-center">
+	            <!-- Product reviews-->
+	            <div class="d-flex justify-content-center small text-warning mb-2">
+	                <textarea class="form-control summernote" id="photo_content" name="photo_content"></textarea>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="text-center">
+		 	<button id="btn-save" class="btn btn-primary">등록</button>
+		 	<button class="btn btn-primary">취소</button>     
+		</div>      
 	</form>
-	<button id="btn-save" class="btn btn-primary">사진첩</button>
-</div>
-
 
 <script>
 $('.summernote').summernote({
@@ -33,5 +39,7 @@ $('.summernote').summernote({
     width:500
   });
 </script>
+
+
 </body>
 </html>

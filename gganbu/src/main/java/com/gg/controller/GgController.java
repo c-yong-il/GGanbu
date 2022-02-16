@@ -31,8 +31,8 @@ public class GgController {
         return "/mini/guest/guest";
     }
 
-    @RequestMapping(value = "/mini/photo/photo")
+    @RequestMapping(value = "/mini/photo/photo_list")
     public String photo() {
-        return "/mini/photo/photo";
+        return "/mini/photo/photo_list";
     }
 }

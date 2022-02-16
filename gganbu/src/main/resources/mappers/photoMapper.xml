@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gg.mapper.PhotoMapper">
+
+	<select id="listTest" parameterType="String" resultType="PhotoDTO">
+	
+		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
+		from photo_table, (select @rownum:=0) r where mem_id='id1' and photo_status='n' order by photo_date)sub 
+		order by sub.rownum desc
+	
+	</select>
+	
+	<insert id="insertTest" parameterType="PhotoDTO">
+	
+		INSERT INTO photo_table (photo_num, mem_id, photo_content, photo_date, photo_updatedate, photo_status) VALUES (
+			  photo_num
+			, 'id1'
+			, #{photo_content}
+			, NOW()
+			, NOW()
+			, 'N'
+		)
+	
+	</insert>
+	
+	<select id="selectTest" parameterType="_int" resultType="PhotoDTO">
+	
+		select * from photo_table where photo_num = #{photo_num}
+	
+	</select>
+	
+	<update id="updateTest" parameterType="PhotoDTO">
+		UPDATE photo_table
+		SET
+		 	  photo_content = #{photo_content}
+			, photo_updatedate = NOW()
+		WHERE
+			photo_num = #{photo_num}
+	</update>
+	
+	<update id="deleteTest" parameterType="_int">
+		UPDATE photo_table
+		SET
+			  photo_status = 'Y'
+		WHERE
+			photo_num = #{photo_num}
+	</update>
+	
+
+</mapper>
