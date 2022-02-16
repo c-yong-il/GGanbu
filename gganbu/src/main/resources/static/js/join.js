@@ -1,6 +1,6 @@
-
+/** 회원가입 */
 /*
-    회원가입 - 폼 체크 
+   폼 빈칸 체크 
 */
 	let empJ = /\s/g;
     let idCheckFlag;
@@ -41,54 +41,54 @@ function joinFormCheck(){
     if(id.value == ""){
         idMsg.innerHTML = "아이디를 입력해주세요";
         idMsg.style.color = "#FF1493";
-        id.style.border = "1px solid #FF1493";
+        id.style.border = "2px solid #FF1493";
         id.focus();
         return false;
     }else if(pass.value == ""){
         passMsg.innerHTML = "비밀번호를 입력해주세요";
         passMsg.style.color = "#FF1493";
-        pass.style.border = "1px solid #FF1493";
+        pass.style.border = "2px solid #FF1493";
         pass.focus();
         return false;
     }else if(cpass.value == ""){
         cpassMsg.innerHTML = "비밀번호 확인을 입력해주세요";
         cpassMsg.style.color = "#FF1493";
-        cpass.style.border = "1px solid #FF1493";
+        cpass.style.border = "2px solid #FF1493";
         cpass.focus();
         return false;
     }else if(name.value == ""){
         nameMsg.innerHTML = "성명을 입력해주세요";
         nameMsg.style.color = "#FF1493";
-        name.style.border = "1px solid #FF1493";
+        name.style.border = "2px solid #FF1493";
         name.focus();
         return false;
     }else if(birthdate.value == ""){
         birthdateMsg.innerHTML = "생년월일을 입력해주세요";
         birthdateMsg.style.color = "#FF1493";
-        birthdate.style.border = "1px solid #FF1493";
+        birthdate.style.border = "2px solid #FF1493";
         birthdate.focus();
         return false;
     }else if(checkCount("mem_gender")==0){
 		genderMsg.innerHTML = "성별을 선택해주세요";
 		genderMsg.style.color = "#FF1493";
-        gender.style.border = "1px solid #FF1493";
+        gender.style.border = "2px solid #FF1493";
 		return false;
 	}else if(email1.value == ""){
         emailMsg.innerHTML = "이메일을 입력해주세요";
         emailMsg.style.color = "#FF1493";
-        email1.style.border = "1px solid #FF1493";
+        email1.style.border = "2px solid #FF1493";
         email1.focus();
         return false;
     }else if(email2.value == ""){
         emailMsg.innerHTML = "이메일 주소를 선택해주세요";
         emailMsg.style.color = "#FF1493";
-        email2.style.border = "1px solid #FF1493";
+        email2.style.border = "2px solid #FF1493";
         email3.focus();
         return false;
     }else if(hp.value == ""){
         hpMsg.innerHTML = "핸드폰 번호를 입력해주세요";
         hpMsg.style.color = "#FF1493";
-        hp.style.border = "1px solid #FF1493";
+        hp.style.border = "2px solid #FF1493";
         hp.focus();
         return false;
     }else if(checkListCount > 0){
@@ -97,7 +97,7 @@ function joinFormCheck(){
     }else if(idDupliCheckFlag==0){
 		if(idUsingFlag==1){
 	        alert("다른 아이디를 입력해주세요");
-	        id.style.border = "1px solid #FF1493";
+	        id.style.border = "2px solid #FF1493";
 	        id.focus();
 		}else{
 	        alert("아이디 중복확인을 해주세요");
@@ -107,9 +107,7 @@ function joinFormCheck(){
     }else{
         joinForm.submit();
     }
-    
 }
-
 
 /*
     회원가입 - 아이디 유효성 체크
@@ -125,7 +123,7 @@ function idCheck(){
     if(id.value != ""){
         if(!idJ.test($('#id').val())||empJ.test($('#id').val())){
         idMsg.style.color = "#FF1493";
-        id.style.border = "1px solid #FF1493";
+        id.style.border = "2px solid #FF1493";
         idMsg.innerHTML = "유효한 양식이 아닙니다";
         return false;
 
@@ -153,7 +151,7 @@ function passCheck(){
 	}
     if(!pwJ.test($('#pass').val())||empJ.test($('#pass').val())){
         passMsg.style.color = "#FF1493";
-        pass.style.border = "1px solid #FF1493";
+        pass.style.border = "2px solid #FF1493";
         passMsg.innerHTML = "유효한 양식이 아닙니다";
         return false;
     }else{
@@ -168,7 +166,7 @@ function cpassCheck(){
 	}
     if(!pwJ.test($('#cpass').val())||empJ.test($('#cpass').val())){
         cpassMsg.style.color = "#FF1493";
-        cpass.style.border = "1px solid #FF1493";
+        cpass.style.border = "2px solid #FF1493";
         cpassMsg.innerHTML = "유효한 양식이 아닙니다";
     	return false;
     }else{
@@ -194,7 +192,7 @@ function passSameCheck(){
 			}else{
 				passMsg.style.color = "#FF1493";
 		        passMsg.innerHTML = "유효한 양식이 아닙니다";
-		        pass.style.border = "1px solid #FF1493";
+		        pass.style.border = "2px solid #FF1493";
 		        pass.value="";
 		        cpass.value="";
 		        cpassMsg.innerHTML = "";
@@ -204,7 +202,7 @@ function passSameCheck(){
         }else{
             passMsg.style.color = "#FF1493";
             passMsg.innerHTML = "비밀번호가 일치하지 않습니다";
-	        pass.style.border = "1px solid #FF1493";
+	        pass.style.border = "2px solid #FF1493";
             pass.value = "";
             cpass.value = "";
             cpassMsg.innerHTML = "";
@@ -226,7 +224,7 @@ function nameCheck(){
     if(name.value != ""){
         if(!nameJ.test($('#name').val())||empJ.test($('#name').val())){
         nameMsg.style.color = "#FF1493";
-        name.style.border = "1px solid #FF1493";
+        name.style.border = "2px solid #FF1493";
         nameMsg.innerHTML = "유효한 양식이 아닙니다";
     //    $('#name').val('');
         return false;
@@ -249,11 +247,10 @@ function birthdateCheck(){
     if(birthdate.value != ""){
         if(!bdJ.test($('#birthdate').val())||empJ.test($('#birthdate').val())){
         nameMsg.style.color = "#FF1493";
-        birthdate.style.border = "1px solid #FF1493";
+        birthdate.style.border = "2px solid #FF1493";
         birthdateMsg.innerHTML = "유효한 양식이 아닙니다";
     //    $('#name').val('');
         return false;
-
         }else{
             birthdateMsg.innerHTML = "";
             birthdate.style.border = "1px solid #ddd";
@@ -335,7 +332,7 @@ function hpCheck(){
     if(hp.value != ""){
         if(!phoneJ.test($('#hp').val())){
         hpMsg.style.color = "#FF1493";
-        hp.style.border = "1px solid #FF1493";
+        hp.style.border = "2px solid #FF1493";
         hpMsg.innerHTML = "유효한 양식이 아닙니다";
         return false;
 
@@ -422,6 +419,7 @@ function hpCheck(){
 function resetForm(){
 	$('#joinForm .Msg').empty();
 	$('#joinForm input').css("border-color", "lightgray");
+	$('#joinForm input').css("border-width", "1px");
 	$('#btn_idCheck').css("border-color","white");
 }
 
