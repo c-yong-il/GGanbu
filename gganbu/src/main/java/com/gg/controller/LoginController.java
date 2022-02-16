@@ -34,14 +34,16 @@ public class LoginController {
     @PostMapping(value = "/login/login") 
     public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
     	MemberDTO loginUser = loginService.loginAction(dto);
+    	HttpSession session = request.getSession();
     	
     	if(loginUser==null) {
-    		
-    		return "login/login"; 
+    		session.setAttribute("loginUser", null);
+    		rttr.addFlashAttribute("result", "login fail");
+    		return "redirect:/login/login"; 
     	}else {
-    		HttpSession session = request.getSession();
     		session.setAttribute("loginUser", loginUser);
-    		return "main"; 
+    		rttr.addFlashAttribute("result", "login success");
+    		return "redirect:/main"; 
     	}
     }
     
