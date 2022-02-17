@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/main.css" />
+<script src="/js/main.js"></script>
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
@@ -19,7 +20,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">이름</h5>
+                            <h5 class="fw-bolder">a</h5>
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                                 <div class="bi-star-fill"></div>
@@ -39,22 +40,25 @@
         </div>
     </div>
 </section>
+
+
 <!-- Footer-->
 <footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark">
    
 </footer>
 
-</body>
-
+<div class="nav-item" th:if = "${session.loginUser != null}">
 <script>
-
 function openWindowPop(){
-    var url = 'http://localhost:9100/mini/pop_main/'+'${session.loginUser.mem_id}';
+	
+    var url = 'http://localhost:9100/mini/pop_main/[[${session.loginUser.mem_id}]]';
 	var features = "scrollbars=yes,width=1300,height=700, resizable=no"; 
     var windowTargetName = "world";
 	window.open(url, windowTargetName, features);
+	
 }
-
 </script>
+</div>
+
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gg.domain.PhotoDTO;
 import com.gg.service.PhotoService;
@@ -19,8 +20,7 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
     
-    
-    @GetMapping(value="/mini/photo/photo_list")
+    @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
     public String listTest(@ModelAttribute("params") PhotoDTO params,Model model) {
         
         List<PhotoDTO> list = photoService.listTest(params.getMem_id());
