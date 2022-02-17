@@ -26,7 +26,10 @@
 }
 #diary_write {
 	width: 100%;
-    height: 6.25em;
-    
+    height: 20em;
     resize: none;
+}
+.card-body3 {
+	flex: 1 1 auto;
+  	padding: 0.5rem 0.5rem 0 0.5rem;
 }

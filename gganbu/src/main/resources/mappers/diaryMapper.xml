@@ -6,12 +6,13 @@
 		
 		select diary_num, mem_id, diary_content, diary_date, diary_updatedate, diary_status 
 		from diary_table where mem_id=#{mem_id} order by diary_date desc limit 1
-		
 	
 	</select>
 	
 	<select id="now" resultType="String">
-		select now()
+	
+		select DATE_FORMAT(now(), '%Y-%m-%d')
+		
 	</select> 
 
 </mapper>
