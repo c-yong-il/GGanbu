@@ -23,7 +23,7 @@
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                             	
-                    <form name="loginForm" action="login" method="post">
+                    <form name="loginForm" action="/login/loginCheck" method="post">
 					    <img src="/image/basic.jpg">
 					    <h1 class="h3 mb-3 fw-normal"><br></h1>
 					
@@ -31,35 +31,35 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">ID</span>
 						</div>
-						<input type="text" name="mem_id" class="form-control"
+						<input id= "id" type="text" name="mem_id" class="form-control"
 							placeholder="Input ID" aria-label="Input ID"
 							aria-describedby="basic-addon1" required>
 						</div>
-					<!-- PW입력 -->
-					<div class="input-group mb-2">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">PW</span>
+						<!-- PW입력 -->
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">PW</span>
+							</div>
+							<input id="pass" type="password" name="mem_pass" class="form-control"
+								placeholder="Input Password" aria-label="Input Password"
+								aria-describedby="basic-addon1" required>
 						</div>
-						<input type="password" name="mem_pass" class="form-control"
-							placeholder="Input Password" aria-label="Input Password"
-							aria-describedby="basic-addon1" required>
-					</div>
-					<!-- 로그인 버튼 -->
-					<div class="input-group mb-2 bg-transparent">
-	                    <button id="loginBtn" class="btn btn-outline-dark mt-auto">로그인</button>
-	                </div>
-
-					    <div>
-					        <a href="#">아이디 찾기</a>
-					        <a href="">비밀번호 찾기</a>
-					        <a href="">회원가입</a>    
-					    </div>
+						<!-- 메시지창 -->
+						<div id="loginMsg" style="color : red; visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
+						<!-- 로그인 버튼 -->
+						<div class="input-group mb-3 bg-transparent">
+		                    <button type="button" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="loginCheck()">로그인</button>
+		                </div>
+						    <div>
+						        <a href="#">아이디 찾기</a>
+						        <a href="">비밀번호 찾기</a>
+						        <a href="">회원가입</a>    
+						    </div>
 					</form>
                             	
                             </div>
                         </div>
                     </div>
-						
                 </div>
             </div>
         </div>
@@ -72,9 +72,7 @@
 
 
 </body>
-
-<script>
-
-</script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>

@@ -6,8 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.MemberDTO;
@@ -31,20 +33,40 @@ public class LoginController {
     	return "main"; 
     }
     
-    @PostMapping(value = "/login/login") 
-    public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
-    	MemberDTO loginUser = loginService.loginAction(dto);
-    	HttpSession session = request.getSession();
-    	
-    	if(loginUser==null) {
+//    @PostMapping(value = "/login/login") 
+//    public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
+//    	MemberDTO loginUser = loginService.loginAction(dto);
+//    	HttpSession session = request.getSession();
+//    	
+//    	if(loginUser==null) {
+//    		session.setAttribute("loginUser", null);
+//    		rttr.addFlashAttribute("result", "login fail");
+//    		return "redirect:/login/login"; 
+//    	}else {
+//    		session.setAttribute("loginUser", loginUser);
+//    		rttr.addFlashAttribute("result", "login success");
+//    		return "redirect:/main"; 
+//    	}
+//    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/login/loginCheck", method = RequestMethod.POST)
+    public int loginCheck(@RequestParam String mem_id, @RequestParam String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {
+        int result;
+    	MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
+        HttpSession session = request.getSession();
+        
+        if(loginUser==null) {
     		session.setAttribute("loginUser", null);
     		rttr.addFlashAttribute("result", "login fail");
-    		return "redirect:/login/login"; 
+    		result = 0; 
     	}else {
     		session.setAttribute("loginUser", loginUser);
     		rttr.addFlashAttribute("result", "login success");
-    		return "redirect:/main"; 
+    		result = 1; 
     	}
+        
+        return result;
     }
     
 }

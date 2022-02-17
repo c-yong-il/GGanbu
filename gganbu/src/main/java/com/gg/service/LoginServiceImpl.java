@@ -16,4 +16,9 @@ public class LoginServiceImpl implements LoginService {
 	public MemberDTO loginAction(MemberDTO dto) {
 		return loginMapper.loginAction(dto);
 	}
+	
+	@Override
+	public MemberDTO loginCheck(String mem_id, String mem_pass) {
+		return loginMapper.loginCheck(mem_id, mem_pass);
+	}
 }
