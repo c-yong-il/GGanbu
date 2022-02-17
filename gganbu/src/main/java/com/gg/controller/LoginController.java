@@ -26,6 +26,14 @@ public class LoginController {
     public String login(){ 
         return "/login/login"; 
     }
+    @GetMapping(value = "/login/forgotId") 
+    public String forgotId(){ 
+    	return "/login/forgotId"; 
+    }
+    @GetMapping(value = "/login/forgotPass") 
+    public String forgotPass(){ 
+    	return "/login/forgotPass"; 
+    }
     
     @GetMapping(value = "/logout") 
     public String logoutAction(HttpSession session){ 
@@ -56,7 +64,7 @@ public class LoginController {
     	MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
         HttpSession session = request.getSession();
         
-        if(loginUser==null) {
+        if(loginUser == null) {
     		session.setAttribute("loginUser", null);
     		rttr.addFlashAttribute("result", "login fail");
     		result = 0; 

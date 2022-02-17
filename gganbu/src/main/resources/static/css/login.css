@@ -76,9 +76,27 @@
   }
 }
 
+/* 로그인 */
+
 #loginBtn {
 	width:100%;
 }
+
+#btn-top {
+	margin-top: 2px;
+}
+
+.login-menu a{
+	text-decoration:none;
+	color: #0080c0;
+	border-right: 1px solid #c0c0c0; 
+	padding-right: 5px;
+}
+.login-menu a:last-child{
+	border-right: none;
+}
+
+/*끝*/
 
 body {
   margin: 0;

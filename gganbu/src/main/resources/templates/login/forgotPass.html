@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head >
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/login.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+<header th:replace="/header.html :: main-head"></header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-1">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+	            <!-- Product name-->
+	            <h2 class="fw-bolder">비밀번호 찾기</h2>
+                <div class="card ">
+                    <!-- Product image
+                    <img class="card-img-top" src="/image/basic.jpg" alt="...">-->
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                            	
+                    <form name="loginForm" action="/login/forgotPass" onsubmit="return test(this);" method="post">
+					    <img src="/image/basic.jpg">
+					    <h1 class="h3 mb-3 fw-normal"><br></h1>
+					
+					    <div class="input-group mt-3 mb-1">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">이름</span>
+						</div>
+						<input id= "name" type="text" name="mem_name" class="form-control"
+							placeholder="Input Name" aria-label="Input Name"
+							aria-describedby="basic-addon1" required>
+						</div>
+						<!-- 아이디 입력 -->
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">아이디</span>
+							</div>
+							<input id="id" type="text" name="mem_id" class="form-control"
+								placeholder="Input ID" aria-label="Input ID"
+								aria-describedby="basic-addon1" required>
+						</div>
+						<!-- 생년월일 입력 -->
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">생일</span>
+							</div>
+							<input id="birth" type="text" name="mem_birth" class="form-control"
+								placeholder="Input Birthdate" aria-label="Input Birth"
+								aria-describedby="basic-addon1" required>
+						</div>
+						<!-- 핸드폰번호 입력 -->
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">핸드폰</span>
+							</div>
+							<input id="hp" type="text" name="mem_hp" class="form-control"
+								placeholder="Input Phone-Number" aria-label="Input Phone-Number"
+								aria-describedby="basic-addon1" required>
+						</div>
+						<!-- 메시지창 -->
+						<div id="loginMsg" style="color : red; visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
+						<!-- 로그인 버튼 -->
+						<div class="input-group mb-3 bg-transparent">
+		                    <button type="submit" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="forgotPassCheck()">비밀번호 찾기</button>
+		                </div>
+						  
+					</form>
+                            	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark">
+   
+</footer>
+
+
+</body>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>
+
+

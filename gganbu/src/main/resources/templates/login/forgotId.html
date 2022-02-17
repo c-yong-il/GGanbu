@@ -13,7 +13,7 @@
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5">
 	            <!-- Product name-->
-	            <h2 class="fw-bolder">로그인</h2>
+	            <h2 class="fw-bolder">아이디 찾기</h2>
                 <div class="card ">
                     <!-- Product image
                     <img class="card-img-top" src="/image/basic.jpg" alt="...">-->
@@ -23,38 +23,34 @@
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                             	
-                    <form name="loginForm" action="/login/loginCheck" method="post">
+                    <form name="loginForm" action="/login/forgotId" method="post">
 					    <img src="/image/basic.jpg">
 					    <h1 class="h3 mb-3 fw-normal"><br></h1>
 					
 					    <div class="input-group mt-3 mb-1">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">ID</span>
+							<span class="input-group-text" id="basic-addon1">이름</span>
 						</div>
-						<input id= "id" type="text" name="mem_id" class="form-control"
-							placeholder="Input ID" aria-label="Input ID"
-							aria-describedby="basic-addon1" oninput="checkId()" required>
+						<input id= "name" type="text" name="mem_name" class="form-control"
+							placeholder="Input Name" aria-label="Input Name"
+							aria-describedby="basic-addon1" required>
 						</div>
 						<!-- PW입력 -->
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">PW</span>
+								<span class="input-group-text" id="basic-addon1">핸드폰</span>
 							</div>
-							<input id="pass" type="password" name="mem_pass" class="form-control"
-								placeholder="Input Password" aria-label="Input Password"
-								aria-describedby="basic-addon1" oninput="checkPass()" required>
+							<input id="hp" type="text" name="mem_hp" class="form-control"
+								placeholder="Input Phone-Number" aria-label="Input Phone-Number"
+								aria-describedby="basic-addon1" required>
 						</div>
 						<!-- 메시지창 -->
-						<div id="loginMsg" style="visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
+						<div id="loginMsg" style="color : red; visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
 						<!-- 로그인 버튼 -->
-						<div class="input-group mb-3 bg-transparent" id="btn-top">
-		                    <button type="button" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="loginCheck()">로그인</button>
+						<div class="input-group mb-3 bg-transparent">
+		                    <button type="submit" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="forgotIdCheck()">ID 찾기</button>
 		                </div>
-						    <div class="login-menu">
-						        <a href="/login/forgotId">아이디 찾기</a>
-						        <a href="/login/forgotPass">비밀번호 찾기</a>
-						        <a href="/join/join">회원가입</a>    
-						    </div>
+						  
 					</form>
                             	
                             </div>
@@ -76,3 +72,5 @@
 <script src="/js/login.js"></script>
 </body>
 </html>
+
+
