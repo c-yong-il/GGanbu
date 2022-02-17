@@ -2,15 +2,17 @@ package com.gg.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gg.domain.MemberDTO;
 import com.gg.domain.PhotoDTO;
 import com.gg.service.PhotoService;
 
@@ -21,10 +23,15 @@ public class PhotoController {
     private PhotoService photoService;
     
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
-    public String listTest(@ModelAttribute("params") PhotoDTO params,Model model) {
+    public String listTest(HttpSession session,PhotoDTO params, Model model) {
+        
+        MemberDTO dto = (MemberDTO)session.getAttribute("loginUser");
+        
+        params.setMem_id(dto.getMem_id());
         
         List<PhotoDTO> list = photoService.listTest(params.getMem_id());
         
+        model.addAttribute("dto", dto);
         model.addAttribute("list", list);
         
         return "mini/photo/photo_list";

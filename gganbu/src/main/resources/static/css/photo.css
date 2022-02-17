@@ -3485,10 +3485,15 @@ textarea.form-control-lg {
   border-radius: 0.3rem;
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
+}
+.btn-sm{
+	padding: 2px 5px;
+	font-size: 0.875rem;
+  	border-radius: 0.2rem;
 }
 
 .fade {
@@ -9601,7 +9606,9 @@ textarea.form-control-lg {
 }
 
 .d-center{
+	margin-top:5px;
 	text-align: center;
+	font-size: 9pt;
 }
 
 .d-center input {
@@ -9629,10 +9636,11 @@ textarea.form-control-lg {
   }
   
   .mt-5 {
-  margin-top: 3rem !important;
+  margin-top: 1.5rem !important;
 }
 
 .row-cols-xl-4 > * {
     flex: 0 0 auto;
-    width: 25%;
+    width: 100%;
   }
+  

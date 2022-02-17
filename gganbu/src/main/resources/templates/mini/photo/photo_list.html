@@ -9,13 +9,13 @@
 <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<div class="container px-4 px-lg-5 mt-5" id="change1">
-    <a th:href="@{'/mini/photo/photo_write/' + ${params.mem_id}}">
-        <button class="btn btn-primary" onclick="acyncMovePage('/mini/photo/photo_write')">글쓰기</button>
-    </a>             
-	<div th:each="params : ${list}" >
-		<section class="py-5">
-		    <div class="container px-4 px-lg-5 mt-5">
+	<div class="container button">
+	    <a th:href="@{'/mini/photo/photo_write/' + ${params?.mem_id}}">
+	        <button class="btn btn-primary btn-sm" onclick="acyncMovePage('/mini/photo/photo_write')">글쓰기</button>
+	    </a>  
+    </div>  
+    	<div class="container mt-5">        
+			<div th:each="params : ${list}" >
 		        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 		            <div class="col mb-5">
 		           		
@@ -29,18 +29,18 @@
 		                    <div class="card-body p-4">
 		                        <div class="text-center">
 		                            <!-- Product reviews-->
-		                            <div class="d-flex justify-content-center small text-warning mb-2">
+		                            <div class="d-flex justify-content-center small mb-2">
 		                                <div class="bi-star-fill" th:utext=${params.photo_content}></div>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="button">
 			                	<a th:href="@{'/mini/photo/photo_update/' + ${params.photo_num}}">
-					                <button class="btn btn-primary">수정</button>
+					                <button class="btn btn-primary btn-sm">수정</button>
 					            </a>
 					            <form id="delete-form" th:action="@{'/mini/photo/delete/' + ${params.photo_num} }" method="post">
 					                <input type="hidden" name="_method" value="delete"/>
-					                <button class="btn btn-warning" id="btn-delete">삭제</button>
+					                <button class="btn btn-warning btn-sm" id="btn-delete">삭제</button>
 					            </form>               
 		                	</div>
 		                    <!-- Product actions-->
@@ -48,7 +48,7 @@
 		                        <div class="d-center">
 		                        	<label>댓글</label>
 		                        	<input type="text" class="text">
-		                        	<a class="btn btn-outline-dark mt-auto">등록</a>
+		                        	<a class="btn btn-outline-dark mt-auto btn-sm">등록</a>
 		                        	<div>
 		                        		<table border=1>
 		                        			<tr>
@@ -64,30 +64,10 @@
 		            </div>
 		        </div>
 		    </div>
-		</section>
-	</div>
+		 </div>
 
-</div>
 	
-<script>
-function acyncMovePage(url){
-    // ajax option
-    var ajaxOption = {
-            url : url,
-            async : true,
-            type : "POST",
-            dataType : "html",
-            cache : false
-    };
-    
-    $.ajax(ajaxOption).done(function(data){
-        // Contents 영역 삭제
-        $('#change1').children().remove();
-        // Contents 영역 교체
-        $('#change1').html(data);
-    });
-}
-</script>
+
 
 </body>
 </html>
