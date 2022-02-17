@@ -22,8 +22,16 @@ public class DiaryController {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 
         DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
-        model.addAttribute("dto2", dto2);
+        model.addAttribute("dto", dto2);
         return "mini/diary/diary";
+    }
+
+    @RequestMapping(value = "/mini/diary/diary_write/{mem_id}")
+    public String writeDiary(HttpSession session, Model model) {
+
+        String todayDate = diaryService.now();
+        model.addAttribute("todayDate", todayDate);
+        return "mini/diary/diary_write";
     }
 
 }

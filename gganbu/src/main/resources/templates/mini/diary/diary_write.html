@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/diary.css" />
+<script src="/js/diary.js"></script>
+</head>
+<body>
+<div>  <!-- id="diary_change" -->
+	<div class="text-center" >
+		<!-- 달력 들어갈 자리  -->
+	</div>	
+	
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="col mb-5">
+				<div class="card h-100">
+					 <div class="diary-date">
+						<span th:text="${todayDate}"></span>
+					</div> 
+
+					<div class="card-body2 ">
+						<div>
+							<!-- <span th:text="${dto?.diary_content}"></span> -->
+							<textarea id="diary_write" name="diary_write" rows="5" cols="15"></textarea>
+						</div>
+					</div>
+					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
+				</div>
+				<div class="text-center">
+					<button type="button" class="btn btn-outline-dark btn-sm ">ddkk</button>
+					<button type="button" class="btn btn-outline-dark btn-sm ">ddd</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+</body>
+</html>

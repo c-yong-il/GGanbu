@@ -9,5 +9,9 @@
 		
 	
 	</select>
+	
+	<select id="now" resultType="String">
+		select now()
+	</select> 
 
 </mapper>

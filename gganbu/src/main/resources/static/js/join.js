@@ -352,14 +352,14 @@ function hpCheck(){
        $.ajax({
            url:"/idCheck",
            type:"post",
-           data:{mem_id:userId},
+           data:{id:userId},
            dataType:"json",
            success:function(result){
                if(result==1){
-			$('#id').css("border-color","#FF1493");
 			$('#btn_idCheck').css("border-color","white");
+			$('#id').css("border-color","#FF1493");
 			$('#idMsg').html("이미 사용 중인 아이디입니다");
-            $('#id').html("");
+			$('#idMsg').css('color',"#FF1493");
             $('#id').focus();
             idUsingFlag=1;
                }else{

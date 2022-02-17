@@ -1,6 +1,5 @@
 /**
- * 
- */
+
     $(function() {
        //input을 datepicker로 선언
        $("#birthdate").datepicker({
@@ -22,4 +21,29 @@
            ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후) 
            ,yearRange: "-100:+0"
        });                    
-   });
+   }); 
+ */
+ 
+ /** write*/
+ function diaryWrite(url){
+	var option ={
+			type:"POST",
+			url:url,
+			async:true,
+			dataType:"html",
+			cache:false
+	};
+	 $.ajax(option).done(function(data){
+        // Contents 영역 삭제
+        $('#diary_change').children().remove();
+        // Contents 영역 교체
+        $('#diary_change').html(data);
+    });
+	
+	
+}
+
+
+
+ 
+ 

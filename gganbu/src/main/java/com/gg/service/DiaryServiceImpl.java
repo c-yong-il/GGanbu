@@ -24,4 +24,9 @@ public class DiaryServiceImpl implements DiaryService {
 
     }
 
+    @Override
+    public String now() {
+        return diarymapper.now();
+    }
+
 }
