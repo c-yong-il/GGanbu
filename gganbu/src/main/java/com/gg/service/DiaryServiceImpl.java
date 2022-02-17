@@ -20,8 +20,8 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public DiaryDTO selectDiary(String mem_id) {
+        return diarymapper.selectDiary(mem_id);
 
-        return null;
     }
 
 }
