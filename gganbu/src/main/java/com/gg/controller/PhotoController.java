@@ -31,16 +31,14 @@ public class PhotoController {
         
         List<PhotoDTO> list = photoService.listTest(params.getMem_id());
         
-        model.addAttribute("dto", dto);
         model.addAttribute("list", list);
         
         return "mini/photo/photo_list";
     }
     
     
-    @GetMapping("/mini/photo/photo_write/{mem_id}")
+    @RequestMapping(value="/mini/photo/photo_write")
     public String write() {
-        
         return "mini/photo/photo_write";
     }
 
@@ -48,13 +46,15 @@ public class PhotoController {
     // 그 후에는 /list 경로로 리디렉션해준다.
     
     @PostMapping("/mini/photo/photo_write/{mem_id}")
-    public String write(PhotoDTO params) {
+    public String write(HttpSession session, PhotoDTO params) {
+        MemberDTO dto = (MemberDTO)session.getAttribute("loginUser");
+        params.setMem_id(dto.getMem_id());
         photoService.insertTest(params);
         return "redirect:/mini/photo/photo_list";
     }
 
     
-    @GetMapping("/mini/photo/photo_update/{photo_num}")
+    @GetMapping("/mini/photo/photo_update")
     public String update(@PathVariable("photo_num") int photo_num, Model model) {
         PhotoDTO params = photoService.selectTest(photo_num);
         model.addAttribute("params", params);

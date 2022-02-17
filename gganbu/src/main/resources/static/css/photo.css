@@ -9644,3 +9644,6 @@ textarea.form-control-lg {
     width: 100%;
   }
   
+  .block{
+  	display:inline-block !important;
+  }

@@ -3,34 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/test.css" />
+<link rel="stylesheet" href="/css/photo.css" />
 <link rel="stylesheet" href="/css/reset.css" />
 <script src="/js/photo.js"></script>
 <script defer type="text/javascript" src="/js/ajax.js"></script>
 <script defer src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	
+<section class="block">
 	<form action="/mini/photo/photo_write/{mem_id}" method="post">
 	    <div class="card-body p-4">
 	        <div class="text-center">
-	            <!-- Product reviews-->
-	            <div class="d-flex justify-content-center small text-warning mb-2">
+	            Product reviews
+	            <div class="d-flex justify-content-center small mb-2">
 	                <textarea class="form-control summernote" id="photo_content" name="photo_content"></textarea>
 	            </div>
 	        </div>
 	    </div>
 	    <div class="text-center">
 		 	<button id="btn-save" class="btn btn-primary">등록</button>
-		 	<button class="btn btn-primary">취소</button>     
+		 	<button type="button" class="btn btn-primary" onclick="location.href='http://localhost:9100/mini/photo/photo_list'">취소</button>    
 		</div>      
 	</form>
+<input type="hidden" th:value=${session.loginUser.mem_id}>
+</section>
 
 <script>
 $('.summernote').summernote({

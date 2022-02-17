@@ -18,13 +18,13 @@ let index = {
 		
 		$.ajax({
 			type: "POST",
-			url: "/test",
+			url: "/photo_list",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8", 
 			dataType: "json" 
 		}).done(function(resp){
 			alert("글쓰기가 완료되었습니다.");
-			location.href = "/test";
+			location.href = "/photo_list";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		}); 
@@ -35,11 +35,11 @@ let index = {
 		
 		$.ajax({
 			type: "DELETE",
-			url: "/test"+mem_id+photo_num,
+			url: "/photo_list"+mem_id+photo_num,
 			dataType: "json" 
 		}).done(function(resp){
 			alert("삭제가 완료되었습니다.");
-			location.href = "/test";
+			location.href = "/photo_list";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		}); 
@@ -52,13 +52,13 @@ let index = {
 		
 		$.ajax({
 			type: "PUT",
-			url: "/test",
+			url: "/photo_list",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8", 
 			dataType: "json" 
 		}).done(function(resp){
 			alert("글수정이 완료되었습니다.");
-			location.href = "/test";
+			location.href = "/photo_list";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		}); 

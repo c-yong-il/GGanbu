@@ -29,10 +29,10 @@
 	    </div>
 	    <div class="text-center">
 		 	<button id="btn-update" class="btn btn-primary">수정하기</button>
-		 	<button class="btn btn-primary">취소</button>     
+		 	<button type="button" class="btn btn-primary" onclick="location.href='http://localhost:9100/mini/photo/photo_list'">취소</button>     
 		</div>      
 	</form>
-
+	<input type="hidden" th:value=${session.loginUser.mem_id}>
 <script>
 $('.summernote').summernote({
     tabsize: 2,
