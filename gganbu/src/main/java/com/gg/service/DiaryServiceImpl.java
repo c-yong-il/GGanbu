@@ -1,5 +1,7 @@
 package com.gg.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +15,35 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public int insertDiary(DiaryDTO dto) {
-        int result = 0;
-
-        return result;
+        return diarymapper.insertDiary(dto);
     }
 
-    @Override
-    public DiaryDTO selectDiary(String mem_id) {
-        return diarymapper.selectDiary(mem_id);
+    //    @Override
+    //    public DiaryDTO selectDiary(String mem_id) {
+    //        return diarymapper.selectDiary(mem_id);
+    //
+    //    }
 
+    @Override
+    public List<DiaryDTO> selectDiary(String mem_id) {
+        return diarymapper.selectDiary(mem_id);
     }
 
     @Override
     public String now() {
         return diarymapper.now();
+    }
+
+    @Override
+    public int updateDiary(DiaryDTO dto) {
+        // TODO Auto-generated method stub
+        return diarymapper.updateDiary(dto);
+    }
+
+    @Override
+    public DiaryDTO updateDiaryMove(int diary_num) {
+
+        return diarymapper.updateDiaryMove(diary_num);
     }
 
 }

@@ -2,10 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gg.mapper.DiaryMapper">
 
+	<sql id="diaryColumns">
+		  diary_num
+		, mem_id
+		, diary_content
+		, diary_date
+		, diary_updatedate
+		, diary_updatedate
+	</sql>
+	
 	<select id="selectDiary" parameterType="String" resultType="DiaryDTO">
-		
-		select diary_num, mem_id, diary_content, diary_date, diary_updatedate, diary_status 
-		from diary_table where mem_id=#{mem_id} order by diary_date desc limit 1
+	
+		select <include refid="diaryColumns" />
+		from diary_table where mem_id=#{mem_id} and diary_status='N' order by diary_num desc limit 5
 	
 	</select>
 	
@@ -14,5 +23,23 @@
 		select DATE_FORMAT(now(), '%Y-%m-%d')
 		
 	</select> 
+	
+	<insert id="insertDiary" parameterType="DiaryDTO">
+	
+		insert into diary_table values(diary_num, #{mem_id}, #{diary_content}, now(), now(), 'N')
+		
+	</insert>
+	
+	<update id="updateDiary" parameterType="DiaryDTO">
+	
+		update diary_table set diary_content=#{diary_content}, diary_updatedate=now() where diary_num=#{diary_num}
+	
+	</update>
+	
+	<select id="updateDiaryMove" parameterType="_int" resultType="DiaryDTO">
+		
+		select <include refid="diaryColumns" /> from diary_table where diary_num=#{diary_num}
+	
+	</select>
 
 </mapper>

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/diary.css" />
 <script src="/js/diary.js"></script>
 </head>
 <body>
@@ -11,25 +10,25 @@
 	<div class="text-center" >
 		<div>달력!</div>
 	</div>	
-	<form name="diaryWriteForm" id="diaryWriteForm"  method="post"> <!-- action="/diaryInsert/${session.loginUser.mem_id}"--><!-- diaryWrite2()에서 url써서 serialize()해서 그런지 필요없는듯 -->
-		<input type="hidden" name="mem_id" th:value=${session.loginUser.mem_id} >
+	<form name="diaryUpdateForm" id="diaryUpdateForm" action="/diaryUpdate/${session.loginUser.mem_id}" method="post">
+		<input type="hidden" name="diary_num" th:value=${dto.diary_num}> <!-- {session.loginUser.mem_id} -->
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<div class="col mb-5">
 				<div class="card h-100">
 					 <div class="diary-date">
-						<span th:text="|😍 Today is ${todayDate} |"></span>
+						<span th:text="${dto.diary_date}"  ></span>
 					</div> 
 
 					<div class="card-body3 ">
 						<div>
 							<!-- <span th:text="${dto?.diary_content}"></span> -->
-							<textarea id="diary_write" name="diary_content" ></textarea>
+							<textarea id="diary_write" name="diary_content" th:text="${dto.diary_content}"  ></textarea>
 						</div>
 					</div>
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 				</div>
 				<div class="text-center">
-					<button type="button" class="btn btn-outline-dark btn-sm" onclick="diaryWrite2('/mini/diary/diary/${session.loginUser.mem_id}')">등록</button>
+					<button type="button" class="btn btn-outline-dark btn-sm" onclick="diaryUpdate()">수정완료</button>
 					<button type="button" class="btn btn-outline-dark btn-sm" onclick="diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')">취소</button>
 				</div>
 			</div>

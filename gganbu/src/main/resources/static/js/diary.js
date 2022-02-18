@@ -24,7 +24,7 @@
    }); 
  */
  
- /** write*/
+ /** 글쓰기 버튼 눌렀을 때*/
  function diaryWrite(url){
 	var option ={
 			type:"POST",
@@ -39,11 +39,63 @@
         // Contents 영역 교체
         $('#diary_change').html(data);
     });
-	
+}
+/* 글쓰고 등록 버튼 눌렀을 때*/
+     function diaryWrite2(){
+        $.ajax({
+            cache : false,
+            url : "/diaryInsert/${session.loginUser.mem_id}",
+            type : 'POST', 
+            data :  $("#diaryWriteForm").serialize(), 
+            async:true,
+            dataType:"html",
+            success : function(data)
+            {
+             // Contents 영역 삭제
+	        $('#diary_change').children().remove();
+	        // Contents 영역 교체
+	        $('#diary_change').html(data);
+       		 } // $.ajax */
+   	 	});
+   	 }
+   	 /** 수정하고 수정완료 버튼 눌렀을 때  */
+   	 function diaryUpdate(){
+	    $.ajax({
+            cache : false,
+            url : "/diaryUpdate/${session.loginUser.mem_id}", 
+            type : 'POST', 
+            data :  $("#diaryUpdateForm").serialize(), 
+            async:true,
+            dataType:"html",
+            success : function(data)
+            {
+                // Contents 영역 삭제
+	        $('#diary_change').children().remove();
+	        // Contents 영역 교체
+	        $('#diary_change').html(data);
+       		 } // $.ajax */
+   	 	});
 	
 }
 
+/* 다이어리 수정 버튼 눌렀을 때 */ 
+ 	function diary(){
+	    $.ajax({
+            cache : false,
+            url : "/diary_update/${session.loginUser.mem_id}", /*${dto.diary_num}*/
+            type : 'POST', 
+            data :  $("#diaryForm").serialize(), 
+            async:true,
+            dataType:"html",
+            success : function(data)
+            {
+                // Contents 영역 삭제
+	        $('#diary_change').children().remove();
+	        // Contents 영역 교체
+	        $('#diary_change').html(data);
+       		 } // $.ajax */
+   	 	});
+	}
 
 
- 
  
