@@ -23,8 +23,7 @@
     mem_pass = #{mem_pass}, 
     mem_email1 = #{mem_email1}, 
     mem_email2 = #{mem_email2}, 
-    mem_hp = #{mem_hp}, 
-    FROM member_table 
+    mem_hp = #{mem_hp} 
     WHERE mem_id = #{mem_id};
     
     </update>

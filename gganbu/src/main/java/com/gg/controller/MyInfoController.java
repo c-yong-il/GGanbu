@@ -36,11 +36,20 @@ public class MyInfoController {
         return "/main";
     }
     
-    @PostMapping(" myinfo/myinfo")
-    public String myinfoAction(MemberDTO dto) {
-        return null;
-        
+    @RequestMapping(value = "myinfo/edit")
+    public String update(MemberDTO dto) {
+    	
+    	int edit = myinfoservice.editInfo(dto);
+    	System.out.println(edit);
+    	return "/main";
     }
+    	
+    
+//    @PostMapping(" myinfo/myinfo")
+//    public String myinfoAction(MemberDTO dto) {
+//        return null;
+//        
+//    }
     
     
     
