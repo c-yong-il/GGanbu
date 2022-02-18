@@ -27,7 +27,6 @@ public class PhotoController {
         
         MemberDTO dto = (MemberDTO)session.getAttribute("loginUser");
         
-        /* params.setMem_id(dto.getMem_id()); */
         
         List<PhotoDTO> list = photoService.listTest(dto.getMem_id());
         
@@ -44,7 +43,7 @@ public class PhotoController {
 
     /* 글쓰기 화면에서 등록 버튼 클릭 시 insert 후 리스트 화면으로 돌아감 */
     @PostMapping("/photoInsert/{mem_id}")
-    public String write(HttpSession session, PhotoDTO params, Model model) {
+    public String write(HttpSession session, PhotoDTO params) {
         MemberDTO dto = (MemberDTO)session.getAttribute("loginUser");
         params.setMem_id(dto.getMem_id());
         photoService.insertTest(params);
@@ -53,7 +52,7 @@ public class PhotoController {
 
     /* 리스트에서 수정버튼 클릭 시 글수정 화면 출력 */
     @PostMapping("/photo_update/{mem_id}")
-    public String update(@RequestParam int photo_num, Model model) {
+    public String update(int photo_num, Model model) {
         PhotoDTO params = photoService.selectTest(photo_num);
         model.addAttribute("params", params);
         return "mini/photo/photo_update";
@@ -63,19 +62,18 @@ public class PhotoController {
     @PostMapping("/photoupdate/{mem_id}")
     public String update(PhotoDTO params) {
         int result = photoService.updateTest(params);
-        System.out.println(params.getPhoto_num());
         
         return "redirect:/mini/photo/photo_list/{mem_id}";
     }
     
     /* 리스트화면에서 삭제 버튼 클릭 시 delete 실행 */
-    @RequestMapping("/delete/{photo_num}")
-    public String delete(@RequestParam("photo_num") int photo_num) {
-        
+    @PostMapping("/delete/{mem_id}")
+    public String delete(@RequestParam int photo_num) {
         
         photoService.deleteTest(photo_num);
         
-        return "redirect:/mini/photo/photo_list/{mem.id}";
+        
+        return "redirect:/mini/photo/photo_list/{mem_id}";
     }
 
 }

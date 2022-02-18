@@ -1,4 +1,4 @@
-let index = {
+var index = {
 	init: function(){
 		$("#btn-save").on("click", ()=>{ 
 			this.save();
@@ -16,29 +16,30 @@ let index = {
 	
 	save: function(){
 		
-		var formsubmit = $("#insertForm").serialize();
+		var insertsubmit = $("#insertForm").serialize();
 
 		$.ajax({
 			type: "POST",
-			url: "/photoInsert/{session.loginUser.mem_id}",
-			data: formsubmit,
+			url: "/photoInsert/${session.loginUser.mem_id}",
+			data: insertsubmit,
 			dataType: "html" 
 		}).done(function(data){
 			// Contents 영역 삭제
 	        $('#photo').children().remove();
 	        // Contents 영역 교체
 	        $('#photo').html(data);
+	        
 		});
 	},
 	
 	delete: function(){		
-		var formsubmit = $("#deleteForm").serialize();
+		var deletesubmit = $("#update").serialize();
 		
 		$.ajax({
-			type: "DELETE",
-			url: "/delete/{photo_num}",
-			data: formsubmit,
-			dataType: "json" 
+			type: "POST",
+			url: "/delete/${session.loginUser.mem_id}",
+			data: deletesubmit,
+			dataType: "html" 
 		}).done(function(data){
 			// Contents 영역 삭제
 	        $('#photo').children().remove();
@@ -48,12 +49,12 @@ let index = {
 	},
 	
 	update: function(){
-		var formsubmit = $("#updateForm").serialize();
+		var updatesubmit = $("#updateForm").serialize();
 		
 		$.ajax({
 			type: "POST",
 			url: "/photoupdate/${session.loginUser.mem_id}",
-			data: formsubmit,
+			data: updatesubmit,
 			dataType: "html" 
 		}).done(function(data){
 			// Contents 영역 삭제
@@ -64,20 +65,49 @@ let index = {
 	},
 	
 	ud: function(){
-		var formsubmit = $("#update").serialize();
+		var udsubmit = $("#update").serialize();
 		
 		$.ajax({
 			type: "POST",
 			url: "/photo_update/${session.loginUser.mem_id}",
-			data: formsubmit,
-			dataType: "html" 
+			data: udsubmit,
+			dataType: "html",
 		}).done(function(data){
 			// Contents 영역 삭제
 	        $('#photo').children().remove();
 	        // Contents 영역 교체
 	        $('#photo').html(data);
+	        $('.summernote').summernote({
+			    height: 250,
+			    width:550
+			  });
 		}); 
-	},
+	}
 }
 
 index.init();
+
+
+
+
+function photo(url){
+    // ajax option
+    var ajaxOption = {
+            url : url,
+            async : true,
+            type : "POST",
+            dataType : "html",
+            cache : false
+    };
+    
+    $.ajax(ajaxOption).done(function(data){
+        // Contents 영역 삭제
+        $('#photo').children().remove();
+        // Contents 영역 교체
+        $('#photo').html(data);
+        $('.summernote').summernote({
+		    height: 250,
+		    width:550
+		  });
+    });
+}

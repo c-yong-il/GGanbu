@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/photo.css" />
-<link rel="stylesheet" href="/css/reset.css" />
-<script type="text/javascript" src="/js/photo.js"></script>
-<script type="text/javascript" th:src="@{/js/ajax.js}"></script>
+<script src="/js/photo.js"></script>
+<script type="text/javascript" src="/js/ajax.js"></script>
 <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<link rel="stylesheet" href="/css/photo.css" />
+<link rel="stylesheet" href="/css/reset.css" />
 <body>
 <div id="photo">
 	<div class="container button" >
@@ -31,10 +31,8 @@
 			                	<span th:text="${params.rownum}"></span>
 			                	<span th:text="${params.photo_date}"></span>                
 			                </div>
-		                    <!-- Product details-->
 		                    <div class="card-body p-4">
 		                        <div class="text-center">
-		                            <!-- Product reviews-->
 		                            <div class="d-flex justify-content-center small mb-2">
 		                                <div class="bi-star-fill" th:utext=${params.photo_content}></div>
 		                            </div>
