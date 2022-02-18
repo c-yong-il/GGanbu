@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public MemberDTO forgotIdCheck(String mem_name, String mem_hp) {
+	public String forgotIdCheck(String mem_name, String mem_hp) {
 		return loginMapper.forgotIdCheck(mem_name, mem_hp);
 	}
 }

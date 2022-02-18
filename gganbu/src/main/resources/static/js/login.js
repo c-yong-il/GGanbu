@@ -58,14 +58,66 @@ document.addEventListener("DOMContentLoaded", function() {
            data:loginData,
            dataType:"json",
            success:function(result){
-               if(result==1){
-					alert(mem_id.val()+"님 어서 오세요~");
-					location.href="/main";
-               }else if(result==0){
+				if(result==0){
 					$('#loginMsg').html('아이디 혹은 비밀번호가 일치하지 않습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
-               }
+                }else if(result==2){
+					$('#loginMsg').html('탈퇴한 회원입니다');
+					$('#loginMsg').attr('style','visibility:visible');
+					$('#loginMsg').attr('style','color:#FF1493');
+                }else{
+					alert(mem_id.val()+"님 어서 오세요~");
+					location.href="/main";
+				}
+           },
+           error:function(request, status, error){
+               alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           }
+       })
+	}
+}
+
+
+/* 
+	아이디찾기 - 성공,실패 체크
+ */
+ function forgotIdCheck(){
+       let mem_name = $('#name');
+       let mem_hp = $('#hp');
+       let loginMsg = $('#loginMsg');
+       
+       if(mem_name.val() == ""){
+			$('#loginMsg').attr('style','visibility:visible');
+			$('#loginMsg').html('이름를 입력해주세요');
+	        mem_name.focus();
+	        return false;
+		}
+       if(mem_hp.val() == ""){
+			$('#loginMsg').attr('style','visibility:visible');
+			$('#loginMsg').html('핸드폰번호를 입력해주세요');
+	        mem_hp.focus();
+	        return false;
+		}
+       
+   if(mem_name.val()!="" && mem_hp.val()!=""){
+	
+		let forgotIdData = jQuery("#forgotIdForm").serialize();
+	
+       $.ajax({
+           url:"/login/forgotIdCheck",
+           type:"post",
+           data:forgotIdData,
+           success:function(result){
+				if(result==""){
+					$('#loginMsg').html('이름 혹은 핸드폰번호가 일치하지 않습니다');
+					$('#loginMsg').attr('style','visibility:visible');
+					$('#loginMsg').attr('style','color:#FF1493');
+                }else{
+					$('#loginMsg').html('아이디: '+result);
+					$('#loginMsg').attr('style','visibility:visible');
+					$('#loginMsg').attr('style','color:#FF1493');
+				}
            },
            error:function(request, status, error){
                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

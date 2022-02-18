@@ -29,10 +29,10 @@
     
     </select>
     
-    <select id="forgotIdCheck" parameterType="String" resultType="MemberDTO">
+    <select id="forgotIdCheck" parameterType="String" resultType="String">
     
     	select 
-    		<include refid="memberColumns"></include>
+    		replace(mem_id,right(mem_id,2),'**')
     	from
     		member_table
     	where 

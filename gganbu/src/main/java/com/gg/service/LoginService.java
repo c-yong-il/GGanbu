@@ -8,5 +8,5 @@ public interface LoginService {
 	
 	public MemberDTO loginCheck(String mem_id, String mem_pass);
 	
-	public MemberDTO forgotIdCheck(String mem_name, String mem_hp);
+	public String forgotIdCheck(String mem_name, String mem_hp);
 }

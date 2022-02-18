@@ -12,6 +12,6 @@ public interface LoginMapper {
     
     public MemberDTO loginCheck(@Param(value = "mem_id") String mem_id, @Param(value = "mem_pass")String mem_pass);
     
-    public MemberDTO forgotIdCheck(@Param(value = "mem_name") String mem_name, @Param(value = "mem_hp")String mem_hp);
+    public String forgotIdCheck(@Param(value = "mem_name") String mem_name, @Param(value = "mem_hp")String mem_hp);
     
 }
