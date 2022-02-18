@@ -28,5 +28,16 @@
     		mem_id = #{mem_id} and mem_pass = #{mem_pass}
     
     </select>
+    
+    <select id="forgotIdCheck" parameterType="String" resultType="MemberDTO">
+    
+    	select 
+    		<include refid="memberColumns"></include>
+    	from
+    		member_table
+    	where 
+    		mem_name = #{mem_name} and mem_hp = #{mem_hp}
+    
+    </select>
 
 </mapper>

@@ -41,22 +41,25 @@ public class LoginController {
     	return "main"; 
     }
     
-//    @PostMapping(value = "/login/login") 
-//    public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
-//    	MemberDTO loginUser = loginService.loginAction(dto);
-//    	HttpSession session = request.getSession();
-//    	
-//    	if(loginUser==null) {
-//    		session.setAttribute("loginUser", null);
-//    		rttr.addFlashAttribute("result", "login fail");
-//    		return "redirect:/login/login"; 
-//    	}else {
-//    		session.setAttribute("loginUser", loginUser);
-//    		rttr.addFlashAttribute("result", "login success");
-//    		return "redirect:/main"; 
-//    	}
-//    }
+    /*
+    @PostMapping(value = "/login/login") 
+    public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
+    	MemberDTO loginUser = loginService.loginAction(dto);
+    	HttpSession session = request.getSession();
+    	
+    	if(loginUser==null) {
+    		session.setAttribute("loginUser", null);
+    		rttr.addFlashAttribute("result", "login fail");
+    		return "redirect:/login/login"; 
+    	}else {
+    		session.setAttribute("loginUser", loginUser);
+    		rttr.addFlashAttribute("result", "login success");
+    		return "redirect:/main"; 
+    	}
+    }
+    */
     
+    /* 로그인 체크 */
     @ResponseBody
     @RequestMapping(value = "/login/loginCheck", method = RequestMethod.POST)
     public int loginCheck(@RequestParam String mem_id, @RequestParam String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {

@@ -23,7 +23,7 @@
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                             	
-                    <form name="loginForm" action="/login/loginCheck" method="post">
+                    <form name="loginForm" id="loginForm" action="/login/loginCheck" method="post">
 					    <img src="/image/basic.jpg">
 					    <h1 class="h3 mb-3 fw-normal"><br></h1>
 					
@@ -42,7 +42,7 @@
 							</div>
 							<input id="pass" type="password" name="mem_pass" class="form-control"
 								placeholder="Input Password" aria-label="Input Password"
-								aria-describedby="basic-addon1" oninput="checkPass()" required>
+								aria-describedby="basic-addon1" oninput="checkPass()" onkeypress="if(event.keyCode==13){ loginCheck();}" required>
 						</div>
 						<!-- 메시지창 -->
 						<div id="loginMsg" style="visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>

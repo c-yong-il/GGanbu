@@ -21,4 +21,9 @@ public class LoginServiceImpl implements LoginService {
 	public MemberDTO loginCheck(String mem_id, String mem_pass) {
 		return loginMapper.loginCheck(mem_id, mem_pass);
 	}
+	
+	@Override
+	public MemberDTO forgotIdCheck(String mem_name, String mem_hp) {
+		return loginMapper.forgotIdCheck(mem_name, mem_hp);
+	}
 }

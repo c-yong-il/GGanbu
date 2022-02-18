@@ -7,4 +7,6 @@ public interface LoginService {
 	public MemberDTO loginAction(MemberDTO dto);
 	
 	public MemberDTO loginCheck(String mem_id, String mem_pass);
+	
+	public MemberDTO forgotIdCheck(String mem_name, String mem_hp);
 }
