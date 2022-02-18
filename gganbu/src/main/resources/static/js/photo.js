@@ -9,58 +9,73 @@ let index = {
 		$("#btn-update").on("click", ()=>{ 
 			this.update();
 		});
+		$("#btn-ud").on("click", ()=>{ 
+			this.ud();
+		});
 	},
 	
 	save: function(){
-		let data = {
-			content: $("#photo_content").val()
-		};
 		
+		var formsubmit = $("#insertForm").serialize();
+
 		$.ajax({
 			type: "POST",
-			url: "/photo_list",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8", 
-			dataType: "json" 
-		}).done(function(resp){
-			alert("글쓰기가 완료되었습니다.");
-			location.href = "/photo_list";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
-		}); 
+			url: "/photoInsert/{session.loginUser.mem_id}",
+			data: formsubmit,
+			dataType: "html" 
+		}).done(function(data){
+			// Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
+		});
 	},
 	
 	delete: function(){		
-		let photo_num = $("#photo_num").text();
+		var formsubmit = $("#deleteForm").serialize();
 		
 		$.ajax({
 			type: "DELETE",
-			url: "/photo_list"+mem_id+photo_num,
+			url: "/delete/{photo_num}",
+			data: formsubmit,
 			dataType: "json" 
-		}).done(function(resp){
-			alert("삭제가 완료되었습니다.");
-			location.href = "/photo_list";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
+		}).done(function(data){
+			// Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
 		}); 
 	},
 	
 	update: function(){
-		let data = {
-			content: $("#content").val()
-		};
+		var formsubmit = $("#updateForm").serialize();
 		
 		$.ajax({
-			type: "PUT",
-			url: "/photo_list",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8", 
-			dataType: "json" 
-		}).done(function(resp){
-			alert("글수정이 완료되었습니다.");
-			location.href = "/photo_list";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
+			type: "POST",
+			url: "/photoupdate/${session.loginUser.mem_id}",
+			data: formsubmit,
+			dataType: "html" 
+		}).done(function(data){
+			// Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
+		}); 
+	},
+	
+	ud: function(){
+		var formsubmit = $("#update").serialize();
+		
+		$.ajax({
+			type: "POST",
+			url: "/photo_update/${session.loginUser.mem_id}",
+			data: formsubmit,
+			dataType: "html" 
+		}).done(function(data){
+			// Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
 		}); 
 	},
 }

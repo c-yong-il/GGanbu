@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/photo.css" />
-<link rel="stylesheet" href="/css/reset.css" />
 <script src="/js/photo.js"></script>
 <script defer type="text/javascript" src="/js/ajax.js"></script>
 <script defer src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -14,10 +12,12 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/photo.css" />
+<link rel="stylesheet" href="/css/reset.css" />
 </head>
 <body>
 <div class="container">
-	<form action="/mini/photo/photo_write/{mem_id}" method="post">
+	<form id="insertForm" action="/photoInsert/{session.loginUser.mem_id}" method="post">
 	    <!-- <div class="card-body p-4"> -->
 	        <div class="text-center">
 	            <!-- <div class="d-flex justify-content-center small mb-2"> -->
@@ -26,19 +26,20 @@
 	        </div>
 	    <!-- </div> -->
 	    <div class="text-center">
-		 	<button id="btn-save" class="btn btn-primary">등록</button>
-		 	<button type="button" class="btn btn-primary" onclick="location.href='http://localhost:9100/mini/photo/photo_list'">취소</button>    
+		 	<button id="btn-save" type="button" class="btn btn-primary" >등록</button>
+		 	<button type="button" class="btn btn-primary" onclick="photo('/mini/photo/photo_list/${session.loginUser.mem_id}')">취소</button>    
 		</div>      
 	</form>
 </div>
-<input type="hidden" th:value=${session.loginUser.mem_id}>
 
 <script>
 $('.summernote').summernote({
-    tabsize: 2,
-    height: 100,
-    width:500
+    tabsize: 1,
+    height: 250,
+    width:550
   });
+
+
 </script>
 
 
