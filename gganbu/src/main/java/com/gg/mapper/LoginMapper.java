@@ -14,4 +14,5 @@ public interface LoginMapper {
     
     public String forgotIdCheck(@Param(value = "mem_name") String mem_name, @Param(value = "mem_hp")String mem_hp);
     
+    public String forgotPassCheck(MemberDTO dto);    
 }

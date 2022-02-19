@@ -92,7 +92,6 @@ public class LoginController {
     	String result;
     	String userId = loginService.forgotIdCheck(mem_name, mem_hp);
     	
-    	System.out.println("id="+userId);
     	if(userId == null) {
     		model.addAttribute("userId", null);
     		rttr.addFlashAttribute("result", "forgotId fail");
@@ -101,6 +100,26 @@ public class LoginController {
     		model.addAttribute("userId", userId);
     		rttr.addFlashAttribute("result", "forgotId success");
     		result = userId;
+    	}
+    	
+    	return result;
+    }
+    
+    /* 비밀번호 찾기 체크 */
+    @ResponseBody
+    @RequestMapping(value = "/login/forgotPassCheck", method = RequestMethod.POST)
+    public String forgotPassCheck(MemberDTO dto, RedirectAttributes rttr, Model model) {
+    	String result;
+    	String userPass = loginService.forgotPassCheck(dto);
+    	
+    	if(userPass == null) {
+    		model.addAttribute("userPass", null);
+    		rttr.addFlashAttribute("result", "forgotId fail");
+    		result = ""; 
+    	}else {
+    		model.addAttribute("userPass", userPass);
+    		rttr.addFlashAttribute("result", "forgotId success");
+    		result = userPass;
     	}
     	
     	return result;

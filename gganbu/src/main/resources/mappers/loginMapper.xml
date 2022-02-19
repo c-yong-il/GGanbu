@@ -14,7 +14,7 @@
     	from
     		member_table
     	where 
-    		mem_id = #{mem_id} and mem_pass = #{mem_pass}
+    		mem_id = #{mem_id}
     
     </select>
     
@@ -36,7 +36,18 @@
     	from
     		member_table
     	where 
-    		mem_name = #{mem_name} and mem_hp = #{mem_hp}
+    		mem_name = #{mem_name} and mem_hp = #{mem_hp} and mem_status = 'n'
+    
+    </select>
+    
+    <select id="forgotPassCheck" parameterType="MemberDTO" resultType="String">
+    
+    	select 
+    		replace(mem_pass,right(mem_pass,2),'**')
+    	from
+    		member_table
+    	where 
+    		mem_name = #{mem_name} and mem_id = #{mem_id} and mem_birth = #{mem_birth} and mem_hp = #{mem_hp} and mem_status = 'n'
     
     </select>
 

@@ -3,6 +3,7 @@
 <head >
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" href="/image/gganbuLogo.png"> <!-- 파비콘 -->
 <link rel="stylesheet" href="/css/login.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
@@ -24,10 +25,11 @@
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                             	
-                    <form name="loginForm" action="/login/forgotPass" onsubmit="return test(this);" method="post">
+                    <form name="loginForm" id="loginForm" action="/login/forgotPassCheck" method="post">
 					    <img src="/image/basic.jpg">
 					    <h1 class="h3 mb-3 fw-normal"><br></h1>
 					
+						<!-- 이름 입력 -->
 					    <div class="input-group mt-3 mb-1">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">이름</span>
@@ -64,10 +66,10 @@
 								aria-describedby="basic-addon1" required>
 						</div>
 						<!-- 메시지창 -->
-						<div id="loginMsg" style="color : red; visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
+						<div id="loginMsg" style="color : red; visibility:hidden;">입력한 정보가 일치하지 않습니다</div>
 						<!-- 로그인 버튼 -->
 						<div class="input-group mb-3 bg-transparent">
-		                    <button type="submit" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="forgotPassCheck()">비밀번호 찾기</button>
+		                    <button type="button" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="forgotPassCheck()">비밀번호 찾기</button>
 		                </div>
 						  
 					</form>
