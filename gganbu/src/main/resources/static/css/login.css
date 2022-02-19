@@ -78,6 +78,10 @@
 
 /* 로그인 */
 
+#loginForm {
+	width: 280px;
+}
+
 #loginBtn {
 	width:100%;
 }

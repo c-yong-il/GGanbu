@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
        
        if(mem_id.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('아이디를 입력해주세요');
+			$('#loginMsg').text('아이디를 입력해주세요');
 	        mem_id.focus();
 	        return false;
 		}
        if(mem_pass.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('비밀번호를 입력해주세요');
+			$('#loginMsg').text('비밀번호를 입력해주세요');
 	        mem_pass.focus();
 	        return false;
 		}
@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function() {
            dataType:"json",
            success:function(result){
 				if(result==0){
-					$('#loginMsg').html('아이디 혹은 비밀번호가 일치하지 않습니다');
+					$('#loginMsg').text('아이디 혹은 비밀번호가 일치하지 않습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
                 }else if(result==2){
-					$('#loginMsg').html('탈퇴한 회원입니다');
+					$('#loginMsg').text('탈퇴한 회원입니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
                 }else{
@@ -89,13 +89,13 @@ document.addEventListener("DOMContentLoaded", function() {
        
        if(mem_name.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('이름을 입력해주세요');
+			$('#loginMsg').text('이름을 입력해주세요');
 	        mem_name.focus();
 	        return false;
 		}
        if(mem_hp.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('핸드폰번호를 입력해주세요');
+			$('#loginMsg').text('핸드폰번호를 입력해주세요');
 	        mem_hp.focus();
 	        return false;
 		}
@@ -110,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function() {
            data: loginFormData,
            success:function(result){
 				if(result==""){
-					$('#loginMsg').html('입력한 정보와 일치하는 회원이 없습니다');
+					$('#loginMsg').text('입력한 정보와 일치하는 회원이 없습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
                 }else{
-					$('#loginMsg').html('아이디: '+result);
+					$('#loginMsg').text('아이디: '+result);
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
 				}
@@ -138,25 +138,25 @@ document.addEventListener("DOMContentLoaded", function() {
        
        if(mem_name.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('이름을 입력해주세요');
+			$('#loginMsg').text('이름을 입력해주세요');
 	        mem_name.focus();
 	        return false;
 		}
        if(mem_id.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('아이디를 입력해주세요');
+			$('#loginMsg').text('아이디를 입력해주세요');
 	        mem_id.focus();
 	        return false;
 		}
        if(mem_birth.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('생년월일을 입력해주세요');
+			$('#loginMsg').text('생년월일을 입력해주세요');
 	        mem_birth.focus();
 	        return false;
 		}
        if(mem_hp.val() == ""){
 			$('#loginMsg').attr('style','visibility:visible');
-			$('#loginMsg').html('핸드폰번호를 입력해주세요');
+			$('#loginMsg').text('핸드폰번호를 입력해주세요');
 	        mem_hp.focus();
 	        return false;
 		}
@@ -171,11 +171,11 @@ document.addEventListener("DOMContentLoaded", function() {
            data: loginFormData,
            success:function(result){
 				if(result==""){
-					$('#loginMsg').html('입력한 정보와 일치하는 회원이 없습니다');
+					$('#loginMsg').text('입력한 정보와 일치하는 회원이 없습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
                 }else{
-					$('#loginMsg').html('비밀번호: '+result);
+					$('#loginMsg').text('비밀번호: '+result);
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
 				}
