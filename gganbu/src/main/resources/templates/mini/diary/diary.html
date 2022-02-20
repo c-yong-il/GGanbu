@@ -40,7 +40,7 @@
 			<!-- onclick="diaryWrite('/mini/diary/diary_write/[[${session.loginUser.mem_id}]]')" -->
 		</a>
 	</div>	
-	<div th:each="list : ${diaryList}" >
+	<div th:if="${not #lists.isEmpty( diaryList )}" th:each="list : ${diaryList}" >
 		<form name="diaryForm" id="diaryForm" ><!-- action="/diary_update/{diary_num}" method="post" -->
 			<input type="hidden" name="diary_num" th:value=${list.diary_num} >  <!--  ${dto.diary_num} -->
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -69,6 +69,9 @@
 				</div>
 			</div>	
 		</form>	
+	</div>
+	<div th:unless="${not #lists.isEmpty( diaryList)}">
+		<span> 조회된 결과가 없습니다😮</span>		
 	</div>
 </div>
  

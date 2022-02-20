@@ -98,11 +98,7 @@ public class DiaryController {
         dto2.setDiary_date(diary_date);
         if (!diary_date.equals("")) {
             List<DiaryDTO> list = diaryService.selectDate(dto2);
-            if (list.isEmpty()) {
-                return "mini/diary/diary2";
-            } else {
-                model.addAttribute("diaryList", list);
-            }
+            model.addAttribute("diaryList", list);
         }
         return "mini/diary/diary";
     }
