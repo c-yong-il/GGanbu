@@ -7,8 +7,6 @@
 <link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="/css/join.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
@@ -22,7 +20,6 @@
 			     		<ul>
 					        <li>
 					            <label>*아이디</label>
-					         <!--    <input type="text" name="mem_id" placeholder="영문+숫자 조합의 6~10자리" class=" input1" id="id" onKeyup="idCheck()"> -->
 					            <input class="form-control" type="text" placeholder="영문+숫자 조합의 6~10자리" name="mem_id"  id="id" onKeyup="idCheck()">
 					            <button type="button" onclick="idDupliCheck()" class="btn_style2" id="btn_idCheck">중복확인</button>
 					            <div id = "idMsg" class="Msg"></div>
@@ -30,24 +27,20 @@
 					        <li>
 					            <label>*비밀번호</label>
 					             <input class="form-control" type="password" name="mem_pass" placeholder="영문+숫자 조합의 6~10자리"  id="pass" onblur="passSameCheck()" onKeyup="passCheck()">
-					            <!-- <input type="password" name="mem_pass" placeholder="영문+숫자 조합의 6~10자리" class="input1" id="pass" onblur="passSameCheck()" onKeyup="passCheck()"> -->
 					            <div id="passMsg" class="Msg"></div>
 					        </li>
 					        <li>
 					            <label>*비밀번호 확인</label>
 					            <input class="form-control" type="password" name="mem_cpass" placeholder="영문+숫자 조합의 6~10자리"  id="cpass" onblur="passSameCheck()" onKeyup="cpassCheck()">
-<!-- 					            <input type="password" name="mem_cpass" placeholder="영문+숫자 조합의 6~10자리" class="input1" id="cpass" onblur="passSameCheck()" onKeyup="cpassCheck()"> -->
 					            <div id="cpassMsg" class="Msg"></div>
 					        </li>
 					        <li>
 					            <label>*성명</label>
 					            <input class="form-control" type="text" name="mem_name" placeholder="한글 2~5자리" id="name" onKeyup="nameCheck()">
-					           <!--  <input type="text" name="mem_name" placeholder="한글 2~5자리" class="input1" id="name" onKeyup="nameCheck()"> -->
 					            <div id="nameMsg" class="Msg"></div>
 					        </li>
 					        <li>
 					            <label>*생년월일</label>
-					           <!--  <input type="text" id="birthdate" name="mem_birth" placeholder="숫자 8자리(ex:20010101)" class="input1" onchange="birthdateCheck()" readonly> -->
 					            <input class="form-control" type="text" name="mem_birth" placeholder="숫자 8자리(ex:20010101)" id="birthdate" onchange="birthdateCheck()" readonly>
 					            <div id="birthdateMsg" class="Msg"></div>
 					        </li>
@@ -73,16 +66,12 @@
 					        </li>
 					        <li>
 					            <label>*휴대폰</label>
-					            <!-- <input type="text" name="mem_hp" placeholder="숫자만 10~11자리(ex:01012345678)" class="input1" id="hp" onKeyup="hpCheck()" onkeypress="if(event.keyCode==13){ joinFormCheck();}"> -->
 					            <input class="form-control" type="text" name="mem_hp" placeholder="숫자만 10~11자리(ex:01012345678)" id="hp" onKeyup="hpCheck()" onkeypress="if(event.keyCode==13){ joinFormCheck();}">
 					            <div id="hpMsg" class="Msg"></div>
 					        </li>
 					        <li>
 					            <button type="button" class="btn btn-outline-dark" onclick="joinFormCheck()">가입하기</button>
 					            <button type="reset" class="btn btn-outline-dark" onclick="resetForm()">다시입력</button>
-<!-- 					            <button type="button" class="btn_style" onclick="joinFormCheck()">가입하기</button>
-					            <button type="reset" class="btn_style" onclick="resetForm()">다시입력</button> -->
-					            
 					        </li>
 						</ul>   
 			        </form>

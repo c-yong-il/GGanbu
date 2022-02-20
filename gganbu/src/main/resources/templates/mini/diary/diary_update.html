@@ -7,8 +7,12 @@
 </head>
 <body>
 <div id="diary_change">  
+		<!-- <div>달력!</div> -->
 	<div class="text-center" >
-		<div>달력!</div>
+		<a href="javascript:diaryWrite('/mini/diary/diary_write/${session.loginUser.mem_id}')">
+			<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
+			<!-- onclick="diaryWrite('/mini/diary/diary_write/[[${session.loginUser.mem_id}]]')" -->
+		</a>	
 	</div>	
 	<form name="diaryUpdateForm" id="diaryUpdateForm" action="/diaryUpdate/${session.loginUser.mem_id}" method="post">
 		<input type="hidden" name="diary_num" th:value=${dto.diary_num}> <!-- {session.loginUser.mem_id} -->
@@ -28,8 +32,8 @@
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 				</div>
 				<div class="text-center">
-					<button type="button" class="btn btn-outline-dark btn-sm" onclick="diaryUpdate()">수정완료</button>
-					<button type="button" class="btn btn-outline-dark btn-sm" onclick="diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')">취소</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" onclick="diaryUpdate()">수정완료</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" onclick="diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')">취소</button>
 				</div>
 			</div>
 		</div>

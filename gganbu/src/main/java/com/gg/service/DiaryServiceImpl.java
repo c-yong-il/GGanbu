@@ -46,4 +46,18 @@ public class DiaryServiceImpl implements DiaryService {
         return diarymapper.updateDiaryMove(diary_num);
     }
 
+    @Override
+    public int deleteDiary(int diary_num) {
+        return diarymapper.deleteDiary(diary_num);
+    }
+
+    //    @Override
+    //    public List<DiaryDTO> selectDate(String mem_id, String diary_date) {
+    //        return diarymapper.selectDate(mem_id, diary_date);
+    //    }
+    @Override
+    public List<DiaryDTO> selectDate(DiaryDTO dto) {
+        return diarymapper.selectDate(dto);
+    }
+
 }

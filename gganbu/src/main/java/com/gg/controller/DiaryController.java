@@ -29,7 +29,7 @@ public class DiaryController {
         //        DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
         //        model.addAttribute("dto", dto2);
         List<DiaryDTO> list = diaryService.selectDiary(dto.getMem_id());
-        model.addAttribute("list", list);
+        model.addAttribute("diaryList", list);
         return "mini/diary/diary";
     }
 
@@ -41,15 +41,16 @@ public class DiaryController {
         return "mini/diary/diary_write";
     }
 
-    /* 다이어리 글쓰기 */
+    /* 다이어리 글쓰고 등록 버튼 눌렀을 때 */
     @PostMapping(value = "/diaryInsert/{mem_id}")
     public String insertDiary(DiaryDTO dto, Model model) {
         int result = diaryService.insertDiary(dto);
         if (result == 1) {
             //            DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
             //            model.addAttribute("dto", dto2);
-            List<DiaryDTO> list = diaryService.selectDiary(dto.getMem_id());
-            model.addAttribute("list", list);
+
+            //            List<DiaryDTO> list = diaryService.selectDiary(dto.getMem_id());
+            //            model.addAttribute("list", list);
             return "redirect:/mini/diary/diary/{mem_id}";
         }
         return "mini/diary/diary_write";
@@ -78,10 +79,32 @@ public class DiaryController {
         return "mini/diary/diary_update";
     }
 
-    /* 글쓰기 등록 버튼 클릭 후 리스트 화면으로 이동 */
-    //        @RequestMapping(value = "/mini/diary/diary/{mem_id}")
-    //        public String insertDiaryFinish() {
-    //    
-    //        }
+    /* 다이어리 글 삭제 버튼 눌렀을 때 */
+    @PostMapping(value = "/diaryDelete/{mem_id}")
+    public String DeleteDiary(@RequestParam int diary_num, Model model) {
+        int result = diaryService.deleteDiary(diary_num);
+        if (result == 1) {
+            return "redirect:/mini/diary/diary/{mem_id}";
+        }
+        return "mini/diary/diary";
+    }
+
+    /* 다이어리 날짜선택 했을 때 */
+    @PostMapping(value = "/diarySelect/{mem_id}")
+    public String SelectDate(@RequestParam(required = false) String diary_date, HttpSession session, Model model) {
+        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+        DiaryDTO dto2 = new DiaryDTO();
+        dto2.setMem_id(dto.getMem_id());
+        dto2.setDiary_date(diary_date);
+        if (!diary_date.equals("")) {
+            List<DiaryDTO> list = diaryService.selectDate(dto2);
+            if (list.isEmpty()) {
+                return "mini/diary/diary2";
+            } else {
+                model.addAttribute("diaryList", list);
+            }
+        }
+        return "mini/diary/diary";
+    }
 
 }
