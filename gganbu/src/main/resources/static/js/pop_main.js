@@ -1,3 +1,4 @@
+/*
 var menu = document.getElementsByClassName("menu-item");
 
       function handleClick(event) {
@@ -20,3 +21,12 @@ var menu = document.getElementsByClassName("menu-item");
       }
 
       init();
+*/
+
+let menu = document.getElementsByClassName("menu-item");
+ for (var i = 0; i < menu.length; i++) {
+	$( 'a' ).click( function() {
+	  	$('.menu-item').removeClass('menu-checked');
+	  	$(this).parent().addClass('menu-checked');
+} );
+}
