@@ -18,7 +18,6 @@ import com.gg.domain.MemberDTO;
 import com.gg.service.LoginService;
 
 @Controller 
-@RequestMapping/*("/login/*")*/
 public class LoginController { 
 	
 	@Autowired
@@ -42,24 +41,6 @@ public class LoginController {
     	session.invalidate();
     	return "main"; 
     }
-    
-    /*
-    @PostMapping(value = "/login/login") 
-    public String loginAction(MemberDTO dto, RedirectAttributes rttr, HttpServletRequest request){ 
-    	MemberDTO loginUser = loginService.loginAction(dto);
-    	HttpSession session = request.getSession();
-    	
-    	if(loginUser==null) {
-    		session.setAttribute("loginUser", null);
-    		rttr.addFlashAttribute("result", "login fail");
-    		return "redirect:/login/login"; 
-    	}else {
-    		session.setAttribute("loginUser", loginUser);
-    		rttr.addFlashAttribute("result", "login success");
-    		return "redirect:/main"; 
-    	}
-    }
-    */
     
     /* 로그인 체크 */
     @ResponseBody
