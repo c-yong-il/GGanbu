@@ -21,6 +21,7 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
     
+    
     /* 사진첩 버튼 클릭 시 게시글 리스트 출력 */
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
     public String listTest(HttpSession session, Model model) {

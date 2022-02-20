@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gg.mapper.PhotoCommentMapper">
+
+	<select id="commentList" resultType="PhotoCommentDTO">
+	
+		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
+		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' and photo_num=#{photo_num} order by photo_date)sub 
+		order by sub.rownum desc
+	
+	</select>
+	
+	<insert id="commentInsert" parameterType="PhotoCommentDTO">
+	
+		insert into photo_comment_table 
+		(photo_comment_num, mem_id, comment_content, comment_date, comment_updatedate, comment_status, photo_num, mem_id2) 
+		values(photo_comment_num, #{mem_id}, #{comment_content}, now(), now(), 'N', #{mem_id2})
+	
+	</insert>
+	
+	<update id="commentUpdate" parameterType="PhotoCommentDTO">
+	
+		update photo_comment_table set 
+		comment_content = #{comment_content}
+		where mem_id2 = #{mem_id2}
+	
+	</update>
+	
+	<update id="commentDelete" parameterType="_int">
+	
+		update photo_comment_table set
+		comment_status = 'Y'
+		where photo_comment_num = #{photo_comment_num}
+	
+	</update>
+	
+	
+</mapper>
