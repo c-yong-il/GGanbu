@@ -45,7 +45,7 @@
 							</div>
 							<input id="hp" type="text" name="mem_hp" class="form-control"
 								placeholder="Input Phone-Number" aria-label="Input Phone-Number"
-								aria-describedby="basic-addon1" required>
+								aria-describedby="basic-addon1" onkeypress="if(event.keyCode==13){ forgotIdCheck();}" required>
 						</div>
 						<!-- 메시지창 -->
 						<div id="loginMsg" style="color : red; visibility:hidden;">이름 혹은 핸드폰번호가 일치하지 않습니다</div>

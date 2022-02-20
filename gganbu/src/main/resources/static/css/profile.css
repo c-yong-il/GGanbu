@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#profileForm {
+	width: 100%;
+}
+.btn-insert {
+ 	display:flex;
+	justify-content:flex-end; 
+}
+

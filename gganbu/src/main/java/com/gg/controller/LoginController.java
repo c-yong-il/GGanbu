@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +63,7 @@ public class LoginController {
     
     /* 로그인 체크 */
     @ResponseBody
-    @RequestMapping(value = "/login/loginCheck", method = RequestMethod.POST)
+    @PostMapping(value = "/login/loginCheck")
     public int loginCheck(@RequestParam(required = false) String mem_id, @RequestParam(required = false) String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {
         int result;
     	MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
@@ -87,7 +88,7 @@ public class LoginController {
     
     /* 아이디 찾기 체크 */
     @ResponseBody
-    @RequestMapping(value = "/login/forgotIdCheck", method = RequestMethod.POST)
+    @PostMapping(value = "/login/forgotIdCheck")
     public String forgotIdCheck(@RequestParam(required = false) String mem_name, @RequestParam(required = false) String mem_hp, RedirectAttributes rttr, Model model) {
     	String result;
     	String userId = loginService.forgotIdCheck(mem_name, mem_hp);
@@ -107,7 +108,7 @@ public class LoginController {
     
     /* 비밀번호 찾기 체크 */
     @ResponseBody
-    @RequestMapping(value = "/login/forgotPassCheck", method = RequestMethod.POST)
+    @PostMapping(value = "/login/forgotPassCheck")
     public String forgotPassCheck(MemberDTO dto, RedirectAttributes rttr, Model model) {
     	String result;
     	String userPass = loginService.forgotPassCheck(dto);
