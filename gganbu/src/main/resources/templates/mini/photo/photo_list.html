@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Insert title here</title>
 <script src="/js/photo.js"></script>
 <script type="text/javascript" src="/js/ajax.js"></script>
@@ -20,15 +22,17 @@
 	        <button class="btn btn-primary btn-sm">글쓰기</button>
 	    </a>  
     </div >  
-    <div th:each="params : ${list}" >
-	    <form id="update" action="/photo_update/${session.loginUser.mem_id}" name="update" method="post">
+    <th:block th:each="params : ${list}">
+	    <form id="update" name="update">
 	    	<div class="container mt-5">        
+				<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
 				<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
 		        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 		            <div class="col mb-5">
 		                <div class="card h-100">
 			                <div class="date">
 			                	<span th:text="${params.rownum}"></span>
+			                	
 			                	<span th:text="${params.photo_date}"></span>                
 			                </div>
 		                    <div class="card-body p-4">
@@ -39,8 +43,10 @@
 		                        </div>
 		                    </div>
 		                    <div class="button">
-					                <button type="button" class="btn btn-primary btn-sm" id="btn-ud">수정</button>
-					                <button type="button" class="btn btn-warning btn-sm" id="btn-delete">삭제</button>
+		                    	<!-- <a href="javascript:updatee('/photo_update/${session.loginUser.mem_id}')"> -->
+					                <button type="button" class="btn btn-primary btn-sm" th:attr="onclick=|updatee('/photo_update/${params.photo_num}')|">수정</button>
+					            <!-- </a> -->
+					                <button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|deletee('/delete/${session.loginUser.mem_id}/${params.photo_num}')|">삭제</button>
 		                	</div>
 		                    <div class="card-footer border-top-0 bg-transparent">
 		                        <div class="d-center">
@@ -63,9 +69,8 @@
 		        </div>
 		    </div>
 		</form>
-	</div>
+	</th:block>
 </div>
-	
 
 
 </body>

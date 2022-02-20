@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gg.domain.MemberDTO;
 import com.gg.domain.PhotoDTO;
@@ -51,8 +51,8 @@ public class PhotoController {
     }
 
     /* 리스트에서 수정버튼 클릭 시 글수정 화면 출력 */
-    @PostMapping("/photo_update/{mem_id}")
-    public String update(int photo_num, Model model) {
+    @PostMapping(value="/photo_update/{photo_num}")
+    public String update(@PathVariable("photo_num") int photo_num, Model model) {
         PhotoDTO params = photoService.selectTest(photo_num);
         model.addAttribute("params", params);
         return "mini/photo/photo_update";
@@ -61,17 +61,20 @@ public class PhotoController {
     /* 글수정 화면에서 수정하기 버튼 클릭시 update 실행 후 리스트로 돌아감 */
     @PostMapping("/photoupdate/{mem_id}")
     public String update(PhotoDTO params) {
-        int result = photoService.updateTest(params);
+        photoService.updateTest(params);
         
         return "redirect:/mini/photo/photo_list/{mem_id}";
     }
     
     /* 리스트화면에서 삭제 버튼 클릭 시 delete 실행 */
-    @PostMapping("/delete/{mem_id}")
-    public String delete(@RequestParam int photo_num) {
+    @PostMapping(value="/delete/{mem_id}/{photo_num}")
+    public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, Model model) {
         
         photoService.deleteTest(photo_num);
         
+        List<PhotoDTO> list = photoService.listTest(mem_id);
+        
+        model.addAttribute("list", list);
         
         return "redirect:/mini/photo/photo_list/{mem_id}";
     }
