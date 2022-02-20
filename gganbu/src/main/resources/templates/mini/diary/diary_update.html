@@ -20,7 +20,8 @@
 			<div class="col mb-5">
 				<div class="card h-100">
 					 <div class="diary-date">
-						<span th:text="${dto.diary_date}"  ></span>
+					 	<!-- <span th:text="|No.${dto.diary_num}|"></span> -->
+						<span th:text="|${dto.diary_date}📝|"  ></span>
 					</div> 
 
 					<div class="card-body3 ">

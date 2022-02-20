@@ -15,6 +15,8 @@ public interface DiaryService {
     //    public List<DiaryDTO> selectDate(String mem_id, String diary_date);
     public List<DiaryDTO> selectDate(DiaryDTO dto);
 
+    public List<DiaryDTO> selectResultDiary(int diary_num);
+
     public String now();
 
     public int updateDiary(DiaryDTO dto);

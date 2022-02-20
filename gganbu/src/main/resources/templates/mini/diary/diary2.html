@@ -12,10 +12,10 @@
  <link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="/css/reset.css" />
 
-<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
+ <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="/js/ajax.js"></script>
 <script src="/js/diary.js"></script>
+<script src="/js/ajax.js"></script>
 
 </head>
 <body>
@@ -64,9 +64,11 @@
 		</form>	
 	</div>
 	<div th:unless="${not #lists.isEmpty( diaryList)}">
-		<span class="infoMsg"> 조회된 결과가 없습니다😮</span>		
+		<span class="infoMsg"> 삭제가 완료되었습니다.🙆‍♂ </span>	
+		<a href="javascript:diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')" class="showList">🖱 목록보기 🖱 </a>
+	<!-- 	<button type="button" class="btn btn-outline-dark btn-sm" th:attr="onclick=|diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')|">목록 보기</button> -->
 	</div>
 </th:block>
-
+ 
 </body>
 </html>

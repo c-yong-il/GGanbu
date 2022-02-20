@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.DiaryDTO;
 import com.gg.domain.MemberDTO;
@@ -58,8 +60,8 @@ public class DiaryController {
     }
 
     /* 다이어리 수정 버튼 눌렀을 때 화면 이동 */
-    @PostMapping(value = "/diary_update/{mem_id}")
-    public String updateDiaryMove(@RequestParam int diary_num, Model model) {
+    @PostMapping(value = "/diary_update/{diary_num}")
+    public String updateDiaryMove(@PathVariable("diary_num") int diary_num, Model model) {
         DiaryDTO dto = diaryService.updateDiaryMove(diary_num);
         model.addAttribute("dto", dto);
         return "mini/diary/diary_update";
@@ -67,26 +69,34 @@ public class DiaryController {
 
     /* 다이어리 글 수정->수정완료버튼 눌렀을 때 */
     @PostMapping(value = "/diaryUpdate/{mem_id}")
-    public String updateDiary(DiaryDTO dto, Model model) {
+    public String updateDiary(DiaryDTO dto, Model model, RedirectAttributes redirect) {
         int result = diaryService.updateDiary(dto);
         if (result == 1) {
-            //            DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
-            //            model.addAttribute("dto", dto2);
-            List<DiaryDTO> list = diaryService.selectDiary(dto.getMem_id());
-            model.addAttribute("list", list);
-            return "redirect:/mini/diary/diary/{mem_id}";
+            redirect.addAttribute("diary_num", dto.getDiary_num());
+            //redirect.addAttribute("mem_id", dto.getMem_id());
+            return "redirect:/showResultDiary/{mem_id}"; // "redirect:/mini/diary/diary/{mem_id}"
         }
         return "mini/diary/diary_update";
     }
 
+    /* 글 수정이나 삭제 눌렀을 때 그 글만 출력(즉, 삭제는 화면에 띄워지는게 없음) */
+    @RequestMapping(value = "/showResultDiary/{mem_id}")
+    public String selectResultDiary(@RequestParam("diary_num") int diary_num, Model model) {
+        List<DiaryDTO> list = diaryService.selectResultDiary(diary_num);
+        model.addAttribute("diaryList", list);
+        return "mini/diary/diary2";
+    }
+
     /* 다이어리 글 삭제 버튼 눌렀을 때 */
-    @PostMapping(value = "/diaryDelete/{mem_id}")
-    public String DeleteDiary(@RequestParam int diary_num, Model model) {
+    @PostMapping(value = "/diaryDelete/{mem_id}/{diary_num}")
+    public String DeleteDiary(@PathVariable("diary_num") int diary_num, @PathVariable("mem_id") String mem_id, Model model,
+            RedirectAttributes redirect) {
         int result = diaryService.deleteDiary(diary_num);
         if (result == 1) {
-            return "redirect:/mini/diary/diary/{mem_id}";
+            redirect.addAttribute("diary_num", diary_num);
         }
-        return "mini/diary/diary";
+        return "redirect:/showResultDiary/{mem_id}";
+        // return "redirect:/mini/diary/diary/{mem_id}";
     }
 
     /* 다이어리 날짜선택 했을 때 */

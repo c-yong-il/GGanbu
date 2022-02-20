@@ -34,18 +34,38 @@
 	width: 100%;
     height: 15em;
     resize: none;
+    line-height:25px;
 }
 .card-body3 {
 	flex: 1 1 auto;
   	padding: 0.5rem 0.5rem 0 0.5rem;
 }
-#datepicker {
-	padding:2px 0;
+#dateSelect {
+	padding:5px 0;
 	width:100px;
+}
+.infoMsg {
+	display:flex;
+	justify-content:center;
+}
+.showList{
+	margin-top:5px;
+	padding:5px;
+	display:flex;
+	justify-content:center;
+	text-decoration:none;
+	color:black;
+}
+.showList:hover {
+	background-color:linen;
+	color:black;
+	font-weight:bold;
 }
 
 
-/* 달력 
+
+
+/* 달력  
  .ui-widget-header { border: 0px solid #dddddd; background: #fff; } 
 
  .ui-datepicker-calendar>thead>tr>th { font-size: 14px !important; } 
@@ -117,4 +137,4 @@
 
  .inp { padding: 10px 10px; background-color: #f1f1f1; border-radius: 4px; border: 0px; } 
 
- .inp:focus { outline: none; background-color: #eee; }  */
+ .inp:focus { outline: none; background-color: #eee; } */

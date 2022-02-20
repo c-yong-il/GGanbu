@@ -60,4 +60,10 @@ public class DiaryServiceImpl implements DiaryService {
         return diarymapper.selectDate(dto);
     }
 
+    @Override
+    public List<DiaryDTO> selectResultDiary(int diary_num) {
+
+        return diarymapper.selectResultDiary(diary_num);
+    }
+
 }
