@@ -24,12 +24,12 @@ public class PhotoController {
     
     /* 사진첩 버튼 클릭 시 게시글 리스트 출력 */
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
-    public String listTest(HttpSession session, Model model) {
-        
+    public String listTest(@PathVariable("mem_id") String mem_id, HttpSession session, Model model) {
+
         MemberDTO dto = (MemberDTO)session.getAttribute("loginUser");
         
         
-        List<PhotoDTO> list = photoService.listTest(dto.getMem_id());
+        List<PhotoDTO> list = photoService.listTest(mem_id);
         
         model.addAttribute("list", list);
         
