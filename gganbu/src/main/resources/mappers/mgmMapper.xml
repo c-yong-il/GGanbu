@@ -25,6 +25,12 @@
 		select mem_id,mem_name from member_table where mem_name = #{mem_name} and mem_status = 'n'
 	
 	</select>
+	
+	<select id="gglist" parameterType="String" resultType="MgmDTO">
+	
+		select mem_id,mem_id2,gganbu_acceptdate from gganbu_table where mem_id=#{mem_id} or mem_id2=#{mem_id}
+	
+	</select>
 
 
 </mapper>

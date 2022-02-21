@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gg.domain.MemberDTO;
+import com.gg.domain.MgmDTO;
 import com.gg.mapper.MgmMapper;
 
 @Service
@@ -32,6 +33,12 @@ public class MgmServiceImpl implements MgmService{
     @Override
     public List<MemberDTO> search(String mem_name) {
         return null;
+    }
+
+    @Override
+    public List<MgmDTO> gglist(String mem_id) {
+        
+        return mgmmapper.gglist(mem_id);
     }
     
     

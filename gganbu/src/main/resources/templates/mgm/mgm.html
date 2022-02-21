@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/main.css" />
-<script src="/js/main.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -13,24 +12,36 @@
 <section class="py-5">
 
 <h5>깐부목록</h5>
-<table class="table">
-    <thead class="thead-light">
-      <tr>
-		<th>ID(이름)</th>
-		<th>미니홈피</th>
-		<th>깐부 맺은 날</th>
-		<th></th>
-	</tr>
-    </thead>
-    <tbody>
-	    <tr>
-			<td>ID(둘리)</td>
-			<td>미니홈피구경하기</td>
-			<td>2022/55/85</td>
-			<td>깐부 끊기</td>
+
+<th:block>
+	<table class="table">
+	    <thead class="thead-light">
+	      <tr>
+			<th>ID(이름)</th>
+			<th>미니홈피</th>
+			<th>깐부 맺은 날</th>
+			<th></th>
 		</tr>
-    </tbody>
-</table>
+	    </thead>
+	    <tbody>
+	    <!-- th:text="${session.loginUser.mem_name}+'('+${session.loginUser.mem_id}+')'" -->
+		    <tr th:if="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
+				<td th:text="${gg.mem_id2}"></td>
+				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id2}')|">미니홈피구경하기</a></td>
+				<td th:text="${gg.gganbu_acceptdate}"></td>
+				<td>깐부 끊기</td>
+			</tr>
+			<tr th:unless="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
+				<td th:text="${gg.mem_id}"></td>
+				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id}')|">미니홈피구경하기</a></td>
+				<td th:text="${gg.gganbu_acceptdate}"></td>
+				<td>깐부 끊기</td>
+			</tr>
+			
+			
+	    </tbody>
+	</table>
+</th:block>
 
 
 
@@ -58,5 +69,13 @@
 
 
 <footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
+
+<script>
+function openWindowPop(url){
+	var features = "scrollbars=yes,width=1300,height=700, resizable=no"; 
+    var windowTargetName = "world";
+	window.open(url, windowTargetName, features);
+}
+</script>
 </body>
 </html>

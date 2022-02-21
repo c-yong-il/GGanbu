@@ -11290,7 +11290,8 @@ textarea.form-control-lg {
 }
 
 
-.fr {
-	display:flex;
-	justify-content:space-between;
+.fr ul li {
+	/* display:flex;
+	justify-content:space-between; */
+	float:right;
 }
