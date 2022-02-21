@@ -12,10 +12,10 @@
 
 <div id="profile-content" >
 	<div class="container">
-		<div class="btn-insert">
-		<a href="javascript:profileUpdate('/mini/profile/profile_update');">
-			<button id="btn-insert" class="btn btn-primary btn-sm">등록</button>
-		</a>	
+		<div th:if="${session.loginUser.mem_id!=null}" class="btn-insert">
+			<a href="javascript:profileWrite('/mini/profile/profile_write');">
+				<button id="btn-insert" class="btn btn-primary btn-sm">등록</button>
+			</a>	
 		</div>
 			<form th:if = "${profile == null}" id="profileForm">
 				<div class="form-group form-control" >
@@ -23,7 +23,7 @@
 				</div>
 			</form>
 			
-			<form th:if = "${profile != null}" id="profileForm" action="/profile/${session.loginUser.mem_id}" name="profileForm" method="post">
+			<form th:if = "${profile != null}" action="/profile/profile_write${session.loginUser.mem_id}" id="profileForm" name="profileForm" method="post">
 	    	<div class="container mt-5">        
 		        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 		            <div class="col mb-5">

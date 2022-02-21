@@ -10,7 +10,15 @@
 
 .form-control{
 	margin-top: 10px;
-	padding: 100px 0px;
+	padding: 170px 0px;
+	display:flex;
+	justify-content: center;
+	align-items: center; 
+}
+.form-title{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 0px;
 	display:flex;
 	justify-content: center;
 	align-items: center; 

@@ -13,8 +13,14 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 	
-	@GetMapping(value = "/mini/profile/profile_update") 
-    public String profile(){ 
-        return "mini/profile/profile_update"; 
-    }
+	@PostMapping(value = "/mini/profile/profile_write/") 
+	public String writeProfile(){ 
+		return "mini/profile/profile_write/{mem_id}"; 
+	}
+	
+	@PostMapping(value = "/mini/profile/profile_update/*") 
+	public String updateProfile(){ 
+		return "mini/profile/profile_update/{mem_id}"; 
+	}
+	
 }
