@@ -13,9 +13,10 @@
 <link rel="stylesheet" href="/css/reset.css" />
 
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="/js/ajax.js"></script>
 <script src="/js/diary.js"></script>
+<script src="/js/ajax.js"></script>
+
+
 
 </head>
 <body>
@@ -62,11 +63,10 @@
 				</div>
 			</div>	
 		</form>	
-	</div>
-	<div th:unless="${not #lists.isEmpty( diaryList)}">
-		<span class="infoMsg"> 조회된 결과가 없습니다😮</span>		
-	</div>
-</th:block>
-
+	</th:block>
+	<th:block th:unless="${not #lists.isEmpty( diaryList)}">
+		<span class="infoMsg"> 다이어리글이 없어요.😮</span>		
+	</th:block>
+</div>
 </body>
 </html>
