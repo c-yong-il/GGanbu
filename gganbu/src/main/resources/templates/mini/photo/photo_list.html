@@ -22,7 +22,7 @@
 	        <button class="btn btn-primary btn-sm">글쓰기</button>
 	    </a>  
     </div >  
-    <th:block th:each="params : ${list}">
+    <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
 	    <form id="update" name="update">
 	    	<div class="container mt-5">        
 				<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
@@ -53,27 +53,27 @@
 				</div>
 			</div>
 		</form>
-		<form>
+		<form id="cinsert" name="cinsert">
 	        <div class="card-footer border-top-0 bg-transparent">
 	            <div class="d-center">
 	            	<label>댓글</label>
 	            	<input type="text" class="text">
-	            	<a class="btn btn-outline-dark mt-auto btn-sm">등록</a>
+	            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|">등록</button>
 	            	<div>
 	            		<table border=1>
 	            			<tr>
-	            				<td width=15%>wlfkfqkfrhkd93</td>
-	            				<td >가나다라마바사아자차카타파하</td>
-	            				<td width=15%>2022-02-22</td>
+	            				<td width=15% th:text="${mem_id2}"></td>
+	            				<td th:text="${comment_content}"></td>
+	            				<td width=15% th:text="${comment_date}"></td>
 	            			</tr>
 	            		</table>
 	            	</div>
 	            </div>
 	        </div>
         </form>
-		                
-		            
-		
+	</th:block>
+	<th:block  th:unless="${not #lists.isEmpty(list)}">
+			<span>게시글을 써라</span>
 	</th:block>
 </div>
 

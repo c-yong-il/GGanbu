@@ -35,4 +35,9 @@ public class GgController {
     public String photo() {
         return "mini/photo/photo_list";
     }
+    
+    @RequestMapping(value = "/mini/upop_main/{mem_id}")
+    public String upop_main() {
+        return "mini/upop_main/{mem_id}";
+    }
 }

@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/main.css" />
-<script src="/js/main.js"></script>
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
@@ -43,9 +42,7 @@
 
 
 <!-- Footer-->
-<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark">
-   
-</footer>
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
 
 <div class="nav-item" th:if = "${session.loginUser != null}">
 <script>

@@ -9725,6 +9725,7 @@ textarea.form-control-lg {
 
   .ms-lg-4 {
     margin-left: 1.5rem !important;
+    text-align:center;
   }
 
   .ms-lg-5 {
@@ -11286,4 +11287,10 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+
+.fr {
+	display:flex;
+	justify-content:space-between;
 }

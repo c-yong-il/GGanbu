@@ -71,13 +71,14 @@ public class PhotoController {
     @PostMapping(value="/delete/{mem_id}/{photo_num}")
     public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, Model model) {
         
-        photoService.deleteTest(photo_num);
-        
-        List<PhotoDTO> list = photoService.listTest(mem_id);
-        
-        model.addAttribute("list", list);
-        
-        return "redirect:/mini/photo/photo_list/{mem_id}";
-    }
+            photoService.deleteTest(photo_num);
+            
+            List<PhotoDTO> list = photoService.listTest(mem_id);
+            
+            model.addAttribute("list", list);
+            
+            return "redirect:/mini/photo/photo_list/{mem_id}";
 
+    }
+    
 }

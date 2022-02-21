@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/main.css" />
+<script src="/js/main.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:replace="/header.html :: main-head"></header>
+<h2>깐부 관리</h2>
+<section class="py-5">
+
+<h5>깐부목록</h5>
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+		<th>ID(이름)</th>
+		<th>미니홈피</th>
+		<th>깐부 맺은 날</th>
+		<th></th>
+	</tr>
+    </thead>
+    <tbody>
+	    <tr>
+			<td>ID(둘리)</td>
+			<td>미니홈피구경하기</td>
+			<td>2022/55/85</td>
+			<td>깐부 끊기</td>
+		</tr>
+    </tbody>
+</table>
+
+
+
+<h5>깐부 요청 목록</h5>
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+		<th>ID(이름)</th>
+		<th>미니홈피</th>
+		<th>깐부 요청 날</th>
+		<th></th>
+	</tr>
+    </thead>
+    <tbody>
+	    <tr>
+			<td>ID(둘리)</td>
+			<td>미니홈피구경하기</td>
+			<td>2022/55/85</td>
+			<td>수락/거절</td>
+		</tr>
+    </tbody>
+</table>
+
+</section>
+
+
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
+</body>
+</html>
