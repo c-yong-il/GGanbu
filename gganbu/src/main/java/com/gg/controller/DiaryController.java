@@ -25,8 +25,10 @@ public class DiaryController {
 
     /* 다이어리 메뉴 클릭 시 다이어리 리스트 출력 */
     @RequestMapping(value = "/mini/diary/diary/{mem_id}")
-    public String selectDiary(HttpSession session, Model model) {
+    public String selectDiary(HttpSession session, Model model, @PathVariable("mem_id") String mem_id) {
+        System.out.println("mem_id=" + mem_id);
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+        System.out.println("dto.getMem_id=" + dto.getMem_id());
 
         //        DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
         //        model.addAttribute("dto", dto2);
@@ -79,7 +81,7 @@ public class DiaryController {
         return "mini/diary/diary_update";
     }
 
-    /* 글 수정이나 삭제 눌렀을 때 그 글만 출력(즉, 삭제는 화면에 띄워지는게 없음) */
+    /* 글 수정이나 삭제 완료 후 그 글만 출력(즉, 삭제는 화면에 띄워지는게 없음) */
     @RequestMapping(value = "/showResultDiary/{mem_id}")
     public String selectResultDiary(@RequestParam("diary_num") int diary_num, Model model) {
         List<DiaryDTO> list = diaryService.selectResultDiary(diary_num);

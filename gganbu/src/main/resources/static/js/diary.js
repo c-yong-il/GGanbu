@@ -109,6 +109,7 @@
 
 /** 다이어리 삭제 버튼 눌렀을 때 */	
 	function diaryDelete(url) {
+		if(confirm("정말로 삭제하시겠습니까?")){
 		  $.ajax({
             cache : false,
             url : url, 
@@ -124,8 +125,7 @@
 	        $('#diary_change').html(data);
        		 }
    	 	});
-       		 /*alert("삭제하러갑니닷"); */
-       		/* $(document).find("#dateSelect").removeClass('hasDatepicker').datepicker();*/
+		}
 	}
 	
 	/** 다이어리 날짜 눌렀을 때 */
