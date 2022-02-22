@@ -4,9 +4,8 @@ let passFlag;
 *   마이페이지-내 정보 수정 폼 유효성 체크(공백)
  */
 function editFormCheck(){
-    let id, pass, cpass,  email1, email2, email3, hp;
+    let pass, cpass,  email1, email2, email3, hp;
     let passMsg, cpassMsg,  emailMsg, hpMsg;
-    id = document.getElementById("id");
     pass = document.getElementById("pass");
     cpass = document.getElementById("cpass");
     email1 = document.getElementById("email1");
@@ -61,62 +60,85 @@ function editFormCheck(){
         alert("양식을 확인해주세요");
         return false;
     }else{
-        //id.disabled  = false;
-        
-        
         myinfoForm.submit();
     }
 }
 /*
-* 마이페이지 - 내 정보 수정 - 비밀번호 유효성 체크
+    비밀번호 유효성 체크
 */
-function passCheck(){
-    let pwJ = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
-    let pass, cpass, passMsg;
+    let pwJ = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/; 
+    let pass,cpass,passMsg,cpassMsg;
     pass = document.getElementById("pass");
     cpass = document.getElementById("cpass");
     passMsg = document.getElementById("passMsg");
-    
-    if(passFlag == 0){
-        if(pass.value != "" && cpass.value == ""){
-            passFlag = 1;
-        }
+    cpassMsg = document.getElementById("cpassMsg");
+function passCheck(){
+    if(cpass.value==""){
+        cpass.style.border = "1px solid #ddd";
+        cpassMsg.innerHTML = "";
     }
-        if(!pwJ.test($('#pass').val()) || empJ.test($('#pass').val())){
+    if(!pwJ.test($('#pass').val())||empJ.test($('#pass').val())){
         passMsg.style.color = "#FF1493";
-        pass.style.border = "1px solid #FF1493";
+        pass.style.border = "2px solid #FF1493";
         passMsg.innerHTML = "유효한 양식이 아닙니다";
         return false;
-
-        }else{
-            passMsg.innerHTML = "";
-            pass.style.border = "1px solid #ddd";
-        }
-}
-/*
-* 마이페이지 - 내 정보 수정 - 비밀번호 확인 유효성 체크
-*/
-function cpassCheck(){
-    let pwJ =/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
-    let pass, cpass, cpassMsg;
-    pass = document.getElementById("pass");
-    cpass = document.getElementById("cpass");
-    cpassMsg = document.getElementById("cpassMsg");
-    
-    if(passFlag==0){
-        if(cpass.value != "" && pass.value == ""){
-            passFlag=1;
-        }
+    }else{
+        passMsg.innerHTML = "";
+        pass.style.border = "1px solid #ddd";
     }
-        if(!pwJ.test($('#cpass').val())||empJ.test($('#cpass').val())){
+}
+function cpassCheck(){
+    if(pass.value==""){
+        pass.style.border = "1px solid #ddd";
+        passMsg.innerHTML = "";
+    }
+    if(!pwJ.test($('#cpass').val())||empJ.test($('#cpass').val())){
         cpassMsg.style.color = "#FF1493";
-        cpass.style.border = "1px solid #FF1493";
+        cpass.style.border = "2px solid #FF1493";
         cpassMsg.innerHTML = "유효한 양식이 아닙니다";
         return false;
+    }else{
+        cpassMsg.innerHTML = "";
+        cpass.style.border = "1px solid #ddd";
+    }
+}
+
+/*
+    비밀번호 일치 체크
+*/
+function passSameCheck(){
+    if(pass.value != "" && cpass.value != ""){
+        if(pass.value == cpass.value){
+            if(pwJ.test($('#pass').val())){
+                passMsg.innerHTML = "";
+                cpassMsg.innerHTML = "";
+                pass.style.border = "1px solid #ddd";
+                cpass.style.border = "1px solid #ddd";
+                passMsg.innerHTML = "비밀번호가 일치합니다";
+                passMsg.style.color = "blue";
+                return true;
+            }else{
+                passMsg.style.color = "#FF1493";
+                passMsg.innerHTML = "유효한 양식이 아닙니다";
+                pass.style.border = "2px solid #FF1493";
+                pass.value="";
+                cpass.value="";
+                cpassMsg.innerHTML = "";
+                cpass.style.border = "1px solid #ddd";
+                pass.focus();
+            }
         }else{
+            passMsg.style.color = "#FF1493";
+            passMsg.innerHTML = "비밀번호가 일치하지 않습니다";
+            pass.style.border = "2px solid #FF1493";
+            pass.value = "";
+            cpass.value = "";
             cpassMsg.innerHTML = "";
             cpass.style.border = "1px solid #ddd";
-        }
+            pass.focus();
+            return false;
+        }       
+    }
 }
 /**
 * 마이페이지 - 내 정보 수정 - email 유효성체크
@@ -139,8 +161,9 @@ function emailCheck(){
         email2.style.border = "1px solid #ddd";
     }
 }   
+
 /*
-* 마이페이지 - 내 정보 수정 - 핸드폰 번호 유효성 체크
+   회원가입 - 핸드폰 번호 확인
 */
 function hpCheck(){
     let phoneJ = /^01\d\d{3,4}\d{4}$/;
@@ -150,16 +173,16 @@ function hpCheck(){
     if(hp.value != ""){
         if(!phoneJ.test($('#hp').val())){
         hpMsg.style.color = "#FF1493";
-        hp.style.border = "1px solid #FF1493";
+        hp.style.border = "2px solid #FF1493";
         hpMsg.innerHTML = "유효한 양식이 아닙니다";
-    //    $('#hp').val('');
         return false;
+
         }else{
             hpMsg.innerHTML = "";
             hp.style.border = "1px solid #ddd";
         }
     }
-}   
+}
 /*
 *  마이페이지 - 내 정보 수정 - 이메일 주소 체크
 */
@@ -219,17 +242,13 @@ function passSameCheck(){
 // 회원 탈퇴
 function exitMember() {
     if(confirm("※주의사항※\n동일한 ID로는 재가입이 불가능합니다.\n정말로 탈퇴하시겠습니까?")){
-        //myinfoForm.submit();
+        myinfoForm.action = "/myinfo/exit";
+        myinfoForm.submit();
         alert("탈퇴가 완료되었습니다.");
     }
 }
 
-/*
-// 정보 수정
-function editmyinfoCheck() {
-    
-}
-*/
+
 
 /*
     비밀번호, 비밀번호 확인, 핸드폰, 이메일 만 변경가능

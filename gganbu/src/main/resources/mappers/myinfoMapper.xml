@@ -12,8 +12,8 @@
     SELECT 
     mem_id, mem_pass, mem_name, mem_email1, mem_email2, 
     mem_hp, mem_birth, mem_gender, mem_date
-    FROM member_table 
-    WHERE mem_id = #{mem_id}
+    FROM member_table
+    WHERE mem_id = #{mem_id};
     
     </select>
     
