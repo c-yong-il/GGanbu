@@ -35,13 +35,13 @@ public class MgmController {
         return "mgm/mgm";
     }
     
-    @GetMapping(value = "/mini/pop_main1/{mem_id2}")
+    @GetMapping(value = "/mini/pop_main/{mem_id2}")
     public String pop_main(@PathVariable("mem_id2") String mem_id2) {
         
         return "mini/pop_main";
     }
     
-    @GetMapping(value = "/mini/pop_main1/{mem_id}")
+    @GetMapping(value = "/mini/pop_main/{mem_id}")
     public String pop_main2(@PathVariable("mem_id") String mem_id) {
         
         return "mini/pop_main";
