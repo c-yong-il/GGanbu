@@ -27,9 +27,9 @@
                   <p class="text-total">13042</p>
                 </div> -->
                 <div class="profile">
-                  <!-- <p class="text-today-is">
+                  <!--  <p class="text-today-is">
                     TODAY IS .. <i>⛱</i><span> 그리움</span>
-                  </p> -->
+                  </p>  -->
                   <img
                     class="profile-img"
                     src="/image/basic.jpg"
@@ -144,12 +144,12 @@
                 </div>
                 </div>
               </div>
-              <div class="menu-item mi-1 menu-checked"><a href="/mini/pop_main/${session.loginUser.mem_id};">홈</a></div>
-              <div class="menu-item mi-2"><a href="javascript:acyncMovePage('/mini/profile/profile');">프로필</a></div>
-              <div class="menu-item mi-3"><a th:attr="onclick=|acyncMovePage('/mini/diary/diary/${session.loginUser.mem_id}')|">다이어리</a></div>
-              <div class="menu-item mi-4"><a th:attr="onclick=|acyncMovePage('/mini/photo/photo_list/${session.loginUser.mem_id}')|">사진첩</a></div>
+              <div class="menu-item mi-1 menu-checked"><a th:attr="onclick=|acyncMovePage('/mini/pop_main/${id}')|">홈</a></div>
+              <div class="menu-item mi-2"><a th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">프로필</a></div>
+              <div class="menu-item mi-3"><a th:attr="onclick=|acyncMovePage('/mini/diary/diary/${id}')|">다이어리</a></div>
+              <div class="menu-item mi-4"><a th:attr="onclick=|acyncMovePage('/mini/photo/photo_list/${id}')|">사진첩</a></div>
               <!-- <div class="menu-item mi-5">게시판</div> -->
-              <div class="menu-item mi-5"><a href="javascript:acyncMovePage('/mini/guest/guest');">방명록</a></div>
+              <div class="menu-item mi-5"><a th:attr="onclick=|acyncMovePage('/mini/guest/guest/${id}')|">방명록</a></div>
             </div>
           </div>
         </section>

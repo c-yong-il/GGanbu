@@ -1,13 +1,18 @@
 package com.gg.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class GgController {
 
     @RequestMapping(value = "/mini/pop_main/{mem_id}")
-    public String pop_main() {
+    public String pop_main(@PathVariable("mem_id") String mem_id, Model model) {
+
+        model.addAttribute("id", mem_id);
+
         return "mini/pop_main";
     }
 
@@ -35,7 +40,7 @@ public class GgController {
     public String photo() {
         return "mini/photo/photo_list";
     }
-    
+
     @RequestMapping(value = "/mini/upop_main/{mem_id}")
     public String upop_main() {
         return "mini/upop_main/{mem_id}";

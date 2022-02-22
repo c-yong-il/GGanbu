@@ -27,12 +27,12 @@ public class DiaryController {
     @RequestMapping(value = "/mini/diary/diary/{mem_id}")
     public String selectDiary(HttpSession session, Model model, @PathVariable("mem_id") String mem_id) {
         System.out.println("mem_id=" + mem_id);
-        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-        System.out.println("dto.getMem_id=" + dto.getMem_id());
+        // MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+        // System.out.println("dto.getMem_id=" + dto.getMem_id());
 
         //        DiaryDTO dto2 = diaryService.selectDiary(dto.getMem_id());
         //        model.addAttribute("dto", dto2);
-        List<DiaryDTO> list = diaryService.selectDiary(dto.getMem_id());
+        List<DiaryDTO> list = diaryService.selectDiary(mem_id);
         model.addAttribute("diaryList", list);
         return "mini/diary/diary";
     }
