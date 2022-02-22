@@ -3,7 +3,7 @@ let passFlag;
 /*
 *   마이페이지-내 정보 수정 폼 유효성 체크(공백)
  */
-function infoUpdateCheck(){
+function editFormCheck(){
     let id, pass, cpass,  email1, email2, email3, hp;
     let passMsg, cpassMsg,  emailMsg, hpMsg;
     id = document.getElementById("id");
@@ -61,8 +61,10 @@ function infoUpdateCheck(){
         alert("양식을 확인해주세요");
         return false;
     }else{
-        id.disabled  = false;
-        infoUpdateForm.submit();
+        //id.disabled  = false;
+        
+        
+        myinfoForm.submit();
     }
 }
 /*
@@ -222,10 +224,12 @@ function exitMember() {
     }
 }
 
+/*
 // 정보 수정
 function editmyinfoCheck() {
     
 }
+*/
 
 /*
     비밀번호, 비밀번호 확인, 핸드폰, 이메일 만 변경가능

@@ -7,31 +7,26 @@ import com.gg.domain.MemberDTO;
 import com.gg.mapper.MyInfoMapper;
 
 @Service
-public class MyInfoServiceImpl implements MyInfoService{
-    
+public class MyInfoServiceImpl implements MyInfoService {
+
     @Autowired
     private MyInfoMapper myinfomapper;
-    
-    @Override
-    public MemberDTO myinfoAction(MemberDTO dto) {
-        return myinfomapper.myinfoAction(dto);
-    }
 
     @Override
     public MemberDTO showInfo(String mem_id) {
-        
+
         return myinfomapper.showInfo(mem_id);
     }
 
     @Override
     public int editInfo(MemberDTO dto) {
-    	
-    	return myinfomapper.editInfo(dto);
+
+        return myinfomapper.editInfo(dto);
     }
 
     @Override
     public int exitMember(String mem_id) {
-        
+
         return myinfomapper.exitMember(mem_id);
     }
 
