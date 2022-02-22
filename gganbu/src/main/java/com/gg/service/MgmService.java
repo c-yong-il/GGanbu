@@ -7,7 +7,7 @@ import com.gg.domain.MgmDTO;
 
 public interface MgmService {
     
-    public int MgmQuit();
+    public int MgmQuit(String mem_id, String mem_id2);
     
     public int MgmAccept();
     

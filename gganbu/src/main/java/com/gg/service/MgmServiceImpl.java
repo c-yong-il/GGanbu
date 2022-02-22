@@ -16,7 +16,7 @@ public class MgmServiceImpl implements MgmService{
     private MgmMapper mgmmapper;
     
     @Override
-    public int MgmQuit() {
+    public int MgmQuit(String mem_id, String mem_id2) {
         return 0;
     }
 

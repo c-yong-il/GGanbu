@@ -10,7 +10,7 @@ import com.gg.domain.MgmDTO;
 @Mapper
 public interface MgmMapper {
     
-    public int MgmQuit();
+    public int MgmQuit(String mem_id, String mem_id2);
     
     public int MgmAccept();
     
