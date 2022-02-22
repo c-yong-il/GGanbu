@@ -12,46 +12,21 @@
 
 <div id="profile-content" >
 	<div class="container">
-		<div class="btn-insert">
-			<button id="btn-insert" class="btn btn-primary btn-sm">등록</button>
+		<div class="profile-title">
+			<p id="btn-insert" class="form-title">프로필</p>
 		</div>
-			<form th:if = "${profile == null}" id="profileForm">
-				<div class="form-group form-control" >
-					<p>등록된 프로필이 없습니다(작성)</p>
-				</div>
-			</form>
 			
-			<form th:if = "${profile != null}" id="profileForm" name="profileForm" method="post">
-	    	<div class="container mt-5">        
-		        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-		            <div class="col mb-5">
-		                <div class="card h-100">
-			                <div class="date">
-			                	<span th:text="${dto.profile_date}"></span>                
-			                	<span th:text="${dto.profile_updatedate}"></span>                
-			                </div>
-		                    <div class="card-body p-4">
-		                        <div class="text-center">
-		                            <div class="d-flex justify-content-center small mb-2">
-		                                <div class="bi-star-fill" th:utext=${dto.profile_photo}></div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="card-body p-4">
-		                        <div class="text-center">
-		                            <div class="d-flex justify-content-center small mb-2">
-		                                <div class="bi-star-fill" th:utext=${dto.profile_content}></div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="button">
-					                <button type="button" class="btn btn-primary btn-sm" id="btn-update">수정</button>
-		                	</div>
-		                </div>
-		            </div>
+		<form id="profileForm" name="profileForm" action="/profile/profile_update/{id}" method="post">
+			<input type="hidden" id="mem_id" name="mem_id" th:value="${id}">
+		        <div class="text-center">
+		            <textarea class="form-control summernote" id="profile_photo" name="profile_photo"  th:utext="${dto.profile_photo}"></textarea>
 		        </div>
-		    </div>
+		    <div class="text-center">
+		   		<a class="btn btn-primary" th:attr="onclick=|profileUpdate('/mini/profile/profile_update/${id}')|">수정</a> 
+			 	<a class="btn btn-primary" th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">취소</a> 
+			</div>      
 		</form>
+
 	</div>
 </div>
 

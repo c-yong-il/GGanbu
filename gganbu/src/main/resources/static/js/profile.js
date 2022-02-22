@@ -1,25 +1,9 @@
  
- /** 글쓰기 버튼 눌렀을 때*/
- function profileUpdate(url){
-	alert("업데이트진입");
-	var option ={
-			type:"post",
-			url:url,
-			async:true,
-			dataType:"html",
-			cache:false
-	};
-	 $.ajax(option).done(function(data){
-        // Contents 영역 삭제
-        $('#profile-content').children().remove();
-        // Contents 영역 교체
-        $('#profile-content').html(data);
-    });
-}
+ 
 
-/* 프로필 - 글쓰기: 썸머노트 */ 
+
+/* 프로필 - 글쓰기(등록,수정) 진입: 썸머노트 */ 
 function profileWrite(url){
-	alert("글쓰기진입");
     // ajax option
     var ajaxOption = {
             url : url,
@@ -59,9 +43,9 @@ function profileWrite(url){
 }
 
 
-/* 프로필 - 수정 */ 
+/* 프로필 - 등록,수정 */ 
 function profileUpdate(url){
-	var updateDate = $("#profile-content").serialize();
+	var updateDate = $("#profileForm").serialize();
 	
     $.ajax({
         url : url,
@@ -73,10 +57,7 @@ function profileUpdate(url){
 	        $('#profile-content').children().remove();
 	        // Contents 영역 교체
 	        $('#profile-content').html(data);
-	        $('.summernote').summernote({
-			    height: 250,
-			    width:550
-			  });
+	        
    		 });
  	}
  

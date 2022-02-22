@@ -14,8 +14,25 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	/* 프로필 등록 */
 	@Override
-	public ProfileDTO profileAction(ProfileDTO dto) {
-		return profileMapper.profileAction(dto);
+	public int profileInsert(ProfileDTO dto) {
+		return profileMapper.profileInsert(dto);
 	}
+	
+	/* 프로필 수정 */
+	@Override
+	public int profileUpdate(ProfileDTO dto) {
+		return profileMapper.profileUpdate(dto);
+	}
+	
+	/* 프로필 조회 */
+	@Override
+	public ProfileDTO profileSelect(String mem_id) {
+		return profileMapper.profileSelect(mem_id);
+	}
+	
+    /* 프로필 체크 */
+    public int profileCheck(String mem_id) {
+    	return profileMapper.profileCheck(mem_id);
+    }
 	
 }

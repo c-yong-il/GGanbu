@@ -73,7 +73,7 @@ public class PhotoController {
             
             model.addAttribute("list", list);
             
-            return "redirect:/mini/photo/photo_list/{mem_id}";
+            return "mini/photo/photo_list";
 
     }
     

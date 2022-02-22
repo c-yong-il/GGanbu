@@ -2,13 +2,18 @@
 
 #profileForm {
 	width: 100%;
+	
 }
 .btn-insert {
  	display:flex;
 	justify-content:flex-end; 
 }
 
-.form-control{
+#botton a {
+	margin: 3px;
+}
+
+#form-none{
 	margin-top: 10px;
 	padding: 170px 0px;
 	display:flex;
@@ -22,4 +27,17 @@
 	display:flex;
 	justify-content: center;
 	align-items: center; 
+}
+
+#profile-width{
+	width: 550px;
+	margin-left: -220px;
+}
+
+.date {
+ 	display:flex;
+	justify-content:space-between;
+}
+.date span {
+	margin: 5px;
 }

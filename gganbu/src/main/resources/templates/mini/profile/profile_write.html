@@ -16,13 +16,14 @@
 			<p id="btn-insert" class="form-title">프로필</p>
 		</div>
 			
-		<form id="profileForm" action="/profile/profile_update/{session.loginUser.mem_id}" method="post">
+		<form id="profileForm" name="profileForm" action="/profile/profile_update/{id}" method="post">
+			<input type="hidden" id="mem_id" name="mem_id" th:value=${id}>
 		        <div class="text-center">
 		            <textarea class="form-control summernote" id="profile_photo" name="profile_photo"></textarea>
 		        </div>
 		    <div class="text-center">
-			 	<button type="button" id="btn-update" class="btn btn-primary" >등록</button>
-			 	<button type="button" class="btn btn-primary" onclick="profileUpdate('/mini/profile/profile_update/{session.loginUser.mem_id}')">취소</button>    
+		   		<a class="btn btn-primary" th:attr="onclick=|profileUpdate('/mini/profile/profile_update/${id}')|">등록</a> 
+			 	<a class="btn btn-primary" th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">취소</a> 
 			</div>      
 		</form>
 
