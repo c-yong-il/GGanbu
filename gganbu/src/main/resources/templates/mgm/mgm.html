@@ -14,7 +14,6 @@
 <h5>깐부목록</h5>
 
 <th:block>
-<form id="quitForm" th:action=@{/quit/${mem_id}/${mem_id2}} method="post">
 	<table class="table">
 	    <thead class="thead-light">
 	      <tr>
@@ -30,38 +29,43 @@
 				<td th:text="${gg.mem_id2}"></td>
 				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id2}')|">미니홈피구경하기</a></td>
 				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><button type="submit">깐부 끊기</button></td>
+				<td><a th:attr="onclick=|Quit('/mgm/mgm/${gg.mem_id}/${gg.mem_id2}')|">깐부 끊기</a></td>
 			</tr>
 			<tr th:unless="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
 				<td th:text="${gg.mem_id}"></td>
 				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id}')|">미니홈피구경하기</a></td>
 				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><button type="submit">깐부 끊기</button></td>
+				<td><a th:attr="onclick=|Quit('/mgm/mgm/${gg.mem_id}/${gg.mem_id2}')|">깐부 끊기</a></td>
 			</tr>
 	    </tbody>
 	</table>
-</form>
 </th:block>
 
 <h5>깐부 요청 목록</h5>
-<table class="table">
-    <thead class="thead-light">
-      <tr>
-		<th>ID(이름)</th>
-		<th>미니홈피</th>
-		<th>깐부 요청 날</th>
-		<th></th>
-	</tr>
-    </thead>
-    <tbody>
-	    <tr>
-			<td>ID(둘리)</td>
-			<td>미니홈피구경하기</td>
-			<td>2022/55/85</td>
-			<td>수락/거절</td>
+	<table class="table">
+	    <thead class="thead-light">
+	      <tr>
+			<th>ID(이름)</th>
+			<th>미니홈피</th>
+			<th>깐부 요청 날</th>
+			<th></th>
 		</tr>
-    </tbody>
-</table>
+	    </thead>
+	    <tbody>
+		    <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+				<td th:text="${ww.mem_id2}"></td>
+				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a></td>
+				<td th:text="${ww.gganbu_acceptdate}"></td>
+				<td>수락/거절</td>
+			</tr>
+			<tr th:unless="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+				<td th:text="${ww.mem_id}"></td>
+				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id}')|">미니홈피구경하기</a></td>
+				<td th:text="${ww.gganbu_acceptdate}"></td>
+				<td>수락/거절</td>
+			</tr>
+	    </tbody>
+	</table>
 
 </section>
 

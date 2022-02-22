@@ -28,7 +28,13 @@
 	
 	<select id="gglist" parameterType="String" resultType="MgmDTO">
 	
-		select mem_id,mem_id2,gganbu_acceptdate from gganbu_table where mem_id=#{mem_id} or mem_id2=#{mem_id}
+		select mem_id,mem_id2,gganbu_acceptdate, gganbu_requestdate, gganbu_relation from gganbu_table where (mem_id=#{mem_id} or mem_id2=#{mem_id}) and gganbu_relation=1
+	
+	</select>
+	
+	<select id="ggwait" parameterType="String" resultType="MgmDTO">
+	
+		select mem_id,mem_id2,gganbu_acceptdate, gganbu_requestdate, gganbu_relation from gganbu_table where (mem_id=#{mem_id} or mem_id2=#{mem_id}) and gganbu_relation=0
 	
 	</select>
 

@@ -26,8 +26,11 @@ public class MgmController {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 
         List<MgmDTO> list = mgmservice.gglist(dto.getMem_id());
-
+        
+        List<MgmDTO> wait = mgmservice.ggwait(dto.getMem_id());
+        
         model.addAttribute("list", list);
+        model.addAttribute("wait", wait);
 
         return "mgm/mgm";
     }
@@ -35,6 +38,7 @@ public class MgmController {
     @PostMapping(value = "/quit/{mem_id}/{mem_id2}")
     public String mgmQuit(@PathVariable("mem_id") String mem_id, @PathVariable("mem_id2") String mem_id2, Model model) {
         System.out.println(mem_id+mem_id2);
+        
         mgmservice.MgmQuit(mem_id,mem_id2);
         
         return "redirect:/mgm/mgm";

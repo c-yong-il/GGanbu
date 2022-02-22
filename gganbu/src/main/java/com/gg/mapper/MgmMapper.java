@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gg.domain.MemberDTO;
 import com.gg.domain.MgmDTO;
 
 @Mapper
@@ -16,8 +15,8 @@ public interface MgmMapper {
     
     public int MgmRefuse();
     
-    public List<MemberDTO> search(String mem_name);
-    
     public List<MgmDTO> gglist(String mem_id);
+    
+    public List<MgmDTO> ggwait(String mem_id);
 
 }
