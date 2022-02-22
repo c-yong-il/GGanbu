@@ -17,11 +17,13 @@
 <link rel="stylesheet" href="/css/reset.css" />
 <body>
 <div id="photo">
-	<div class="container button" >
-	    <a href="javascript:photo('/mini/photo/photo_write/${session.loginUser.mem_id}');">
-	        <button class="btn btn-primary btn-sm">글쓰기</button>
-	    </a>  
-    </div >  
+	<div th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}" >
+		<div class="container button">
+		    <!-- <a href="javascript:photo('/mini/photo/photo_write/${mem_id}');"> -->
+		        <button class="btn btn-primary btn-sm" th:attr="onclick=|photo('/mini/photo/photo_write/${mem_id}')|">글쓰기</button>
+		    <!-- </a> -->  
+	    </div>  
+    </div>
     <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
 	    <form id="update" name="update">
 	    	<div class="container mt-5">        
@@ -42,9 +44,9 @@
 		                            </div>
 		                        </div>
 		                    </div>
-		                    <div class="button">
+		                    <div class="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
 		                    	<!-- <a href="javascript:updatee('/photo_update/${session.loginUser.mem_id}')"> -->
-					                <button type="button" class="btn btn-primary btn-sm" th:attr="onclick=|updatee('/photo_update/${params.photo_num}')|">수정</button>
+					                <button type="button" class="btn btn-primary btn-sm" th:attr="onclick=|updatee('/photo_update/${mem_id}/${params.photo_num}')|">수정</button>
 					            <!-- </a> -->
 					                <button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|deletee('/delete/${session.loginUser.mem_id}/${params.photo_num}')|">삭제</button>
 		                	</div>
@@ -58,13 +60,14 @@
 	            <div class="d-center">
 	            	<label>댓글</label>
 	            	<input type="text" class="text">
-	            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|">등록</button>
+	            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm">등록</button>
+	            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 	            	<div>
 	            		<table border=1>
 	            			<tr>
-	            				<td width=15% th:text="${mem_id2}"></td>
-	            				<td th:text="${comment_content}"></td>
-	            				<td width=15% th:text="${comment_date}"></td>
+	            				<td width=15%></td>
+	            				<td ></td>
+	            				<td width=15%></td>
 	            			</tr>
 	            		</table>
 	            	</div>

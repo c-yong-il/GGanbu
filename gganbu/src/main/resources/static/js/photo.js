@@ -49,7 +49,7 @@ var index = {
 	},
 	
 	update: function(){
-		var updatesubmit = $("#updateForm").serialize();
+		var updatesubmit = $("#update").serialize();
 		
 		$.ajax({
 			type: "POST",
@@ -131,7 +131,7 @@ function photo(url){
 
 
 function updatee(url){
-	var submit = $("#update").serialize();
+	var submit = $("#updateForm").serialize();
 	
     $.ajax({
         url : url,
@@ -167,6 +167,22 @@ function updatee(url){
  	}
  	
  	
+ function inserte(url){
+	var submit = $("#insertForm").serialize();
+	
+    $.ajax({
+        url : url,
+        type : 'POST', 
+        data :  submit, 
+        dataType:"html",
+        }).done(function(data){
+            // Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
+   		 });
+ 	}
+ 
 // infinite scroll start
 
 
