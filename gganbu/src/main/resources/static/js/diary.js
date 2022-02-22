@@ -46,10 +46,10 @@
     /*$(document).find("#dateSelect").removeClass('hasDatepicker').datepicker();*/
 }
 /* 글쓰고 등록 버튼 눌렀을 때*/
-     function diaryWrite2(){
+     function diaryWrite2(url){
         $.ajax({
             cache : false,
-            url : "/diaryInsert/${session.loginUser.mem_id}",
+            url : url,
             type : 'POST', 
             data :  $("#diaryWriteForm").serialize(), 
             async:true,
@@ -66,10 +66,10 @@
    	 }
    	 
    	 /** 수정하고 수정완료 버튼 눌렀을 때  */
-   	 function diaryUpdate(){
+   	 function diaryUpdate(url){
 	    $.ajax({
             cache : false,
-            url : "/diaryUpdate/${session.loginUser.mem_id}", 
+            url : url, 
             type : 'POST', 
             data :  $("#diaryUpdateForm").serialize(), 
             async:true,

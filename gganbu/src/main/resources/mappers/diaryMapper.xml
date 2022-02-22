@@ -13,7 +13,7 @@
 	
 	<select id="selectDiary" parameterType="String" resultType="DiaryDTO">
 		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
-		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' order by diary_date)sub order by sub.rno desc limit 5;
+		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' order by diary_date)sub order by sub.rno desc limit 5
 	</select>
 	
 	
@@ -45,11 +45,12 @@
 	<select id="selectDate" parameterType="DiaryDTO" resultType="DiaryDTO">
 		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
 		from diary_table, (select @rownum :=0 )a where diary_date=#{diary_date} and mem_id=#{mem_id} and diary_status ='N' 
-		order by diary_date)sub order by sub.rno desc;
+		order by diary_date)sub order by sub.rno desc
 	</select>
 	
 	<select id="selectResultDiary" parameterType="_int" resultType="DiaryDTO">
-		select <include refid="diaryColumns2" /> from diary_table where diary_num=#{diary_num} and diary_status='N'
+		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
+		from diary_table, (select @rownum :=0 )a where diary_num=#{diary_num} and diary_status='N' order by diary_date)sub order by sub.rno desc 
 	</select>
 
 </mapper>

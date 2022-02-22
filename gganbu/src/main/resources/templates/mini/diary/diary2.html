@@ -19,9 +19,11 @@
 
 </head>
 <body>
+<div>
+</div>
 <div id="diary_change" >
+	<input id="dateSelect" name = "diary_date"  placeholder="날짜선택" th:attr="onchange=|diarySelect('/diarySelect/${mem_id}')|" readonly>
 	<!-- <form name="diaryDateSelect"> -->
-	<input id="dateSelect" name = "diary_date"   placeholder="날짜선택" onchange="diarySelect('/diarySelect/${session.loginUser.mem_id}')" readonly>
 		<!-- <a href="javascript:diarySelect()" > -->
 			<!-- <button type="button" class="btn btn-outline-dark btn-sm" th:attr="onclick=|diarySelect('/diarySelect/${session.loginUser.mem_id}')|">검색</button>  -->
 		<!-- </a>  -->
@@ -55,7 +57,7 @@
 					</div>
 					<div class="text-center">
 						<!-- <a href="javascript:diaryUpdateMove('/diary_update/${list.diary_num}')"> -->
-							<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryUpdateMove('/diary_update/${list.diary_num}')|">수정</button>
+							<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</button>
 						<!--  </a> -->
 							<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryDelete('/diaryDelete/${session.loginUser.mem_id}/${list.diary_num}')|">삭제</button>
 					</div> 
