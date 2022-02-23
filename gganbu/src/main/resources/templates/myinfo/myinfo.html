@@ -23,7 +23,7 @@
                     <form id="myinfoForm" name="myinfoForm" action="edit" method="post">
                         <ul>
                             <li>
-                                <label>*아이디</label>
+                                <label>아이디</label>
                                 <input class="form-control" type="text" name="mem_id" id="id" th:value="${dto.mem_id}" readonly>
                             </li>
                             <li>
@@ -37,18 +37,19 @@
                                 <div id="cpassMsg" class="Msg"></div>
                             </li>
                             <li>
-                                <label>*성명</label>
+                                <label>성명</label>
                                 <input class="form-control" type="text" name="mem_name" id="name" th:value="${dto.mem_name}" readonly>
                             </li>
                             <li>
-                                <label>*생년월일</label>
+                                <label>생년월일</label>
                                 <input class="form-control" type="text" name="mem_birth" id="birthdate" th:value="${dto.mem_birth}" readonly>
                             </li>
                             <li>
-                                <label>*성별</label>
+                                <label>성별</label>
                                 <div class="gender">
-                                    <input class="form-control" type="text" name="mem_gender" th:if="${dto.mem_gender == 'M'}" value="남자" readonly>
-                                    <input class="form-control" type="text" name="mem_gender" th:if="${dto.mem_gender == 'F'}" value="여자" readonly>
+                                    <!-- <input class="form-control" type="text" name="mem_gender" th:if="${dto.mem_gender == 'M'}" value="남성" readonly>
+                                    <input class="form-control" type="text" name="mem_gender" th:if="${dto.mem_gender == 'F'}" value="여성" readonly> -->
+                                    <input class="form-control" type="text" name="mem_gender" th:value="${dto.mem_gender}" readonly>
                                     <!-- <span class="form-control" name="mem_gender" th:if="${dto.mem_gender == 'F'}">여자</span>
                                     <span class="form-control" name="mem_gender" th:unless="${dto.mem_gender == 'F'}">남자</span> -->
                                 </div>
@@ -69,6 +70,10 @@
                                 <label>*휴대폰</label>
                                 <input class="form-control" type="text" name="mem_hp" id="hp" onKeyup="hpCheck()" onkeypress="if(event.keyCode==13){ editFormCheck();}" th:value="${dto.mem_hp}">
                                 <div id="hpMsg" class="Msg"></div>
+                            </li>
+                            <li>
+                                <label>가입일</label>
+                                <input class="form-control" type="text" th:value="${dto.mem_date}" readonly>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-dark" value="수정" onclick="editFormCheck()">수정하기</button>

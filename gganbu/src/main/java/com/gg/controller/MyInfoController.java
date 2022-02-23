@@ -16,25 +16,28 @@ public class MyInfoController {
     @Autowired
     private MyInfoService myinfoservice;
 
+    /* 내정보수정 클릭 시 내정보 출력 */
     @RequestMapping(value = "/myinfo/myinfo")
-    public String main(HttpSession session, Model model) {
+    public String info(HttpSession session, Model model) {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
         MemberDTO dto2 = myinfoservice.showInfo(dto.getMem_id());
         model.addAttribute("dto", dto2);
         return "myinfo/myinfo";
     }
 
+    /* 탈퇴버튼 클릭 시 탈퇴 */
     @RequestMapping(value = "/myinfo/exit")
     public String withdrawal(HttpSession session, Model model) {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-        System.out.println(dto.getMem_id());
         session.invalidate();
         int delete = myinfoservice.exitMember(dto.getMem_id());
-        System.out.println(dto.getMem_status());
-        System.out.println(delete);
-        return "/main";
+        if (delete == 1) {
+            return "/main";
+        }
+        return "myinfo/exit";
     }
 
+    /* 수정버튼 클릭 시 수정 */
     @RequestMapping(value = "myinfo/edit")
     public String update(MemberDTO dto) {
         int edit = myinfoservice.editInfo(dto);
@@ -43,11 +46,5 @@ public class MyInfoController {
         }
         return "myinfo/edit";
     }
-
-//    @PostMapping(" myinfo/myinfo")
-//    public String myinfoAction(MemberDTO dto) {
-//        return null;
-//        
-//    }
 
 }

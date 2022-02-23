@@ -11,9 +11,15 @@
     
     SELECT 
     mem_id, mem_pass, mem_name, mem_email1, mem_email2, 
+    mem_hp, mem_birth, CASE mem_gender WHEN 'M' THEN '남성' ELSE '여성' END AS mem_gender, mem_date
+    FROM member_table
+    WHERE mem_id = #{mem_id}
+    
+    <!-- SELECT 
+    mem_id, mem_pass, mem_name, mem_email1, mem_email2, 
     mem_hp, mem_birth, mem_gender, mem_date
     FROM member_table
-    WHERE mem_id = #{mem_id};
+    WHERE mem_id = #{mem_id}; -->
     
     </select>
     
@@ -24,7 +30,7 @@
     mem_email1 = #{mem_email1}, 
     mem_email2 = #{mem_email2}, 
     mem_hp = #{mem_hp} 
-    WHERE mem_id = #{mem_id};
+    WHERE mem_id = #{mem_id}
     
     </update>
     
@@ -32,7 +38,7 @@
     
     UPDATE member_table SET
     mem_status = 'Y'
-    WHERE mem_id = #{mem_id};
+    WHERE mem_id = #{mem_id}
     
     </update>
 
