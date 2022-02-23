@@ -55,28 +55,25 @@
 				</div>
 			</div>
 		</form>
-			<th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
-				<form id="cinsertForm" name="cinsertForm">
-			        <div class="card-footer border-top-0 bg-transparent">
-			            <div class="d-center">
-			            	<label>댓글</label>
-			            	<input type="text" class="comment_content" id="comment_content" name="comment_content">
-			            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
-			            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
-			            </div>
-			        </div>
-					<input type="hidden" id="photo_num" name="photo_num" th:value=${clist.photo_num}>
-		        </form>
-	           	<div id="comment">
-	           		<table border=1>
-	           			<tr>
-	           				<td width=15% th:text=${clist.mem_id2}></td>
-	           				<td th:text=${clist.comment_content}></td>
-	           				<td width=15% th:text=${clist.comment_date}></td>
-	           			</tr>
-	           		</table>
-	           	</div>
-	        </th:block>
+		<form id="cinsertForm" name="cinsertForm">
+	        <div class="card-footer border-top-0 bg-transparent">
+	            <div class="d-center">
+	            	<label>댓글</label>
+	            	<input type="text" id="comment_content" name="comment_content">
+	            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+	            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
+	            </div>
+	        </div>
+        </form>
+	        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
+           		<table border=1>
+           			<tr>
+           				<td width=15% th:text=${clist.mem_id2}></td>
+           				<td th:text=${clist.comment_content}></td>
+           				<td width=15% th:text=${clist.comment_date}></td>
+           			</tr>
+           		</table>
+           	</th:block>
 		</th:block>
 	<th:block  th:unless="${not #lists.isEmpty(list)}">
 			<span>게시글을 써라</span>

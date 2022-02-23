@@ -194,9 +194,9 @@ function updatee(url){
         dataType:"html",
         }).done(function(data){
             // Contents 영역 삭제
-	        $('#comment').children().remove();
+	        $('#photo').children().remove();
 	        // Contents 영역 교체
-	        $('#comment').html(data);
+	        $('#photo').html(data);
    		 });
  	}
  

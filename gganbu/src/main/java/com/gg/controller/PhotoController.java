@@ -31,8 +31,6 @@ public class PhotoController {
         
         List<PhotoCommentDTO> clist = photocommentService.commentList(mem_id);
         
-        System.out.println(clist);
-        
         
         model.addAttribute("list", list);
         model.addAttribute("clist",clist);

@@ -16,11 +16,7 @@ public class PhotoCommentController {
     
     @PostMapping(value="/cinsert/{mem_id}/{photo_num}/{mem_id2}")
     public String cinsert(@PathVariable("mem_id") String mem_id, @PathVariable("photo_num") int photo_num, @PathVariable("mem_id2") String mem_id2, PhotoCommentDTO comment) {
-       
-        System.out.println(comment.getMem_id());
-        System.out.println(comment.getPhoto_num());
-        System.out.println(comment.getMem_id2());
-        
+        System.out.println(comment.getComment_content());
         photocommentservice.commentInsert(comment);
         
         return "redirect:/mini/photo/photo_list/{mem_id}";
