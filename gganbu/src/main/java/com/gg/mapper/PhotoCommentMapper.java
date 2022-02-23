@@ -9,7 +9,7 @@ import com.gg.domain.PhotoCommentDTO;
 @Mapper
 public interface PhotoCommentMapper {
     
-    public List<PhotoCommentDTO> commentList(String mem_id, int photo_num);
+    public List<PhotoCommentDTO> commentList(String mem_id);
     
     public int commentInsert(PhotoCommentDTO comment);
     

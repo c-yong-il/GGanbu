@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gg.domain.PhotoCommentDTO;
 import com.gg.domain.PhotoDTO;
+import com.gg.service.PhotoCommentService;
 import com.gg.service.PhotoService;
 
 @Controller
@@ -18,13 +20,22 @@ public class PhotoController {
     @Autowired
     private PhotoService photoService;
     
+    @Autowired
+    private PhotoCommentService photocommentService;
+    
     
     /* 사진첩 버튼 클릭 시 게시글 리스트 출력 */
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
     public String listTest(@PathVariable("mem_id") String mem_id, Model model) {
         List<PhotoDTO> list = photoService.listTest(mem_id);
         
+        List<PhotoCommentDTO> clist = photocommentService.commentList(mem_id);
+        
+        System.out.println(clist);
+        
+        
         model.addAttribute("list", list);
+        model.addAttribute("clist",clist);
         
         return "mini/photo/photo_list";
     }

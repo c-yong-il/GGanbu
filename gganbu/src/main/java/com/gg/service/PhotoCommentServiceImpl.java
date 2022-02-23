@@ -15,8 +15,8 @@ public class PhotoCommentServiceImpl implements PhotoCommentService{
     private PhotoCommentMapper photocommentmapper;
 
     @Override
-    public List<PhotoCommentDTO> commentList(String mem_id, int photo_num) {
-        List<PhotoCommentDTO> list = photocommentmapper.commentList(mem_id,photo_num);
+    public List<PhotoCommentDTO> commentList(String mem_id) {
+        List<PhotoCommentDTO> list = photocommentmapper.commentList(mem_id);
         
         return list;
     }

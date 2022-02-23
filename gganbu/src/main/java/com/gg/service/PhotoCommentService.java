@@ -6,7 +6,7 @@ import com.gg.domain.PhotoCommentDTO;
 
 public interface PhotoCommentService {
     
-    public List<PhotoCommentDTO> commentList(String mem_id, int photo_num);
+    public List<PhotoCommentDTO> commentList(String mem_id);
     
     public int commentInsert(PhotoCommentDTO comment);
     

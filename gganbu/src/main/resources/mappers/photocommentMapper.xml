@@ -4,17 +4,16 @@
 
 	<select id="commentList" resultType="PhotoCommentDTO">
 	
-		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
-		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' and photo_num=#{photo_num} order by photo_date)sub 
+		select * from (select @rownum:=@rownum+1 as rownum, photo_comment_table.*
+		from photo_comment_table, (select @rownum:=0) r where mem_id=#{mem_id} and comment_status='n' order by comment_date)sub 
 		order by sub.rownum desc
 	
 	</select>
 	
 	<insert id="commentInsert" parameterType="PhotoCommentDTO">
 	
-		insert into photo_comment_table 
-		(photo_comment_num, mem_id, comment_content, comment_date, comment_updatedate, comment_status, photo_num, mem_id2) 
-		values(photo_comment_num, #{mem_id}, #{comment_content}, now(), now(), 'N', #{mem_id2})
+		insert into photo_comment_table
+		values(photo_comment_num, #{mem_id}, #{comment_content}, now(), now(), 'N', #{photo_num}, #{mem_id2})
 	
 	</insert>
 	

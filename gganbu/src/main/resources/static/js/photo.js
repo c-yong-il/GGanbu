@@ -183,6 +183,23 @@ function updatee(url){
    		 });
  	}
  
+ 
+  function cinsert(url){
+	var csubmit = $("#cinsertForm").serialize();
+	
+    $.ajax({
+        url : url,
+        type : 'POST', 
+        data :  csubmit, 
+        dataType:"html",
+        }).done(function(data){
+            // Contents 영역 삭제
+	        $('#comment').children().remove();
+	        // Contents 영역 교체
+	        $('#comment').html(data);
+   		 });
+ 	}
+ 
 // infinite scroll start
 
 
