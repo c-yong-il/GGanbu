@@ -19,7 +19,9 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
+                            <div th:if="${session.loginUser != null}">
                             <h5 th:text="|${session.loginUser.mem_name}님|" class="fw-bolder"></h5>
+                            </div>
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                                 <div class="bi-star-fill"></div>
