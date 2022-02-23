@@ -16,8 +16,13 @@ public class SearchServiceImpl implements SearchService {
     SearchMapper searchmapper;
 
     @Override
-    public int requestGganbu(MgmDTO dto) {
-        return searchmapper.requestGganbu(dto);
+    public int insertGganbu(String myid, String yid) {
+        return searchmapper.insertGganbu(myid, yid);
+    }
+
+    @Override
+    public int updateGganbu(String myid, String yid) {
+        return searchmapper.updateGganbu(myid, yid);
     }
 
     @Override
@@ -28,6 +33,11 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<MemberDTO> search(String search) {
         return searchmapper.search(search);
+    }
+
+    @Override
+    public int ggCheck(String myid, String yid) {
+        return searchmapper.ggCheck(myid, yid);
     }
 
 }

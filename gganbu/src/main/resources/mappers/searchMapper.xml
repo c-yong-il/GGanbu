@@ -4,16 +4,36 @@
 	<sql id="gganbuColumns">
 		mem_id, mem_id2, gganbu_acceptdate, gganbu_requestdate, gganbu_relation
 	</sql>
+	<sql id="memberColumns">
+		mem_id, mem_pass, mem_name, mem_email1, mem_email2, mem_hp, mem_birth, mem_gender, mem_date, mem_status
+	</sql>
 
-	<insert id="requestGganbu" parameterType="MgmDTO">
-		insert into gganbu_table values(#{mem_id}, #{mem_id2}, null, now(), 0)
+	<insert id="insertGganbu" parameterType="String">
+		insert into gganbu_table values(#{myid}, #{yid}, now(), now(), 0)
 	</insert>
+	
+	<update id="updateGganbu" parameterType="String">
+		update gganbu_table set gganbu_relation=0 where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
+	</update>
 
 	<select id="gganbuList" parameterType="String" resultType="MgmDTO">
 		select <include refid="gganbuColumns" /> from gganbu_table where mem_id=#{mem_id}
 	</select>  
 	
-	<select id="search" parameterType="String" resultType="MemberDTO">
-		select <include refid="gganbuColumns" /> from member_table where mem_id like '% #{search} %' and mem_status='N'
+	 <select id="search" parameterType="String" resultType="MemberDTO">
+		select <include refid="memberColumns" /> from member_table where mem_id like '%${search}%' and mem_status='N'
+	</select> 
+	
+	<select id="ggCheck" parameterType="String" resultType="_int">
+		select count(*) from gganbu_table where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
 	</select>
+	
+	<!-- <select id="search" parameterType="String" resultType="SearchDTO">
+		select member_table.mem_id,  member_table.mem_name, member_table.mem_date, member_table.mem_status, gganbu_table.mem_id2, 
+		gganbu_table.gganbu_requestdate, gganbu_table.gganbu_acceptdate, gganbu_table.gganbu_relation  
+		from member_table left join gganbu_table on member_table.mem_id = gganbu_table.mem_id 
+		where (member_table.mem_id  like '%${search}%')  and member_table.mem_status='N'
+	</select -->
+	
+
 </mapper>

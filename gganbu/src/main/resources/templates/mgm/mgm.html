@@ -5,22 +5,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="/js/mgm.js"></script>
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
-<h2>깐부 관리</h2>
 <section class="py-5">
-
-<h5>깐부목록</h5>
-
+<div class="container">
+<h2>깐부 관리</h2>
+<h5 class="gganbuListTitle">깐부목록</h5>
 <th:block>
 	<table class="table">
 	    <thead class="thead-light">
 	      <tr>
-			<th>ID(이름)</th>
+			<th>ID</th>
 			<th>미니홈피</th>
 			<th>깐부 맺은 날</th>
-			<th></th>
+			<th>깐부 끊기</th>
 		</tr>
 	    </thead>
 	    <tbody>
@@ -29,44 +29,82 @@
 				<td th:text="${gg.mem_id2}"></td>
 				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id2}')|">미니홈피구경하기</a></td>
 				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><a th:attr="onclick=|Quit('/mgm/mgm/${gg.mem_id}/${gg.mem_id2}')|">깐부 끊기</a></td>
+				<td><a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id2}')|">깐부 끊기</a></td>
 			</tr>
 			<tr th:unless="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
 				<td th:text="${gg.mem_id}"></td>
 				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id}')|">미니홈피구경하기</a></td>
 				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><a th:attr="onclick=|Quit('/mgm/mgm/${gg.mem_id}/${gg.mem_id2}')|">깐부 끊기</a></td>
+				<td><a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id}')|">깐부 끊기</a></td>
 			</tr>
 	    </tbody>
 	</table>
 </th:block>
 
-<h5>깐부 요청 목록</h5>
+<h5 class="gganbuListTitle">깐부 요청 받은 목록</h5>
+<form name="gganbuRequestList" method="post">
 	<table class="table">
 	    <thead class="thead-light">
 	      <tr>
-			<th>ID(이름)</th>
+			<th>ID</th>
 			<th>미니홈피</th>
-			<th>깐부 요청 날</th>
+			<th>깐부요청 온 날짜</th>
+			<th>수락/거절</th>
+		</tr>
+	    </thead>
+	    <tbody>
+		    <tr th:if="${#strings.equals(ww.mem_id2, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+				<td th:text="${ww.mem_id}"></td>
+				<td>
+					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id}')|">미니홈피구경하기</a>
+				</td>
+				<td th:text="${ww.gganbu_acceptdate}"></td>
+				<td>
+					<a th:attr="onclick=|acceptGganbu('/acceptGganbu/${ww.mem_id}')|">수락</a> /
+					<a th:attr="onclick=|refuseGganbu('/refuseGganbu/${ww.mem_id}')|">거절</a>
+				</td>
+			</tr>
+			<!-- <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+				<td th:text="${ww.mem_id2}"></td>
+				<td>
+					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a>
+				</td>
+				<td th:text="${ww.gganbu_acceptdate}"></td>
+				<td>
+					<a th:attr="onclick=|acceptGganbu('/acceptGganbu/${ww.mem_id2}')|">수락</a> /
+					<a>거절</a>
+				</td>
+			</tr> --> <!-- 내가 깐부신청 보낸 목록 -->
+	    </tbody>
+	</table>
+</form>
+
+
+<h5 class="gganbuListTitle">깐부 요청 보낸 목록</h5>
+<form name="gganbuSendList" method="post">
+	<table class="table">
+	    <thead class="thead-light">
+	      <tr>
+			<th>ID</th>
+			<th>미니홈피</th>
+			<th>깐부요청 한 날짜</th>
 			<th></th>
 		</tr>
 	    </thead>
 	    <tbody>
-		    <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+			 <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
 				<td th:text="${ww.mem_id2}"></td>
-				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a></td>
+				<td>
+					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a>
+				</td>
 				<td th:text="${ww.gganbu_acceptdate}"></td>
-				<td>수락/거절</td>
-			</tr>
-			<tr th:unless="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
-				<td th:text="${ww.mem_id}"></td>
-				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id}')|">미니홈피구경하기</a></td>
-				<td th:text="${ww.gganbu_acceptdate}"></td>
-				<td>수락/거절</td>
-			</tr>
+				<td>
+				</td>
+			</tr> <!-- 내가 깐부신청 보낸 목록 -->
 	    </tbody>
 	</table>
-
+</form>
+</div>
 </section>
 
 

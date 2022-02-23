@@ -11295,3 +11295,27 @@ textarea.form-control-lg {
 	justify-content:space-between; */
 	float:right;
 }
+.gganbuListTitle {
+	margin-top: 70px;
+}
+#searchArea {
+	display:flex;
+	justify-content:flex-end;
+}
+input[name="search"] {
+	width:300px;
+	margin-right:5px;
+}
+form[name="searchResultForm"]>table {
+	margin-top:7px;
+}
+form[name="searchResultForm"] a {
+	cursor:pointer; 
+}
+.table a {
+	cursor:pointer
+}
+.table th,td {
+	text-align:center;
+}
+

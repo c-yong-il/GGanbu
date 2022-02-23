@@ -8,15 +8,15 @@
 	
 	</update>
 	
-	<update id="MgmAccept">
+	<update id="MgmAccept" parameterType="String">
 	
-		update gganbu_table set gganbu_relation = 1
+		update gganbu_table set gganbu_relation = 1, gganbu_acceptdate=now() where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
 	
 	</update>
 	
 	<delete id="MgmRefuse" parameterType="String">
 	
-		delete from gganbu_table where (mem_id=#{mem_id} and mem_id2=#{mem_id2}) or (mem_id=#{mem_id2} and mem_id2=#{mem_id})
+		delete from gganbu_table where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
 	
 	</delete>
 	
@@ -37,6 +37,6 @@
 		select mem_id,mem_id2,gganbu_acceptdate, gganbu_requestdate, gganbu_relation from gganbu_table where (mem_id=#{mem_id} or mem_id2=#{mem_id}) and gganbu_relation=0
 	
 	</select>
-
+	
 
 </mapper>
