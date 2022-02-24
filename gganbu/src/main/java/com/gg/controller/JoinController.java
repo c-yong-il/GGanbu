@@ -34,7 +34,6 @@ public class JoinController {
     @ResponseBody
     @RequestMapping(value = "/idCheck", method = RequestMethod.POST)
     public int checkId(@RequestParam String id) {
-
         int result = joinService.checkId(id);
         return result;
     }

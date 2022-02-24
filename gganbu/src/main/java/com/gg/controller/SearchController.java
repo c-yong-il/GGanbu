@@ -66,7 +66,6 @@ public class SearchController {
             result = 1;
             //System.out.println("이미 깐부야!!");
         }
-        //return "redirect:/mgm/mgm";
         return result;
     }
 

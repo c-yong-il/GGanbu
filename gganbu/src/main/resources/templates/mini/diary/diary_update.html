@@ -33,8 +33,8 @@
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 				</div>
 				<div class="text-center">  
-					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryUpdate('/diaryUpdate/${mem_id}')|">수정완료</button>
-					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryWrite('/mini/diary/diary/${mem_id}')|">취소</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryUpdate('/diaryUpdate/${dto.mem_id}')|">수정완료</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryWrite('/mini/diary/diary/${dto.mem_id}')|">취소</button>
 				</div>
 			</div>
 		</div>

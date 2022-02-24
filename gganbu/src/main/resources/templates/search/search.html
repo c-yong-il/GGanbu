@@ -24,10 +24,10 @@
 		</form> <!-- th:attr="onclick=|searchWord('/searchWord')|" -->
 		<div id="searchContent">
 			<form  name="searchResultForm" id="searchResultForm"  method="post">
-				<table class="table">
+				<table class="table mgm">
 				    <thead class="thead-light">
 				        <tr>
-							<th>ID(이름)</th>
+							<th width="20%">ID(이름)</th>
 							<th>미니홈피</th>
 							<th>깐부신청</th>
 					    </tr>
@@ -37,7 +37,8 @@
 							<td th:text="|${list.mem_id}(${list.mem_name})|"></td>
 							<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${list.mem_id}')|">미니홈피구경하기</a></td>
 							<td ><!-- th:if="${list.gganbu_relation} == null or ${list.gganbu_relation} == 2" -->
-								<a th:attr="onclick=|requestGganbu('/requestGganbu/${list.mem_id}')|">깐부 신청하기</a>
+								<a th:if="${list.mem_id} != ${session.loginUser.mem_id}" th:attr="onclick=|requestGganbu('/requestGganbu/${list.mem_id}')|">깐부 신청하기</a>
+								<span th:unless="${list.mem_id} != ${session.loginUser.mem_id}">나</span>
 							</td><!-- <a th:attr="onclick=|requestGganbu('/requestGganbu')|"> -->
 						<!-- 	<td th:if="${list.gganbu_relation} == 1">
 								<a>우리깐부잖아</a>

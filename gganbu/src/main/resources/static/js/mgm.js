@@ -5,9 +5,9 @@ function Quit(url){
  }
  	
 function acceptGganbu(url){
-	alert("깐부요청을 수락하였습니다.");
-	/*gganbuRequestList.submit();*/
-	window.location.href=url;
+	if(confirm("깐부요청을 수락하시겠습니까?")){
+		window.location.href=url;
+	}
 }
 
 function refuseGganbu(url){

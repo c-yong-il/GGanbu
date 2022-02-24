@@ -1,15 +1,42 @@
 @charset "UTF-8";
 .text-center {
- 	display:flex;
+	display:flex;
 	justify-content:flex-end; 
+	
 }
+.updel{
+	display:flex;
+	justify-content:flex-end; 
+	color:orange;
+	font-size:11pt;
+}
+.updel>a {
+	padding: 0 5px 0 5px;
+}
+.updel a:first-child {
+	border-right:1.5px solid black;
+}
+ .updel a:hover{
+	/* background:linen; */
+	font-weight: bold;
+	cursor:pointer;
+} 
+
 .diary-date {
-	border: 1px solid rgba(0, 0, 0, 0.125);
-	padding:4px 0;
+	/* border: 1px solid rgba(0, 0, 0, 0.125); */
+	background:#EEEEEE;
+	padding:7px 0;
 	font-size:11pt;
 	font-weight:bold;
 	display:flex;
 	justify-content:space-between;
+}
+#rightdate {
+	text-align:right;
+	display:inline-block;	
+}
+#diary-date2 {
+	font-size:12pt;
 }
 .diarybtn {
 	width:100px;
@@ -47,12 +74,13 @@
   	padding: 0.5rem 0.5rem 0 0.5rem;
 }
 #dateSelect {
-	padding:5px 0;
+	/* padding:5px 0; */
 	width:100px;
 }
 .infoMsg {
 	display:flex;
 	justify-content:center;
+	margin-top:20px;
 }
 .showList{
 	margin-top:5px;
@@ -68,7 +96,21 @@
 	font-weight:bold;
 }
 
+/* 다이어리 리스트, 수정 후 보여지는 글에서 글 쓸 때 엔터까지 쳤던거 그대로 보여지게 함, 
+이거 안주면 엔터쳐서 글 써도 다 옆으로 붙어서 출력됨. */
+.diaryListContent { 
+	white-space:pre-wrap;
+}
 
+Form[name="diaryForm"] {
+	margin-top:20px;
+}
+.write-btn {
+	float:right;
+}
+.badge {
+	background:#4bb6d6;
+}
 
 
 /* 달력  

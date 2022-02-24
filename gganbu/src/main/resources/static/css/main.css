@@ -11321,4 +11321,8 @@ form[name="searchResultForm"] a {
 .pageTitle {
 	text-align:center;
 }
+.mgm a:hover {
+	font-weight:bold;
+	text-decoration: underline;
+}
 

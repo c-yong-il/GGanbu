@@ -1,8 +1,7 @@
 package com.gg.controller;
 
+import java.time.LocalDate;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.DiaryDTO;
-import com.gg.domain.MemberDTO;
 import com.gg.service.DiaryService;
 
 @Controller
@@ -26,15 +24,17 @@ public class DiaryController {
     /* 다이어리 메뉴 클릭 시 다이어리 리스트 출력 */
     @RequestMapping(value = "/mini/diary/diary/{mem_id}")
     public String selectDiary(Model model, @PathVariable("mem_id") String mem_id) {
+        LocalDate today = LocalDate.now();
         List<DiaryDTO> list = diaryService.selectDiary(mem_id);
+
         model.addAttribute("diaryList", list);
+        model.addAttribute("today", today);
         return "mini/diary/diary";
     }
 
     /* 다이어리 글쓰기 눌렀을 때 글쓰기 폼 상단에 오늘 날짜 넣기 */
     @RequestMapping(value = "/mini/diary/diary_write/{mem_id}")
     public String writeDiary(@PathVariable("mem_id") String mem_id, Model model) {
-        //System.out.println("잉거 나오면 나와야하는데" + mem_id);
         String todayDate = diaryService.now();
         model.addAttribute("todayDate", todayDate);
         return "mini/diary/diary_write";
@@ -65,7 +65,6 @@ public class DiaryController {
         int result = diaryService.updateDiary(dto);
         if (result == 1) {
             rttr.addAttribute("diary_num", dto.getDiary_num());
-            //redirect.addAttribute("mem_id", dto.getMem_id());
             return "redirect:/showResultDiary/{mem_id}"; // "redirect:/mini/diary/diary/{mem_id}"
         }
         return "mini/diary/diary_update";
@@ -73,9 +72,11 @@ public class DiaryController {
 
     /* 글 수정이나 삭제 완료 후 그 글만 출력(즉, 삭제는 화면에 띄워지는게 없음) */
     @RequestMapping(value = "/showResultDiary/{mem_id}")
-    public String selectResultDiary(@RequestParam("diary_num") int diary_num, Model model) {
+    public String selectResultDiary(@PathVariable("mem_id") String mem_id, @RequestParam("diary_num") int diary_num, Model model) {
         List<DiaryDTO> list = diaryService.selectResultDiary(diary_num);
+        LocalDate today = LocalDate.now();
         model.addAttribute("diaryList", list);
+        model.addAttribute("today", today);
         return "mini/diary/diary2";
     }
 
@@ -93,16 +94,15 @@ public class DiaryController {
 
     /* 다이어리 날짜선택 했을 때 */
     @PostMapping(value = "/diarySelect/{mem_id}")
-    public String SelectDate(@PathVariable("mem_id") String mem_id, @RequestParam(required = false) String diary_date, HttpSession session,
-            Model model) {
-        // System.out.println("다이어리날짜선택" + mem_id);
-        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+    public String SelectDate(@PathVariable("mem_id") String mem_id, @RequestParam(required = false) String diary_date, Model model) {
         DiaryDTO dto2 = new DiaryDTO();
-        dto2.setMem_id(dto.getMem_id());
+        dto2.setMem_id(mem_id);
         dto2.setDiary_date(diary_date);
+        LocalDate today = LocalDate.now();
         if (!diary_date.equals("")) {
             List<DiaryDTO> list = diaryService.selectDate(dto2);
             model.addAttribute("diaryList", list);
+            model.addAttribute("today", today);
         }
         return "mini/diary/diary";
     }

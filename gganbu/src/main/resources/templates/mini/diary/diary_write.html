@@ -8,7 +8,7 @@
 <body>
 <div id="diary_change">  
 	<div class="text-center" >
-		<div th:text="${mem_id}">달력!</div>
+		<div>달력!</div>
 	</div>	
 	<form name="diaryWriteForm" id="diaryWriteForm"  method="post"> <!-- action="/diaryInsert/${session.loginUser.mem_id}"--><!-- diaryWrite2()에서 url써서 serialize()해서 그런지 필요없는듯 -->
 		<input type="hidden" name="mem_id" th:value=${mem_id} >

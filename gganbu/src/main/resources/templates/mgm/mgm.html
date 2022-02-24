@@ -10,106 +10,100 @@
 </head>
 <body>
 <header th:replace="/header.html :: main-head"></header>
+
 <section class="py-5">
-<div class="container">
-<h2  class="pageTitle">깐부 관리</h2>
-<h5 class="gganbuListTitle">깐부목록</h5>
-<th:block>
-	<table class="table">
-	    <thead class="thead-light">
-	      <tr>
-			<th>ID</th>
-			<th>미니홈피</th>
-			<th>깐부 맺은 날</th>
-			<th>깐부 끊기</th>
-		</tr>
-	    </thead>
-	    <tbody>
-	    <!-- th:text="${session.loginUser.mem_name}+'('+${session.loginUser.mem_id}+')'" -->
-		    <tr th:if="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
-				<td th:text="${gg.mem_id2}"></td>
-				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id2}')|">미니홈피구경하기</a></td>
-				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id2}')|">깐부 끊기</a></td>
-			</tr>
-			<tr th:unless="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
-				<td th:text="${gg.mem_id}"></td>
-				<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id}')|">미니홈피구경하기</a></td>
-				<td th:text="${gg.gganbu_acceptdate}"></td>
-				<td><a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id}')|">깐부 끊기</a></td>
-			</tr>
-	    </tbody>
-	</table>
-</th:block>
-
-<h5 class="gganbuListTitle">깐부 요청 받은 목록</h5>
-<form name="gganbuRequestList" method="post">
-	<table class="table">
-	    <thead class="thead-light">
-	      <tr>
-			<th>ID</th>
-			<th>미니홈피</th>
-			<th>깐부요청 온 날짜</th>
-			<th>수락/거절</th>
-		</tr>
-	    </thead>
-	    <tbody>
-		    <tr th:if="${#strings.equals(ww.mem_id2, session.loginUser.mem_id)}" th:each="ww : ${wait}">
-				<td th:text="${ww.mem_id}"></td>
-				<td>
-					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id}')|">미니홈피구경하기</a>
-				</td>
-				<td th:text="${ww.gganbu_acceptdate}"></td>
-				<td>
-					<a th:attr="onclick=|acceptGganbu('/acceptGganbu/${ww.mem_id}')|">수락</a> /
-					<a th:attr="onclick=|refuseGganbu('/refuseGganbu/${ww.mem_id}')|">거절</a>
-				</td>
-			</tr>
-			<!-- <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
-				<td th:text="${ww.mem_id2}"></td>
-				<td>
-					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a>
-				</td>
-				<td th:text="${ww.gganbu_acceptdate}"></td>
-				<td>
-					<a th:attr="onclick=|acceptGganbu('/acceptGganbu/${ww.mem_id2}')|">수락</a> /
-					<a>거절</a>
-				</td>
-			</tr> --> <!-- 내가 깐부신청 보낸 목록 -->
-	    </tbody>
-	</table>
-</form>
-
-
-<h5 class="gganbuListTitle">깐부 요청 보낸 목록</h5>
-<form name="gganbuSendList" method="post">
-	<table class="table">
-	    <thead class="thead-light">
-	      <tr>
-			<th>ID</th>
-			<th>미니홈피</th>
-			<th>깐부요청 한 날짜</th>
-			<th></th>
-		</tr>
-	    </thead>
-	    <tbody>
-			 <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
-				<td th:text="${ww.mem_id2}"></td>
-				<td>
-					<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a>
-				</td>
-				<td th:text="${ww.gganbu_acceptdate}"></td>
-				<td>
-				</td>
-			</tr> <!-- 내가 깐부신청 보낸 목록 -->
-	    </tbody>
-	</table>
-</form>
-</div>
+	<div class="container">
+		<h2  class="pageTitle">깐부 관리</h2>
+		<h5 class="gganbuListTitle">깐부목록</h5>
+		<th:block>
+			<table class="table mgm">
+			    <thead class="thead-light">
+			      <tr>
+					<th width="20%">ID</th>
+					<th>미니홈피</th>
+					<th>깐부 맺은 날</th>
+					<th>깐부 끊기</th>
+				</tr>
+			    </thead>
+			    <tbody>
+				    <tr th:if="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
+						<td th:text="${gg.mem_id2}"></td>
+						<td>
+							<a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id2}')|">미니홈피구경하기</a>
+						</td>
+						<td th:text="${gg.gganbu_acceptdate}"></td>
+						<td>
+							<a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id2}')|">깐부 끊기</a>
+						</td>
+					</tr>
+					<tr th:unless="${#strings.equals(gg.mem_id, session.loginUser.mem_id)}" th:each="gg : ${list}" >
+						<td th:text="${gg.mem_id}"></td>
+						<td>
+							<a th:attr="onclick=|openWindowPop('/mini/pop_main/${gg.mem_id}')|">미니홈피구경하기</a>
+						</td>
+						<td th:text="${gg.gganbu_acceptdate}"></td>
+						<td>
+							<a th:attr="onclick=|Quit('/refuseGganbu/${gg.mem_id}')|">깐부 끊기</a>
+						</td>
+					</tr>
+			    </tbody>
+			</table>
+		</th:block>
+		
+		<h5 class="gganbuListTitle">깐부 요청 받은 목록</h5>
+		<form name="gganbuRequestList" method="post">
+			<table class="table mgm">
+			    <thead class="thead-light">
+			      <tr>
+					<th width="20%">ID</th>
+					<th>미니홈피</th>
+					<th>깐부요청 온 날짜</th>
+					<th>수락/거절</th>
+				</tr>
+			    </thead>
+			    <tbody>
+				    <tr th:if="${#strings.equals(ww.mem_id2, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+						<td th:text="${ww.mem_id}"></td>
+						<td>
+							<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id}')|">미니홈피구경하기</a>
+						</td>
+						<td th:text="${ww.gganbu_acceptdate}"></td>
+						<td>
+							<a th:attr="onclick=|acceptGganbu('/acceptGganbu/${ww.mem_id}')|">수락</a> /
+							<a th:attr="onclick=|refuseGganbu('/refuseGganbu/${ww.mem_id}')|">거절</a>
+						</td>
+					</tr>
+			    </tbody>
+			</table>
+		</form>
+		<h5 class="gganbuListTitle">깐부 요청 보낸 목록</h5>
+		<form name="gganbuSendList" method="post">
+			<table class="table mgm">
+			    <thead class="thead-light">
+			    	<tr>
+						<th width="20%">ID</th>
+						<th>미니홈피</th>
+						<th>깐부요청 한 날짜</th>
+						<th></th>
+					</tr>
+			    </thead>
+			    <tbody>
+					 <tr th:if="${#strings.equals(ww.mem_id, session.loginUser.mem_id)}" th:each="ww : ${wait}">
+						<td th:text="${ww.mem_id2}"></td>
+						<td>
+							<a th:attr="onclick=|openWindowPop('/mini/pop_main/${ww.mem_id2}')|">미니홈피구경하기</a>
+						</td>
+						<td th:text="${ww.gganbu_acceptdate}"></td>
+						<td>
+						</td>
+					</tr> 
+			    </tbody>
+			</table>
+		</form>
+	</div>
 </section>
 
-
-<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
+<footer th:replace="/footer.html :: main-footer" ></footer>
 
 <script>
 function openWindowPop(url){

@@ -8,34 +8,23 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/css/diary.css" />
-<!-- <link rel="stylesheet" href="/css/main_pop.css" /> -->
- <link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="/css/reset.css" />
-
- <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="/js/diary.js"></script>
-<script src="/js/ajax.js"></script>
 
 </head>
 <body>
-<div>
-</div>
 <div id="diary_change" >
-	<input id="dateSelect" name = "diary_date"  placeholder="날짜선택" th:attr="onchange=|diarySelect('/diarySelect/${mem_id}')|" readonly>
-	<!-- <form name="diaryDateSelect"> -->
-		<!-- <a href="javascript:diarySelect()" > -->
-			<!-- <button type="button" class="btn btn-outline-dark btn-sm" th:attr="onclick=|diarySelect('/diarySelect/${session.loginUser.mem_id}')|">검색</button>  -->
-		<!-- </a>  -->
-	<!-- </form> -->
-	<div class="text-center" >
-		<a href="javascript:diaryWrite('/mini/diary/diary_write/${session.loginUser.mem_id}')">
-			<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
-			<!-- onclick="diaryWrite('/mini/diary/diary_write/[[${session.loginUser.mem_id}]]')" -->
-		</a>
+	<div>
+		<input  id="dateSelect" name = "diary_date"  placeholder="날짜선택" th:attr="onchange=|diarySelect('/diarySelect/${mem_id}')|" readonly>
+		<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+			<a th:attr="onclick=|diaryWrite('/mini/diary/diary_write/${mem_id}')|">
+				<button type="button" class="btn btn-outline-dark btn-sm write-btn">글쓰기</button>
+			</a>
+			<button type="button" class="btn btn-outline-dark btn-sm btn-set write-btn" th:attr="onclick=|diaryWrite('/mini/diary/diary/${mem_id}')|">목록보기</button>
+		</th:block>
 	</div>	
-	<th:block th:if="${not #lists.isEmpty( diaryList )}" th:each="list, i : ${diaryList}" >
-		<form name="diaryForm" id="diaryForm" >
+	<th:block th:if="${not #lists.isEmpty( diaryList )}" th:each="list : ${diaryList}" >
+		<form name="diaryForm" >
 			<input type="hidden" name="diary_num" th:value=${list.diary_num} >  <!--  ${dto.diary_num} -->
 			<input type="hidden" name="mem_id" th:value=${session.loginUser.mem_id} >  
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -43,33 +32,35 @@
 				<div class="col mb-5">
 					<div class="card h-100">
 						<div class="diary-date">
-							<!-- <span th:text="${i}"></span>  -->
 							<span th:text="|No.${list.rno}|"></span>
-							<span th:text="|🧡💛💚💙|"></span>
-							<span th:text="${list.diary_date}"></span>
+							<div>
+			             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge">NEW</span>
+								<span id="diary-date2" th:text="${list.diary_date}"></span>
+		             		</div>
 						</div>
 						<div class="card-body2 ">
-							<div style="white-space:pre-wrap" th:text="${list.diary_content}"></div>
+							<div class="diaryListContent" th:text="${list.diary_content}"></div>
 								<!-- <pre th:text="${list.diary_content}" ></pre> -->
 						</div>
-						<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
+						<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+							<a th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</a>
+								<!--  </a> -->
+							<a th:attr="onclick=|diaryDelete('/diaryDelete/${mem_id}/${list.diary_num}')|">삭제</a>
+						</div>
 					</div>
-					<div class="text-center">
-						<!-- <a href="javascript:diaryUpdateMove('/diary_update/${list.diary_num}')"> -->
-							<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</button>
-						<!--  </a> -->
-							<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|diaryDelete('/diaryDelete/${session.loginUser.mem_id}/${list.diary_num}')|">삭제</button>
-					</div> 
 				</div>
 			</div>	
 		</form>	
 	</div>
 	<div th:unless="${not #lists.isEmpty( diaryList)}">
 		<span class="infoMsg"> 삭제가 완료되었습니다.🙆‍♂ </span>	
-		<a href="javascript:diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')" class="showList">🖱 목록보기 🖱 </a>
-	<!-- 	<button type="button" class="btn btn-outline-dark btn-sm" th:attr="onclick=|diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')|">목록 보기</button> -->
+		<!-- <a th:attr="onclick=|diaryWrite('/mini/diary/diary/${session.loginUser.mem_id}')|" class="showList">🖱 목록보기 🖱 </a> -->
 	</div>
 </th:block>
  
+ 
+ <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
+<script src="/js/diary.js"></script>
+<script src="/js/ajax.js"></script>
 </body>
 </html>
