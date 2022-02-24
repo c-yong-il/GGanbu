@@ -48,13 +48,12 @@
 						<div class="diary-date">
 							<!-- <span th:text="${i}"></span>  -->
 							<span th:text="|No.${list.rno}|"></span>
-							<span th:text="|🧡💛💚💙|"></span>
+							<span th:text="|🧡💛💚|"></span>
 							<span th:text="${list.diary_date}"></span>
 						</div>
 						<div class="card-body2 ">
-							<div>
-								<span th:text="${list.diary_content}" ></span>
-							</div>
+							<div style="white-space:pre-wrap" th:text="${list.diary_content}"></div>
+								<!-- <pre th:text="${list.diary_content}" ></pre> -->
 						</div>
 						<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 					</div>

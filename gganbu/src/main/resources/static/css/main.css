@@ -7492,8 +7492,8 @@ textarea.form-control-lg {
 }
 
 .py-5 {
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
 }
 
 .pt-0 {
@@ -11316,6 +11316,9 @@ form[name="searchResultForm"] a {
 	cursor:pointer
 }
 .table th,td {
+	text-align:center;
+}
+.pageTitle {
 	text-align:center;
 }
 

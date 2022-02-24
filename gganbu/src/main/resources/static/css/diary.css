@@ -36,6 +36,12 @@
     resize: none;
     line-height:25px;
 }
+/* #diary_write2 {
+	width: 100%;
+	resize: none;
+	line-height:25px;
+	border:1px solid white;
+} */
 .card-body3 {
 	flex: 1 1 auto;
   	padding: 0.5rem 0.5rem 0 0.5rem;

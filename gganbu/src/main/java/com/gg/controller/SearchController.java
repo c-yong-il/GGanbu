@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.MemberDTO;
 import com.gg.service.SearchService;
@@ -45,27 +47,33 @@ public class SearchController {
     }
 
     /* 깐부신청 눌렀을 때 */
+    @ResponseBody
     @RequestMapping(value = "/requestGganbu/{mem_id}")
-    public String requestGganbu(@PathVariable("mem_id") String yid, Model model, HttpSession session) {
+    public int requestGganbu(@PathVariable("mem_id") String yid, Model model, HttpSession session, RedirectAttributes rttr) {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-        System.out.println("깐부신청 눌렀을때" + yid);
+        int result = -1;
         int ggCheck = searchservice.ggCheck(dto.getMem_id(), yid);
+
         if (ggCheck == 0) { //insert
             searchservice.insertGganbu(dto.getMem_id(), yid);
-            System.out.println("깐부 신청 insert");
+            result = 0;
+            //System.out.println("깐부 신청 insert");
         } else if (ggCheck == 2) { //update 
             searchservice.updateGganbu(dto.getMem_id(), yid);
-            System.out.println("깐부 신청 update");
+            result = 0;
+            //System.out.println("깐부 신청 update");
         } else {
-            System.out.println("이미 깐부야!!");
+            result = 1;
+            //System.out.println("이미 깐부야!!");
         }
-        return "redirect:/mgm/mgm";
+        //return "redirect:/mgm/mgm";
+        return result;
     }
 
     /* 검색 버튼 눌렀을 때 */
     @PostMapping(value = "/searchWord")
     public String search(String search, HttpSession session, Model model) {
-        System.out.println("검색어=" + search);
+        //System.out.println("검색어=" + search);
         List<MemberDTO> gglist = searchservice.search(search.trim());
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser"); //로그인유저랑 search해서 나온 사람이랑 깐부인지 확인해서 뷰에 보내려했으나 뷰에서 받으면 이중for문 돼서 거지같아짐
         //        System.out.println("gglist size=" + gglist.size());

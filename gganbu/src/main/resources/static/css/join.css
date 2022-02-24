@@ -4,7 +4,6 @@
 	********************************/
 /*	.content{border:1px solid orange;}
 	.join{border:1px solid blue;}*/
-	
 	section.join {
 		/* border:1px solid red; */
 		height:auto;
@@ -107,7 +106,9 @@
         border-right:3px solid linen;
         border-bottom:3px solid linen;
     }
-    form[name="joinForm"] ul li  { clear:left; }    
+    form[name="joinForm"] ul li  { 
+   		clear:left; 
+    }    
    /*  input:focus {
 	  box-shadow: none;
 	  border: 1px solid #534bae;

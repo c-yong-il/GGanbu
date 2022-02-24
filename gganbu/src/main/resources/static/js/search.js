@@ -2,16 +2,24 @@
  * 깐부 신청하기
  */
  function requestGganbu(url){
-	/*alert("깐부신청이 되었습니다.");*/
 	if(confirm("깐부신청을 하시겠습니까?")){
-	/*searchResultForm.submit();*/
-	window.location.href = url;
+		$.ajax({
+			url:url,
+			success:function(result){
+				if(result == 0){
+					alert("깐부 신청이 완료되었습니다.");
+					window.location.href ="/mgm/mgm";
+				}else if(result == 1){
+					alert("이미 깐부관계입니다 :D \n우린 깐부잖아~");
+				}
+			}
+		})
 	}
-		}
+}
 		
-
+		
+/** 검색했을 때 */
 function searchWord(url){
-/*	alert("나오는거야 마는거야0");*/
 		$.ajax({
 			url:url,
 			type:'POST',
@@ -22,11 +30,9 @@ function searchWord(url){
 	        $('#searchContent').children().remove();
 	        // Contents 영역 교체
 	        $('#searchContent').html(data);
-       		 } // $.ajax */
-	
-			});
-			
-		}
+       		 } 
+		});
+}
 
 		
 

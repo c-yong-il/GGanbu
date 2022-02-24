@@ -60,11 +60,11 @@ public class DiaryController {
 
     /* 다이어리 글 수정->수정완료버튼 눌렀을 때 */
     @PostMapping(value = "/diaryUpdate/{mem_id}")
-    public String updateDiary(@PathVariable("mem_id") String mem_id, DiaryDTO dto, Model model, RedirectAttributes redirect) {
+    public String updateDiary(@PathVariable("mem_id") String mem_id, DiaryDTO dto, Model model, RedirectAttributes rttr) {
 
         int result = diaryService.updateDiary(dto);
         if (result == 1) {
-            redirect.addAttribute("diary_num", dto.getDiary_num());
+            rttr.addAttribute("diary_num", dto.getDiary_num());
             //redirect.addAttribute("mem_id", dto.getMem_id());
             return "redirect:/showResultDiary/{mem_id}"; // "redirect:/mini/diary/diary/{mem_id}"
         }
