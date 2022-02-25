@@ -3,15 +3,6 @@ var index = {
 		$("#btn-save").on("click", ()=>{ 
 			this.save();
 		});
-		$("#btn-delete").on("click", ()=>{ 
-			this.delete();
-		});
-		$("#btn-update").on("click", ()=>{ 
-			this.update();
-		});
-		$("#btn-ud").on("click", ()=>{ 
-			this.ud();
-		});
 	},
 	
 	save: function(){
@@ -30,58 +21,6 @@ var index = {
 	        $('#photo').html(data);
 	        
 		});
-	},
-	
-	delete: function(){		
-		var deletesubmit = $("#update").serialize();
-		
-		$.ajax({
-			type: "POST",
-			url: "/delete/${session.loginUser.mem_id}",
-			data: deletesubmit,
-			dataType: "html" 
-		}).done(function(data){
-			// Contents 영역 삭제
-	        $('#photo').children().remove();
-	        // Contents 영역 교체
-	        $('#photo').html(data);
-		}); 
-	},
-	
-	update: function(){
-		var updatesubmit = $("#update").serialize();
-		
-		$.ajax({
-			type: "POST",
-			url: "/photoupdate/${session.loginUser.mem_id}",
-			data: updatesubmit,
-			dataType: "html" 
-		}).done(function(data){
-			// Contents 영역 삭제
-	        $('#photo').children().remove();
-	        // Contents 영역 교체
-	        $('#photo').html(data);
-		}); 
-	},
-	
-	ud: function(){
-		var udsubmit = $("#update").serialize();
-		
-		$.ajax({
-			type: "POST",
-			url: "/photo_update/${session.loginUser.mem_id}",
-			data: udsubmit,
-			dataType: "html",
-		}).done(function(data){
-			// Contents 영역 삭제
-	        $('#photo').children().remove();
-	        // Contents 영역 교체
-	        $('#photo').html(data);
-	        $('.summernote').summernote({
-			    height: 250,
-			    width:550
-			  });
-		}); 
 	}
 }
 
@@ -185,6 +124,7 @@ function updatee(url){
  
  
   function cinsert(url){
+	
 	var csubmit = $("#cinsertForm").serialize();
 	
     $.ajax({
@@ -199,8 +139,25 @@ function updatee(url){
 	        $('#photo').html(data);
    		 });
  	}
+ 	
+ 	
+ 	function cdeletee(url){
+	
+		var cdeletesubmit = $("#cdelete").serialize();
+	
+    $.ajax({
+        url : url,
+        type : 'POST', 
+        data :  cdeletesubmit, 
+        dataType:"html",
+        }).done(function(data){
+            // Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
+   		 });
+ 	}
  
-// infinite scroll start
-
+ 
 
 

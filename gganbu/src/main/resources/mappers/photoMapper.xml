@@ -7,7 +7,7 @@
 	
 		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
 		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' order by photo_date)sub 
-		order by sub.rownum desc
+		order by sub.rownum desc limit 0,5
 	
 	</select>
 	

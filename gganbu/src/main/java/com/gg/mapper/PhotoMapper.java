@@ -9,7 +9,7 @@ import com.gg.domain.PhotoDTO;
 @Mapper
 public interface PhotoMapper {
     
-public List<PhotoDTO> listTest(String mem_id);
+    public List<PhotoDTO> listTest(String mem_id);
     
     public PhotoDTO selectTest(int photo_num);
     
@@ -18,5 +18,7 @@ public List<PhotoDTO> listTest(String mem_id);
     public int insertTest(PhotoDTO params);
     
     public int deleteTest(int photo_num);
+    
+    public List<PhotoDTO> infiniteScrollDown(String mem_id);
 
 }

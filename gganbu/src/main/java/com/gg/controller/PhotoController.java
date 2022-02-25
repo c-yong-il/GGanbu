@@ -41,7 +41,6 @@ public class PhotoController {
     /* 글쓰기 버튼 클릭 시 글쓰기 화면 출력 */
     @RequestMapping(value="/mini/photo/photo_write/{mem_id}")
     public String write(@PathVariable("mem_id") String mem_id, Model model) {
-        System.out.println(mem_id);
         model.addAttribute("mem_id", mem_id);
         return "mini/photo/photo_write";
     }
@@ -65,7 +64,6 @@ public class PhotoController {
     /* 글수정 화면에서 수정하기 버튼 클릭시 update 실행 후 리스트로 돌아감 */
     @PostMapping("/photoupdate/{mem_id}")
     public String update(PhotoDTO params, @PathVariable("mem_id") String mem_id) {
-        System.out.println(mem_id);
         params.setMem_id(mem_id);
         photoService.updateTest(params);
         
@@ -82,8 +80,7 @@ public class PhotoController {
             
             model.addAttribute("list", list);
             
-            return "mini/photo/photo_list";
-
+            return "redirect:/mini/photo/photo_list/{mem_id}";
     }
     
 }

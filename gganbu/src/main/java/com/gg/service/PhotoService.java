@@ -16,5 +16,5 @@ public interface PhotoService {
     public int insertTest(PhotoDTO params);
     
     public int deleteTest(int photo_num);
-
+    
 }
