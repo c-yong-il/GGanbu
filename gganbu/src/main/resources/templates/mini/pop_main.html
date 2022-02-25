@@ -165,7 +165,7 @@
 		                             <span id="uday" th:if="${params.gganbu_comment_updatedate != NULL}" th:text="${params.gganbu_comment_updatedate}">수정일</span>
 		                             <!-- <span id="iday" th:text="${params.gganbu_comment_date}"></span>
 		                             <span id="uday" th:text="${params.gganbu_comment_updatedate}"></span> -->
-		                             <button type="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}" th:attr="onclick=|deleteGganbuComment('/mini/pop_main/deleteGganBuComment/${id}/${params.mem_id2}')|">삭제</button>
+		                             <button type="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)} or ${#strings.equals(params.mem_id2, session.loginUser.mem_id)}" th:attr="onclick=|deleteGganbuComment('/mini/pop_main/deleteGganBuComment/${id}/${params.mem_id2}')|">삭제</button>
 		                             <!-- <input id="Btn" class="checkDel" type="checkbox"> -->
 		                            </p>
 		                        </div>
