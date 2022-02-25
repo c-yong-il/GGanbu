@@ -41,17 +41,20 @@ public class GganbuCommentController {
         System.out.println(mem_id2 + "writer");
         System.out.println(GganbuCommentList + "list");
 
-        return "/mini/pop_main";
+        return "redirect:/mini/pop_main/{id}";
     }
 
-    @RequestMapping(value = "/mini/pop_main/insertORupdateGganbuComment/{id}")
-    public String insertORupdateGganbuComment(Model model, @PathVariable("id") String mem_id, GganbuCommentDTO dto) {
+    @RequestMapping(value = "/mini/pop_main/insertORupdateGganbuComment/{mem_id}")
+    public String insertORupdateGganbuComment(Model model, @PathVariable("mem_id") String mem_id,
+            GganbuCommentDTO dto) {
+
+        System.out.println("id" + mem_id);
 
         System.out.println("dto=" + dto);
 
         gganbucommentservice.insertORupdateGganbuComment(dto);
 
-        return "/mini/pop_main";
+        return "redirect:/mini/pop_main/{mem_id}";
     }
 
 }

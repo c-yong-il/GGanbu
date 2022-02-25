@@ -61,16 +61,9 @@ function deleteGganbuComment(url){
         data : delsubmit,
         datatype : "html"
     }).done(function(data){
-        alert('1'+'hi');
         $('#test').children().remove();
         $('#test').html(data);
-        alert('2'+$("#gganbucommentForm").serialize());
-        alert('3'+data);
-        alert('4'+delsubmit);
-        alert('5'+session.loginUser.mem_id);
-        alert('6'+mem_id);
-        alert('7'+id);
-        window.location.href = '/mini/pop_main/@{${session.loginUser.mem_id}}';
+        //location.href = '/mini/pop_main/${mem_id}';
         
     });
     }

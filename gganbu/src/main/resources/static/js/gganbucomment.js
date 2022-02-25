@@ -3,18 +3,18 @@
  */
  
  function insertORupdateGganbuComment(url){
-    let insupdsubmit = $("#gganbucommentForm").serialize();
+    let insupdsubmit = $("#insertORupdateForm").serialize();
     
-    $ajax({
+    $.ajax({
         url : url,
         type : 'POST',
         data : insupdsubmit,
         datatype : "html",
         success: function(data) {
             // Contents 영역 삭제
-            $('#diary_change').children().remove();
+            $('#test').children().remove();
             // Contents 영역 교체
-            $('#diary_change').html(data);
+            $('#test').html(data);
         }
     });
 }
