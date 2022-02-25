@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gg.mapper.GuestMapper">
+
+	<sql id="guestColumns">
+		rno, book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
+	</sql>
+	
+	<select id="selectGuest" parameterType="String" resultType="GuestDTO">
+		select 
+			<include refid="guestColumns" /> 
+		from 
+			(select @rownum:= @rownum+1 as rno, guest_book_table.*
+		from 
+		guest_book_table, 
+		(select @rownum :=0 )a where mem_id=#{mem_id} and book_status ='N' order by book_date)sub 
+		order by sub.rno desc
+	</select>
+	
+	<select id="getList" resultType="GuestDTO">
+        select * from guest_book_table;
+    </select>
+	
+</mapper>

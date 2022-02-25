@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.guest_num {
+	display : inline-block;
+}
+
+.guest-1 {
+	background-color : #EEEEEE;
+	display : flex;
+	justify-content : space-between;
+}
+
+.card-body2 {
+  flex: 1 1 auto;
+ /*  padding: 5rem 1rem; */
+  font-size:12pt;
+  line-height:25px;
+}

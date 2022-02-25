@@ -1,64 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main_pop.css" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>guest_book</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/css/guest.css" />
+<link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="/css/reset.css" />
-<script defer type="text/javascript" src="/js/ajax.js"></script>
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-
-   <div class="mini-room-wrap">
-     <div class="nav-room-wrap">
-       <div class="nav-room">
-         <!-- <p>미니라이프</p> -->
-         <p class="checked">미니룸</p>
-         <!-- <p>미니라이프</p> -->
-       </div>
-       <p>깐부월드</p>
-     </div>
-     <img
-       class="img-miniroom"
-       src="/image/mini_room.png"
-       alt="mini-room"
-     />
-     <!-- <div class="info-miniroom-wrap">
-       <div class="info-wrap-1">
-         <p>미니룸답글달기[15]</p>
-         <p>함께사진찍기</p>
-       </div>
-       <div class="info-wrap-2">
-         <p>미니룸수[16]</p>
-         <p>깜짝링크[0]</p>
-       </div>
-     </div> -->
-   </div>
-   <br>
-   <h2>깐부평</h2>
-   <div class="friends-say-section">
-     <label for="friends-say">friends say</label>
-     <input
-       type="text"
-       placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!"
-     />
-     <button>등록</button>
-   </div>
-   <div class="friends-say-list">
-     <p>안녕하세요? (친구 <span>노제</span>)</p>
-     <p>일촌평 입니다. (학교친구 <span>한상준</span>)</p>
-     <p>ㅎㅇㅎㅇㅎㅇㅎㅇ (동네친구 <span>우승윤</span>)</p>
-     <p>ㅋ (절교함 <span>김호준</span>)</p>
-     <p>안녕 (엄마 <span>김영화</span>)</p>
-   </div>
-              
-
+	<div>
+		<button type="button" class="">등록</button>
+		
+		<th:block  th:each="list, i : ${guestList}">
+		<form name="guestForm" id="guestForm" >
+			<input type="hidden" name="book_num" th:value=${list.book_num} >
+			<input type="hidden" name="mem_id" th:value=${mem_id} >  
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="col mb-5">
+			<div class="card h-100">
+				<div>
+					<div>
+						<div class="guest-1">
+							<!-- <span th:text="${i}"></span>  -->
+							<div>
+								<span th:text="|No.${list.rno}|" class="guest_num"></span>
+								<span th:text="|작성자 : ${list.mem_id2}|" class="guest_mem_id2"></span>
+							</div>
+					        <div> 		
+					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+								<span id="book-date2" th:text="|작성일 : ${list.book_date}|" class="guest_date"></span>
+							</div>
+			            </div>
+						<div>
+						<div class="card-body2 ">
+							<div class="guestListContent"  th:text="${list.book_content}"></div>
+						</div>
+						<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+							<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+								<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
+								<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
+							</div>
+						</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>	
+		</form>	
+	</th:block>
+	</div>
+  
+	<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
+	<script src="/js/ajax.js"></script> 
 </body>
 </html>
