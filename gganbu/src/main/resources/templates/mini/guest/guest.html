@@ -14,9 +14,13 @@
 </head>
 <body>
 	<div>
-		<button type="button" class="">등록</button>
+		<div class="btn_write">
+			<a th:attr="onclick=|guestWrite('/mini/guest/guest_write/${mem_id}')|">
+				<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
+			</a>
+		</div>
 		
-		<th:block  th:each="list, i : ${guestList}">
+		<th:block th:if="${not #lists.isEmpty( guestList )}" th:each="list, i : ${guestList}">
 		<form name="guestForm" id="guestForm" >
 			<input type="hidden" name="book_num" th:value=${list.book_num} >
 			<input type="hidden" name="mem_id" th:value=${mem_id} >  
@@ -54,9 +58,12 @@
 			</div>	
 		</form>	
 	</th:block>
-	</div>
-  
-	<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
-	<script src="/js/ajax.js"></script> 
+	<th:block th:unless="${not #lists.isEmpty( guestList)}">
+		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽,￣)╭ </th:block>
+</div>
+
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+<script src="/js/guest.js"></script>
+<script src="/js/ajax.js"></script>
 </body>
 </html>

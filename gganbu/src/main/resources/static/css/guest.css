@@ -1,18 +1,46 @@
 @charset "UTF-8";
 
-.guest_num {
-	display : inline-block;
-}
+
 
 .guest-1 {
-	background-color : #EEEEEE;
+	background-color : #B4B4DC;
 	display : flex;
 	justify-content : space-between;
+	font-weight: bold;
+	padding : 5px 0;
+	font-size:10pt;
 }
 
 .card-body2 {
   flex: 1 1 auto;
- /*  padding: 5rem 1rem; */
+  padding: 1rem 1rem; 
   font-size:12pt;
-  line-height:25px;
+  line-height:20px;
+}
+
+.updel{
+	display:flex;
+	justify-content:flex-end; 
+	color:#8C8CBE;
+	font-size:11pt;
+}
+
+.updel>a {
+	padding: 0 5px 0 5px;
+}
+.updel a:first-child {
+	border-right:1.5px solid black;
+}
+ .updel a:hover{
+	/* background:linen; */
+	font-weight: bold;
+	cursor:pointer;
+} 
+.badge {
+	background:#4bb6d6;
+}
+.btn_write {
+	display:flex;
+	justify-content:flex-end; 
+	margin-bottom : 5px;
 }

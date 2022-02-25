@@ -1,5 +1,6 @@
 package com.gg.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,11 @@ public class GuestController {
 
     @RequestMapping(value = "/mini/guest/guest/{mem_id}")
     public String selectGuest(Model model, @PathVariable("mem_id") String mem_id) {
-
+        LocalDate today = LocalDate.now();
         List<GuestDTO> list = guestService.selectGuest(mem_id);
 
         model.addAttribute("guestList", list);
+        model.addAttribute("today", today);
 
         return "mini/guest/guest";
     }
