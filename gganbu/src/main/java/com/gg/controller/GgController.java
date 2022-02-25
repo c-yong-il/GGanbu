@@ -2,6 +2,8 @@ package com.gg.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gg.domain.GganbuCommentDTO;
+import com.gg.domain.MemberDTO;
 import com.gg.service.GganbuCommentService;
 
 @Controller
@@ -18,12 +21,25 @@ public class GgController {
     private GganbuCommentService gganbucommentservice;
 
     @RequestMapping(value = "/mini/pop_main/{mem_id}")
-    public String pop_main(@PathVariable("mem_id") String mem_id, Model model) {
+    public String pop_main(@PathVariable("mem_id") String mem_id, Model model, HttpSession session) {
 
         model.addAttribute("id", mem_id);
+
         List<GganbuCommentDTO> GganbuCommentList = gganbucommentservice.selectGganbuComment(mem_id);
-        // MgmDTO mgmdto =
+
         model.addAttribute("list", GganbuCommentList);
+
+        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
+        System.out.println("id" + mem_id);
+        System.out.println("id" + dto.getMem_id());
+
+        int result = gganbucommentservice.gganbuCheck(mem_id, dto.getMem_id());
+
+        model.addAttribute("gganbuCheck", result);
+
+        System.out.println("결과는" + result);
+
         return "mini/pop_main";
     }
 

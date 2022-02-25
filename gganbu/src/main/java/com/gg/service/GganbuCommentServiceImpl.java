@@ -33,4 +33,10 @@ public class GganbuCommentServiceImpl implements GganbuCommentService {
         return gganbucommentmapper.insertORupdateGganbuComment(dto);
     };
 
+    @Override
+    public int gganbuCheck(String mem_id, String mem_id2) {
+
+        return gganbucommentmapper.gganbuCheck(mem_id, mem_id2);
+    };
+
 }

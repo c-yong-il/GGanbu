@@ -12,4 +12,6 @@ public interface GganbuCommentService {
 
     public int insertORupdateGganbuComment(GganbuCommentDTO dto);
 
+    public int gganbuCheck(String mem_id, String mem_id2);
+
 }

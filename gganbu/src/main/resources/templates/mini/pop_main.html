@@ -138,7 +138,7 @@
                        <h2>N개의 깐부평이 있어요.
                            <!-- <button th:if="${not #lists.isEmpty(list)}" class="btn_del" onclick="deleteGganbuComment()">삭제</button> -->
                        </h2>
-                       <div th:if="!${#strings.equals(mem_id, session.loginUser.mem_id)}">
+                       <div th:if="${gganbuCheck}==1">
                         <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
                           <input name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!">
