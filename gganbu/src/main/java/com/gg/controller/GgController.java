@@ -22,7 +22,7 @@ public class GgController {
 
         model.addAttribute("id", mem_id);
         List<GganbuCommentDTO> GganbuCommentList = gganbucommentservice.selectGganbuComment(mem_id);
-        model.addAttribute("list", GganbuCommentList);
+        // MgmDTO mgmdto = model.addAttribute("list", GganbuCommentList);
         return "mini/pop_main";
     }
 

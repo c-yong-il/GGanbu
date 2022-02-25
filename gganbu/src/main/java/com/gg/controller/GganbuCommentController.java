@@ -30,16 +30,11 @@ public class GganbuCommentController {
     @RequestMapping(value = "/mini/pop_main/deleteGganBuComment/{id}/{mem_id2}")
     public String deleteGganbuComment(@PathVariable("id") String mem_id, @PathVariable("mem_id2") String mem_id2,
             Model model) {
-        System.out.println("mem_id2" + mem_id2);
-        System.out.println("id1" + mem_id);
+
         gganbucommentservice.deleteGganbuComment(mem_id2);
 
         List<GganbuCommentDTO> GganbuCommentList = gganbucommentservice.selectGganbuComment(mem_id);
         model.addAttribute("list", GganbuCommentList);
-
-        System.out.println(mem_id + "login");
-        System.out.println(mem_id2 + "writer");
-        System.out.println(GganbuCommentList + "list");
 
         return "redirect:/mini/pop_main/{id}";
     }
@@ -47,10 +42,6 @@ public class GganbuCommentController {
     @RequestMapping(value = "/mini/pop_main/insertORupdateGganbuComment/{mem_id}")
     public String insertORupdateGganbuComment(Model model, @PathVariable("mem_id") String mem_id,
             GganbuCommentDTO dto) {
-
-        System.out.println("id" + mem_id);
-
-        System.out.println("dto=" + dto);
 
         gganbucommentservice.insertORupdateGganbuComment(dto);
 

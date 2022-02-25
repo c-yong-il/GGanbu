@@ -9,7 +9,7 @@
 		gganbu_comment_content, mem_id2, gganbu_comment_date, gganbu_comment_updatedate, mem_id 
 		FROM gganbu_comment_table 
 		WHERE mem_id = #{mem_id} AND gganbu_comment_status = 'N'
-		ORDER BY gganbu_comment_date AND gganbu_comment_updatedate
+		ORDER BY gganbu_comment_date DESC, gganbu_comment_updatedate DESC
 	
 	</select>
 	
