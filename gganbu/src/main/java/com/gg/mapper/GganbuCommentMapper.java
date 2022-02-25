@@ -8,7 +8,11 @@ import com.gg.domain.GganbuCommentDTO;
 
 @Mapper
 public interface GganbuCommentMapper {
-	
-	public List<GganbuCommentDTO> listTest(String mem_id);
+
+    public List<GganbuCommentDTO> selectGganbuComment(String mem_id);
+
+    public int deleteGganbuComment(String mem_id2);
+
+    public int insertORupdateGganbuComment(GganbuCommentDTO dto);
 
 }

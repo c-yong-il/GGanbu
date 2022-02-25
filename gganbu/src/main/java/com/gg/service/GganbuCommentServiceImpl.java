@@ -9,16 +9,28 @@ import com.gg.domain.GganbuCommentDTO;
 import com.gg.mapper.GganbuCommentMapper;
 
 @Service
-public class GganbuCommentServiceImpl implements GganbuCommentService{
-	
-	@Autowired
-	private GganbuCommentMapper gganbucommentmapper;
-	
-	@Override
-	public List<GganbuCommentDTO> listTest(String mem_id){
-        List<GganbuCommentDTO> list = gganbucommentmapper.listTest(mem_id);
-        
-        return list; 
+public class GganbuCommentServiceImpl implements GganbuCommentService {
+
+    @Autowired
+    private GganbuCommentMapper gganbucommentmapper;
+
+    @Override
+    public List<GganbuCommentDTO> selectGganbuComment(String mem_id) {
+        // List<GganbuCommentDTO> GganbuCommentList = Collections.emptyList();
+
+        return gganbucommentmapper.selectGganbuComment(mem_id);
     }
+
+    @Override
+    public int deleteGganbuComment(String mem_id2) {
+
+        return gganbucommentmapper.deleteGganbuComment(mem_id2);
+    }
+
+    @Override
+    public int insertORupdateGganbuComment(GganbuCommentDTO dto) {
+
+        return gganbucommentmapper.insertORupdateGganbuComment(dto);
+    };
 
 }

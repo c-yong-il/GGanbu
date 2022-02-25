@@ -5,7 +5,11 @@ import java.util.List;
 import com.gg.domain.GganbuCommentDTO;
 
 public interface GganbuCommentService {
-	
-	public List<GganbuCommentDTO> listTest(String mem_id);
+
+    public List<GganbuCommentDTO> selectGganbuComment(String mem_id);
+
+    public int deleteGganbuComment(String mem_id2);
+
+    public int insertORupdateGganbuComment(GganbuCommentDTO dto);
 
 }

@@ -18,7 +18,7 @@ public class MyInfoController {
 
     /* 내정보수정 클릭 시 내정보 출력 */
     @RequestMapping(value = "/myinfo/myinfo")
-    public String info(HttpSession session, Model model) {
+    public String print(HttpSession session, Model model) {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
         MemberDTO dto2 = myinfoservice.showInfo(dto.getMem_id());
         model.addAttribute("dto", dto2);

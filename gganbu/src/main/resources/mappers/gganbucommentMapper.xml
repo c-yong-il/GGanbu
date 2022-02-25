@@ -2,10 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gg.mapper.GganbuCommentMapper">
 
-	<select id="listTest" parameterType="String" resultType="GganbuCommentDTO">
+    <!-- 확인함 -->
+	<select id="selectGganbuComment" parameterType="String" resultType="GganbuCommentDTO">
 	
-		select * from gganbu_comment_table
+		SELECT 
+		gganbu_comment_content, mem_id2, gganbu_comment_date, gganbu_comment_updatedate, mem_id 
+		FROM gganbu_comment_table 
+		WHERE mem_id = #{mem_id} AND gganbu_comment_status = 'N'
+		ORDER BY gganbu_comment_date AND gganbu_comment_updatedate
 	
 	</select>
+	
+    <!-- mem_id2의 미니홈피를 mem_id가 접속했을때 mem_id가 작성한거 SELECT?
+	<select id="" parameterType="String" resultType="GganbuCommentDTO">
+	
+		SELECT 
+		gganbu_comment_content, mem_id, gganbu_comment_date 
+		FROM gganbu_comment_table 
+		WHERE mem_id = #{mem_id} AND mem_id2 = #{mem_id2} AND gganbu_comment_status = 'N'
+	
+	</select>
+	 -->
+	
+	<!-- 확인함 -->
+	<update id="insertORupdateGganbuComment" parameterType="GganbuCommentDTO">
+	
+	   INSERT INTO 
+	   gganbu_comment_table
+	   (mem_id, mem_id2, gganbu_comment_content, gganbu_comment_date, gganbu_comment_updatedate, gganbu_status) 
+	   VALUES
+	   (#{mem_id}, #{mem_id2}, #{gganbu_comment_content}, now(), NULL, 'N')
+	   ON DUPLICATE KEY UPDATE 
+	   gganbu_comment_content = #{gganbu_comment_content}, gganbu_comment_updatedate = now(), gganbu_comment_status = 'N'
+	
+	</update>
+	<!-- 확인함 -->
+	<update id="deleteGganbuComment" parameterType="String">
+	
+		UPDATE gganbu_comment_table 
+        SET
+        gganbu_comment_status = 'Y',
+        gganbu_comment_updatedate = now()
+        WHERE mem_id2 = #{mem_id2}
+	
+	</update>
 
 </mapper>
