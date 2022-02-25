@@ -1,15 +1,21 @@
 @charset "UTF-8";
 
-#profileForm {
-	width: 100%;
-	
+form{
+	min-height: 250px;
+	max-height: 400px;
+	overflow: auto;
 }
+
 .btn-insert {
  	display:flex;
 	justify-content:flex-end; 
 }
 
-#botton a {
+#button {
+	margin: 3px 0 0 0;
+	border-top: 1px solid #dedede;
+}
+#button a {
 	margin: 3px;
 }
 
@@ -20,6 +26,15 @@
 	justify-content: center;
 	align-items: center; 
 }
+.date {
+	border-bottom: 1px solid #dedede;
+ 	display:flex;
+	justify-content:space-between;
+}
+.date span {
+	margin: 5px;
+}
+
 .form-title{
 	font-size: 20px;
 	font-weight: bold;
@@ -27,18 +42,4 @@
 	display:flex;
 	justify-content: center;
 	align-items: center; 
-}
-
-#profile-width{
-	width: 550px;
-	margin-left: -220px;
-	height: 350px !important;
-}
-
-.date {
- 	display:flex;
-	justify-content:space-between;
-}
-.date span {
-	margin: 5px;
 }

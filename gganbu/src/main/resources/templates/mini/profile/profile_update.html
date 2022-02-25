@@ -21,11 +21,11 @@
 		        <div class="text-center">
 		            <textarea class="form-control summernote" id="profile_photo" name="profile_photo"  th:utext="${dto.profile_photo}"></textarea>
 		        </div>
-		    <div class="text-center">
-		   		<a class="btn btn-primary" th:attr="onclick=|profileUpdate('/mini/profile/profile_update/${id}')|">수정</a> 
-			 	<a class="btn btn-primary" th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">취소</a> 
-			</div>      
 		</form>
+		    <div class="text-center">
+		   		<a class="btn btn-primary btn-sm" th:attr="onclick=|profileUpdate('/mini/profile/profile_update/${id}')|">수정</a> 
+			 	<a class="btn btn-warning btn-sm" th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">취소</a> 
+			</div>      
 
 	</div>
 </div>
