@@ -11326,4 +11326,12 @@ form[name="searchResultForm"] a {
 	font-weight:bold;
 	text-decoration: underline;
 }
+.header-topmenu {
+	display:flex;
+	justify-content: flex-end;
+}
+.bg-mint {
+  --bs-bg-opacity: 1;
+  background-color: #8c8cbe;
+}
 

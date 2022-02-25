@@ -9,47 +9,50 @@
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/main">깐부월드</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="navbar-collapse collapse show fr" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"  th:if = "${session.loginUser == null}">
-                	<a class="nav-link active"href="/login/login">로그인</a>
-                </li>
-                <li class="nav-item"  th:if = "${session.loginUser == null}">
-                	<a class="nav-link active" href="/join/join">회원가입</a>
-                </li>
-                <li class="nav-item" th:if = "${session.loginUser != null}">
-               		<a class="nav-link active" href="/myinfo/myinfo" >내정보수정</a>
-                </li>
-                <li class="nav-item" th:if = "${session.loginUser != null}">
-               		<a class="nav-link active" href="/mgm/mgm" >깐부관리</a>
-                </li>
-                <li class="nav-item" th:if = "${session.loginUser != null}">
-               		<a class="nav-link active" href="/logout" >로그아웃</a>
-                </li>
-                <li class="nav-item" th:if = "${session.loginUser != null}">
-               		<a class="nav-link active" href="/search/search" >검색</a>
-                </li>
-                <li class="nav-item" th:if = "${session.loginUser != null}">
-               		<a class="nav-link active" th:text="${session.loginUser.mem_name}+'('+${session.loginUser.mem_id}+')'"></a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    알림
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">10</span>
-                </button>
-            </form>
-        </div>
-    </div>
+	        <section class="header-topmenu">
+		        <div class="navbar-collapse collapse show fr" id="navbarSupportedContent">
+		            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+		           		<li style="font-weight:bold" class="nav-item" th:if = "${session.loginUser != null}">
+		               		<a class="nav-link active" th:text="|${session.loginUser.mem_name}(${session.loginUser.mem_id})님|"></a>
+		                </li>
+		                <li class="nav-item"  th:if = "${session.loginUser == null}">
+		                	<a class="nav-link active"href="/login/login">로그인</a>
+		                </li>
+		                <li class="nav-item"  th:if = "${session.loginUser == null}">
+		                	<a class="nav-link active" href="/join/join">회원가입</a>
+		                </li>
+		                <li class="nav-item" th:if = "${session.loginUser != null}">
+		               		<a class="nav-link active" href="/search/search" >검색</a>
+		                </li>
+		                <li class="nav-item" th:if = "${session.loginUser != null}">
+		               		<a class="nav-link active" href="/mgm/mgm" >깐부관리</a>
+		                </li>
+		                <li class="nav-item" th:if = "${session.loginUser != null}">
+		               		<a class="nav-link active" href="/myinfo/myinfo" >내정보수정</a>
+		                </li>
+		                <li class="nav-item" th:if = "${session.loginUser != null}">
+		               		<a class="nav-link active" href="/logout" >로그아웃</a>
+		                </li>
+		            </ul>
+		            <form class="d-flex">
+		                <button class="btn btn-outline-dark" type="submit">
+		                    <i class="bi-cart-fill me-1"></i>
+		                    알림
+		                    <span class="badge bg-dark text-white ms-1 rounded-pill">10</span>
+		                </button>
+		            </form>
+		        </div>
+	       </section>
+   	 </div>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Header-->
- <header class="py-4 bg-dark">
+ <header class="py-4 bg-mint">
     <div class="container">
         <div class="text-center text-white">
+        	<!-- <img src="/image/gganbuLogo.png"> -->
             <h1 class="display-6 fw-bolder">깐부월드</h1>
             <p class="lead fw-normal text-white-50 mb-0">우린 깐부자나</p>
         </div>

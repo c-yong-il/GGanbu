@@ -545,7 +545,9 @@ td a:hover {
   left: 650px;
   font-size: 15px;
 }
-
+.menu-item:hover {
+	cursor:pointer;
+}
 .mi-1 {
   top: 60px;
   z-index: 1;
