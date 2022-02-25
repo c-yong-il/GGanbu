@@ -11,4 +11,8 @@ public interface GuestMapper {
     public List<GuestDTO> selectGuest(String mem_id);
 
     public List<GuestDTO> getList();
+
+    public String now();
+
+    public int insertGuest(GuestDTO dto);
 }

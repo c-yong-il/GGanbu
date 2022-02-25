@@ -8,4 +8,7 @@ public interface GuestService {
 
     public List<GuestDTO> selectGuest(String mem_id);
 
+    public String now();
+
+    public int insertGuest(GuestDTO dto);
 }

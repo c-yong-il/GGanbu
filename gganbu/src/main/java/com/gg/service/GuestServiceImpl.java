@@ -19,4 +19,14 @@ public class GuestServiceImpl implements GuestService {
         return guestmapper.selectGuest(mem_id);
     }
 
+    @Override
+    public String now() {
+        return guestmapper.now();
+    }
+
+    @Override
+    public int insertGuest(GuestDTO dto) {
+        return guestmapper.insertGuest(dto);
+    }
+
 }

@@ -20,5 +20,12 @@
 	<select id="getList" resultType="GuestDTO">
         select * from guest_book_table;
     </select>
+    
+    <select id="now" resultType="String">
+		select DATE_FORMAT(now(), '%Y-%m-%d')
+	</select> 
 	
+	<insert id="insertGuest" parameterType="GuestDTO">
+		insert into guest_book_table values(book_num, #{mem_id},#{mem_id2}, #{book_content}, now(), now(), 'N')
+	</insert>
 </mapper>

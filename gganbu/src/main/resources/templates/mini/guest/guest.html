@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="/css/reset.css" />
 </head>
 <body>
-	<div>
+	<div id="guest_change">
 		<div class="btn_write">
-			<a th:attr="onclick=|guestWrite('/mini/guest/guest_write/${mem_id}')|">
+			<a th:attr="onclick=|guestWrite('/mini/guest/guest_write/${mem_id}/${session.loginUser.mem_id}')|">
 				<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
 			</a>
 		</div>
@@ -28,7 +28,6 @@
 			<div class="col mb-5">
 			<div class="card h-100">
 				<div>
-					<div>
 						<div class="guest-1">
 							<!-- <span th:text="${i}"></span>  -->
 							<div>
@@ -51,7 +50,6 @@
 							</div>
 						</th:block>
 						</div>
-					</div>
 				</div>
 			</div>
 			</div>
@@ -59,7 +57,7 @@
 		</form>	
 	</th:block>
 	<th:block th:unless="${not #lists.isEmpty( guestList)}">
-		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽,￣)╭ </th:block>
+		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </th:block>
 </div>
 
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
