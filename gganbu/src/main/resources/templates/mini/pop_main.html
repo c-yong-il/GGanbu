@@ -140,13 +140,23 @@
                            <!-- <button th:if="${not #lists.isEmpty(list)}" class="btn_del" onclick="deleteGganbuComment()">삭제</button> -->
                        </h2>
                        </th:block>
+                       <th:block th:if="${#lists.isEmpty(list)}">
+                       <h2>0개의 깐부평이 있어요.</h2>
+                       </th:block>
                        <div th:if="${gganbuCheck}==1">
                         <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
-                          <input name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!">
+                          <input id="gganbu_comment_content" name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!">
+                          <div id="GBCMsg" class="Msg"></div>
                           <button type="button" th:attr="onclick=|insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}')|">등록</button>
                         </div>
                        </div>
+                       <div th:unless="${gganbuCheck}==1">
+                       <div class="friends-say-section">
+                          <label for="friends-say">GGANBUs say</label>
+                          <input type="text" placeholder="깐부만 남길 수 있다고하자" disabled>
+                        </div>
+                        </div>
                        </form>
                         <!-- 
                           <input type="checkbox">
@@ -162,7 +172,7 @@
 		                        <div class="friends-say-list">
 		                            <p class="GBCcontainer">
 		                             <span id="content" th:text="${params.gganbu_comment_content}"></span>
-		                             <span id="writer" th:text="${params.mem_id2}"></span>
+		                             <span id="writer" th:text="| [ ${params.mem_id2} ] |"></span>
 		                             <span id="iday" th:if="${params.gganbu_comment_updatedate == NULL}" th:text="${params.gganbu_comment_date}">등록일</span>
 		                             <span id="uday" th:if="${params.gganbu_comment_updatedate != NULL}" th:text="${params.gganbu_comment_updatedate}">수정일</span>
 		                             <!-- <span id="iday" th:text="${params.gganbu_comment_date}"></span>
