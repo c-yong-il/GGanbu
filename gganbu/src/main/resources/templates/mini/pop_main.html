@@ -135,9 +135,11 @@
                        <form id="insertORupdateForm">
                        <input type="hidden" name="mem_id" th:value="${mem_id}">
                        <input type="hidden" name="mem_id2" th:value="${session.loginUser.mem_id}">
-                       <h2>N개의 깐부평이 있어요.
+                       <th:block th:each="params, paramsStat : ${list}"  th:if="${#strings.equals(paramsStat.size, paramsStat.count)}">
+                       <h2><span th:text="${paramsStat.size}"></span>개의 깐부평이 있어요.
                            <!-- <button th:if="${not #lists.isEmpty(list)}" class="btn_del" onclick="deleteGganbuComment()">삭제</button> -->
                        </h2>
+                       </th:block>
                        <div th:if="${gganbuCheck}==1">
                         <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
@@ -155,7 +157,7 @@
                           <button>갱신</button>
                         </div> -->
                         
-	                        <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
+	                        <th:block th:if="${not #lists.isEmpty(list)}" th:each="params, paramsStat : ${list}">
 		                        <form id="gganbucommentForm"> 
 		                        <div class="friends-say-list">
 		                            <p>

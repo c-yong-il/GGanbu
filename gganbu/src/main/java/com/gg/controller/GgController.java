@@ -31,14 +31,9 @@ public class GgController {
 
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 
-        System.out.println("id" + mem_id);
-        System.out.println("id" + dto.getMem_id());
-
         int result = gganbucommentservice.gganbuCheck(mem_id, dto.getMem_id());
 
         model.addAttribute("gganbuCheck", result);
-
-        System.out.println("결과는" + result);
 
         return "mini/pop_main";
     }
