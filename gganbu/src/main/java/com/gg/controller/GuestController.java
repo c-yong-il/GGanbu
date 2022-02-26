@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.GuestDTO;
 import com.gg.service.GuestService;
@@ -51,6 +52,38 @@ public class GuestController {
 
         model.addAttribute("todayDate", todayDate);
         return "mini/guest/guest_write";
+    }
+
+    /* 방명록 수정 버튼 눌렀을 때 화면 이동 */
+    @PostMapping(value = "/guest_update/{mem_id}/{book_num}")
+    public String updateGuestMove(@PathVariable("book_num") int book_num, Model model) {
+        GuestDTO dto = guestService.updateGuestMove(book_num);
+        model.addAttribute("dto", dto);
+        return "mini/guest/guest_update";
+    }
+
+    /* 방명록 글 수정에서 수정완료버튼 눌렀을 때 */
+    @PostMapping(value = "/guestUpdate/{mem_id}")
+    public String updateGuest(@PathVariable("mem_id") String mem_id, GuestDTO dto, Model model,
+            RedirectAttributes rttr) {
+
+        int result = guestService.updateGuest(dto);
+        if (result == 1) {
+            rttr.addAttribute("book_num", dto.getBook_num());
+            return "redirect:/mini/guest/guest/{mem_id}";
+        }
+        return "mini/guest/guest";
+    }
+
+    /* 방명록 글 중 삭제 버튼 눌렀을 때 */
+    @PostMapping(value = "/guestDelete/{mem_id}/{book_num}")
+    public String DeleteGuest(@PathVariable("book_num") int book_num, @PathVariable("mem_id") String mem_id,
+            Model model, RedirectAttributes redirect) {
+        int result = guestService.deleteGuest(book_num);
+        if (result == 1) {
+            redirect.addAttribute("book_num", book_num);
+        }
+        return "redirect:/mini/guest/guest/{mem_id}";
     }
 
 }

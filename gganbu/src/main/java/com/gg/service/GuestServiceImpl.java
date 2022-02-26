@@ -29,4 +29,20 @@ public class GuestServiceImpl implements GuestService {
         return guestmapper.insertGuest(dto);
     }
 
+    @Override
+    public int updateGuest(GuestDTO dto) {
+        // TODO Auto-generated method stub
+        return guestmapper.updateGuest(dto);
+    }
+
+    @Override
+    public GuestDTO updateGuestMove(int book_num) {
+        return guestmapper.updateGuestMove(book_num);
+    }
+
+    @Override
+    public int deleteGuest(int book_num) {
+        return guestmapper.deleteGuest(book_num);
+    }
+
 }

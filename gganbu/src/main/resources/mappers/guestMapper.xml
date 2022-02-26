@@ -5,6 +5,10 @@
 	<sql id="guestColumns">
 		rno, book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
 	</sql>
+
+	<sql id="guestColumns2">
+		book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
+	</sql>
 	
 	<select id="selectGuest" parameterType="String" resultType="GuestDTO">
 		select 
@@ -28,4 +32,16 @@
 	<insert id="insertGuest" parameterType="GuestDTO">
 		insert into guest_book_table values(book_num, #{mem_id},#{mem_id2}, #{book_content}, now(), now(), 'N')
 	</insert>
+	
+	<update id="updateGuest" parameterType="GuestDTO">
+		update guest_book_table set book_content=#{book_content}, book_updatedate=now() where book_num=#{book_num}
+	</update>
+	
+	<select id="updateGuestMove" parameterType="_int" resultType="GuestDTO">
+		select <include refid="guestColumns2" /> from guest_book_table where book_num=#{book_num}
+	</select>
+		
+	<update id="deleteGuest" parameterType="_int">
+		update guest_book_table set book_status='Y', book_updatedate=now() where book_num=#{book_num}
+	</update>
 </mapper>

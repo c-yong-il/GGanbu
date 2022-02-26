@@ -11,4 +11,10 @@ public interface GuestService {
     public String now();
 
     public int insertGuest(GuestDTO dto);
+
+    public int updateGuest(GuestDTO dto);
+
+    public GuestDTO updateGuestMove(int book_num);
+
+    public int deleteGuest(int book_num);
 }

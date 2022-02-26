@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/guest.js"></script>
+</head>
+<body>
+<div id="guest_change">  
+	<div class="text-center" >
+		
+	</div>	
+	<form name="guestUpdateForm" id="guestUpdateForm" >
+		<input type="hidden" name="book_num" th:value=${dto.book_num}> <!-- {session.loginUser.mem_id} -->
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="col mb-5">
+				<div class="card h-100">
+					 <div class="book-date">
+						<span th:text="|${dto.book_date}📝|"  ></span>
+					</div> 
+
+					<div class="card-body3 ">
+						<div>
+							<textarea id="guest_write" name="book_content" th:text="${dto.book_content}"  ></textarea>
+						</div>
+					</div>
+					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
+				</div>
+				<div class="text-center">  
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestUpdate('/guestUpdate/${dto.mem_id}')|">수정완료</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestWrite('/mini/guest/guest/${dto.mem_id}')|">취소</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div> 
+</body>
+</html>
