@@ -49,7 +49,7 @@
 	
 	<select id="gganbuCheck" parameterType="String" resultType="int">
 	
-	   SELECT COUNT(*) FROM gganbu_table WHERE (mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id}) and gganbu_relation=1
+	   SELECT COUNT(*) FROM gganbu_table WHERE ((mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id})) and gganbu_relation=1
 	
 	</select>
 

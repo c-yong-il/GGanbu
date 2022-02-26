@@ -16,16 +16,15 @@ public class GganbuCommentController {
 
     @Autowired
     private GganbuCommentService gganbucommentservice;
-
-//    @RequestMapping(value = "/mini/pop_main/{mem_id}")
-//    public String selectGganbuComment(Model model, @PathVariable("mem_id") String mem_id) {
-//        model.addAttribute("id", mem_id);
-//        List<GganbuCommentDTO> GganbuCommentList = gganbucommentservice.selectGganbuComment(mem_id);
-//        model.addAttribute("list", GganbuCommentList);
-//        return "mini/pop_main";
-//    }
-
-    // mini/pop_main/${mem_id}
+    /*
+     * @RequestMapping(value = "/mini/pop_main/{mem_id}") public String
+     * selectGganbuComment(Model model, @PathVariable("mem_id") String mem_id) {
+     * model.addAttribute("id", mem_id); List<GganbuCommentDTO> GganbuCommentList =
+     * gganbucommentservice.selectGganbuComment(mem_id); model.addAttribute("list",
+     * GganbuCommentList); return "mini/pop_main"; }
+     * 
+     * mini/pop_main/${mem_id}
+     */
 
     @RequestMapping(value = "/mini/pop_main/deleteGganBuComment/{id}/{mem_id2}")
     public String deleteGganbuComment(@PathVariable("id") String mem_id, @PathVariable("mem_id2") String mem_id2,
