@@ -15,11 +15,6 @@
 	<insert id="insertGganbu" parameterType="String">
 		insert into gganbu_table values(#{myid}, #{yid}, now(), now(), 0)
 	</insert>
-	
-	
-	<update id="updateGganbu" parameterType="String">
-		update gganbu_table set gganbu_relation=0 where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
-	</update>
 
 
 	<select id="gganbuList" parameterType="String" resultType="MgmDTO">

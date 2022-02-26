@@ -58,11 +58,7 @@ public class SearchController {
             searchservice.insertGganbu(dto.getMem_id(), yid);
             result = 0;
             //System.out.println("깐부 신청 insert");
-        } else if (ggCheck == 2) { //update 
-            searchservice.updateGganbu(dto.getMem_id(), yid);
-            result = 0;
-            //System.out.println("깐부 신청 update");
-        } else {
+        } else if (ggCheck == 1) {
             result = 1;
             //System.out.println("이미 깐부야!!");
         }
