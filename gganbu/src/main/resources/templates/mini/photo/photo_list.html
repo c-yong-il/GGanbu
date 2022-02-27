@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Insert title here</title>
-<script type="text/javascript" th:href="@{/js/photo.js}" th:inline="javascript"></script>
+<script type="text/javascript" src="/js/photo.js"></script>
 <script type="text/javascript" src="/js/ajax.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/marshallku/infinite-scroll/dist/infiniteScroll.js"></script>
 <script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -62,25 +61,22 @@
 					</div>
 				</form>
 				
-				<form id="|cinsertForm + ${params.photo_num}|" >
+				<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
 			        <div class="border-top-0 bg-transparent">
 			            <div class="d-center">
 			            	<label>댓글</label>
-			            	<input type="text" id="photo_num" name="photo_num" th:value=${params.photo_num}>
 			            	<input type="text" id="comment_content" name="comment_content">
 			            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
 			            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 			            </div>
 			        </div>
 		        </form>
-		        	<span id="toc-toggle" onclick="openCloseToc()">댓글보이기</span>
-	        			<div id="Content">
+		        		<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
+	        			<div id="Contentt">
 					        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
 						        	<form id="cdelete">
 						           		<table style="word-break:break-all">
 						           			<tr>
-						           		<!-- <td th:text="${userStat.count}">usercount</td>
-						           		<td th:text="${userStat.index}">index</td> -->
 						           				<td width=15% th:text=${clist.mem_id2}></td>
 						           				<td th:text=${clist.comment_content}></td>
 						           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
@@ -122,34 +118,6 @@
 	</th:block>
 </div>
 
-<script>
-
-function cinsert(url){
-	/*<![CDATA[*/
-      var num = '[[${params.photo_num}]]';
-      /*]]>*/
-      
-      var f = $('#cinsertForm' + num).attr('id');
-      alert('[[${params.photo_num}]]');
-      alert(f);
-		var csubmit = $("#cinsertForm" + num).serialize();
-      
-		alert(csubmit);
-	
-    $.ajax({
-        url : url,
-        type : 'POST', 
-        data :  csubmit, 
-        dataType:"html",
-        }).done(function(data){
-            // Contents 영역 삭제
-	        $('#photo').children().remove();
-	        // Contents 영역 교체
-	        $('#photo').html(data);
-   		 });
- 	} 
-
-</script>
 
 </body>
 </html>

@@ -83,8 +83,25 @@ function updatee(url){
 	        // Contents 영역 교체
 	        $('#photo').html(data);
 	        $('.summernote').summernote({
-			    height: 250,
-			    width:550
+			    height: 300,
+		    width:550,
+		    toolbar: [
+			    // [groupName, [list of button]]
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+			  ],
+			minHeight: null,             // 최소 높이
+		  	maxHeight: null,             // 최대 높이
+		  	focus: true,
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 			  });
    		 });
  	}
@@ -123,7 +140,7 @@ function updatee(url){
  	}
  
 
-  /*function cinsert(url){
+  function cinsert(url){
 	
 	var csubmit = $("#cinsertForm").serialize();
 	
@@ -139,7 +156,7 @@ function updatee(url){
 	        $('#photo').html(data);
    		 });
  	}
- 	*/
+ 	
  	
  	
  	function cdeletee(url){
@@ -177,11 +194,11 @@ function updatee(url){
  	
 /*****************************************************/
 function openCloseToc() {
-    if(document.getElementById('Content').style.display === 'block') {
-      document.getElementById('Content').style.display = 'none';
+    if(document.getElementById('Contentt').style.display === 'block') {
+      document.getElementById('Contentt').style.display = 'none';
       document.getElementById('toc-toggle').textContent = '댓글보이기';
     } else {
-      document.getElementById('Content').style.display = 'block';
+      document.getElementById('Contentt').style.display = 'block';
       document.getElementById('toc-toggle').textContent = '댓글숨기기';
     }
   }
