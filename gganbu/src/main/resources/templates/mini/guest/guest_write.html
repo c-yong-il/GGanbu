@@ -9,6 +9,7 @@
 <div id="guest_change">  
 	<form name="guestWriteForm" id="guestWriteForm"  method="post"> 
 		<input type="hidden" name="mem_id" th:value=${mem_id} >
+		<div class="secret"><input type="checkbox" name="book_secret" value="Y">비밀글여부</div>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<div class="col mb-5">
 				<div class="card h-100 guest_form">
@@ -27,7 +28,7 @@
 					</div>
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 				</div>
-				<div class="text-center">
+				<div class="text-center button1">
 					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestWrite('/guestInsert/${mem_id}/${mem_id2}')|">등록</button>
 					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestWrite('/mini/guest/guest/${mem_id}')|">취소</button>
 				</div>

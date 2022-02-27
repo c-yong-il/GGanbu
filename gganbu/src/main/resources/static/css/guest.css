@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 .guest-1 {
 	background-color : #B4B4DC;
 	display : flex;
@@ -55,7 +53,7 @@
 
 .card-body3 {
 	flex: 1 1 auto;
-  	padding: 0.5rem 0.5rem 1rem 0.5rem;
+  	padding: 2rem 0.5rem 0rem 0.5rem;
 }
 
 .guest_form {
@@ -64,4 +62,20 @@
 
 .text-center {
 	text-align : center !important;
+}
+.secret {
+	display : flex;
+	justify-content:flex-end;
+	margin : 5px 0px;
+	font-size : 11pt;
+	font-weight : bold;
+	
+}
+.button1 {
+	margin-top : 10px;
+}
+.secret input {
+	zoom : 1.5;
+	position: relative;
+	top : -5px;
 }

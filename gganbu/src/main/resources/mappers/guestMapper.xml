@@ -3,11 +3,11 @@
 <mapper namespace="com.gg.mapper.GuestMapper">
 
 	<sql id="guestColumns">
-		rno, book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
+		rno, book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_secret, book_status
 	</sql>
 
 	<sql id="guestColumns2">
-		book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
+		book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_secret, book_status
 	</sql>
 	
 	<select id="selectGuest" parameterType="GuestDTO" resultType="GuestDTO">
@@ -40,7 +40,7 @@
 	</select> 
 	
 	<insert id="insertGuest" parameterType="GuestDTO">
-		insert into guest_book_table values(book_num, #{mem_id},#{mem_id2}, #{book_content}, now(), now(), 'N')
+		insert into guest_book_table values(book_num, #{mem_id},#{mem_id2}, #{book_content}, now(), now(),#{book_secret}, 'N')
 	</insert>
 	
 	<update id="updateGuest" parameterType="GuestDTO">
