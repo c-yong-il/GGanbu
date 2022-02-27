@@ -9670,3 +9670,14 @@ textarea.form-control-lg {
 	background:#4bb6d6;
 }
 
+/* #Content {
+    display: none;
+  } */
+  #toc-toggle {
+    cursor: pointer;
+    color: #2962ff;
+  }
+  #toc-toggle:hover {
+    text-decoration: underline;
+  }
+

@@ -122,8 +122,8 @@ function updatee(url){
    		 });
  	}
  
- 
-  function cinsert(url){
+
+  /*function cinsert(url){
 	
 	var csubmit = $("#cinsertForm").serialize();
 	
@@ -139,6 +139,7 @@ function updatee(url){
 	        $('#photo').html(data);
    		 });
  	}
+ 	*/
  	
  	
  	function cdeletee(url){
@@ -172,6 +173,19 @@ function updatee(url){
 	        $('#photo').html(data);
    		 });
  	}
+ 	
+ 	
+/*****************************************************/
+function openCloseToc() {
+    if(document.getElementById('Content').style.display === 'block') {
+      document.getElementById('Content').style.display = 'none';
+      document.getElementById('toc-toggle').textContent = '댓글보이기';
+    } else {
+      document.getElementById('Content').style.display = 'block';
+      document.getElementById('toc-toggle').textContent = '댓글숨기기';
+    }
+  }
+
  
 /************************************************************************************/
 
