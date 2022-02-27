@@ -20,7 +20,7 @@ function profileWrite(url){
         $('#profile-content').html(data);
         $('.summernote').summernote({
 		    height: 250,
-		    width:550,
+		    width: 539,
 		    toolbar: [
 			    // [groupName, [list of button]]
 			    ['fontname', ['fontname']],
