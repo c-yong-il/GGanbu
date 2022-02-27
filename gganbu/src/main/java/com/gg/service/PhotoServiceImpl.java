@@ -22,8 +22,9 @@ public class PhotoServiceImpl implements PhotoService{
     }
     
     @Override
-    public List<PhotoDTO> listTest(String mem_id){
-        List<PhotoDTO> list = photomapper.listTest(mem_id);
+    public List<PhotoDTO> listTest(PhotoDTO params){  
+        
+        List<PhotoDTO> list = photomapper.listTest(params);
         
         return list; 
     }
@@ -54,6 +55,13 @@ public class PhotoServiceImpl implements PhotoService{
         result = photomapper.deleteTest(photo_num);
         
         return result;
+    }
+
+    @Override
+    public int selectBoardTotalCount(PhotoDTO params) {
+        
+        
+        return photomapper.selectBoardTotalCount(params);
     }
 
 }

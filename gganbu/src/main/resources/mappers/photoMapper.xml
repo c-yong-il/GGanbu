@@ -3,12 +3,39 @@
 
 <mapper namespace="com.gg.mapper.PhotoMapper">
 
-	<select id="listTest" parameterType="String" resultType="PhotoDTO">
+	<select id="listTest" parameterType="PhotoDTO" resultType="PhotoDTO">
 	
+		<!-- SELECT
+			*
+		FROM
+			photo_table
+		WHERE
+			photo_status = 'N'
+		ORDER BY
+			photo_num desc,
+			photo_date DESC
+		LIMIT
+			#{paginationInfo.firstRecordIndex}, #{recordsPerPage} -->
+		
+		
 		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
 		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' order by photo_date)sub 
-		order by sub.rownum desc limit 0,5
+		order by sub.rownum desc LIMIT
+			#{paginationInfo.firstRecordIndex}, #{recordsPerPage}
+		
+		<!-- select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
+		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' order by photo_date)sub 
+		order by sub.rownum desc -->
 	
+	</select>
+	
+	<select id="selectBoardTotalCount" parameterType="PhotoDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			photo_table
+		WHERE
+			photo_status = 'N'
 	</select>
 	
 	<insert id="insertTest" parameterType="PhotoDTO">
@@ -47,5 +74,4 @@
 			photo_num = #{photo_num}
 	</update>
 	
-
 </mapper>

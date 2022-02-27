@@ -45,7 +45,7 @@ function photo(url){
         // Contents 영역 교체
         $('#photo').html(data);
         $('.summernote').summernote({
-		    height: 250,
+		    height: 300,
 		    width:550,
 		    toolbar: [
 			    // [groupName, [list of button]]
@@ -59,7 +59,7 @@ function photo(url){
 			    ['insert',['picture','link','video']],
 			    ['view', ['fullscreen', 'help']]
 			  ],
-			minHeight: 300,             // 최소 높이
+			minHeight: null,             // 최소 높이
 		  	maxHeight: null,             // 최대 높이
 		  	focus: true,
 			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
@@ -157,7 +157,21 @@ function updatee(url){
 	        $('#photo').html(data);
    		 });
  	}
+ 	
+ 	
+ 	function movePage(uri, queryString){
+	
+	
+    $.ajax({
+        url : uri + queryString,
+        type : 'POST', 
+        }).done(function(data){
+            // Contents 영역 삭제
+	        $('#photo').children().remove();
+	        // Contents 영역 교체
+	        $('#photo').html(data);
+   		 });
+ 	}
  
- 
-
+/************************************************************************************/
 

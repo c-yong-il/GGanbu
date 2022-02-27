@@ -2,19 +2,20 @@ package com.gg.domain;
 
 import java.sql.Date;
 
-import lombok.Data;
+import com.gg.paging.Criteria;
 
-@Data
-public class PhotoDTO {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class PhotoDTO extends Criteria{
     
     /* 번호 (PK) */
     private int photo_num;
     
     /* rno */
     private int rownum;
-
-    /* 주인장id(작성자) (FK) */
-    private String mem_id;
 
     /* 내용 */
     private String photo_content;
@@ -27,5 +28,5 @@ public class PhotoDTO {
     
     /* 삭제 여부 */
     private String photo_status;
-
+    
 }

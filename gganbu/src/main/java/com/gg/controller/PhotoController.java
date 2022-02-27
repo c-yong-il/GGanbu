@@ -1,16 +1,19 @@
 package com.gg.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gg.domain.PhotoCommentDTO;
 import com.gg.domain.PhotoDTO;
+import com.gg.paging.PaginationInfo;
 import com.gg.service.PhotoCommentService;
 import com.gg.service.PhotoService;
 
@@ -26,14 +29,26 @@ public class PhotoController {
     
     /* 사진첩 버튼 클릭 시 게시글 리스트 출력 */
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
-    public String listTest(@PathVariable("mem_id") String mem_id, Model model) {
-        List<PhotoDTO> list = photoService.listTest(mem_id);
+    public String listTest(@PathVariable("mem_id") String mem_id, @ModelAttribute("params") PhotoDTO params, Model model) {
+        LocalDate today = LocalDate.now();
+        
+        int boardTotalCount = photoService.selectBoardTotalCount(params);
+        PaginationInfo paginationInfo = new PaginationInfo(params);
+        paginationInfo.setTotalRecordCount(boardTotalCount);
+        
+        params.setPaginationInfo(paginationInfo);
+        
+        params.setMem_id(mem_id);
+        
+        List<PhotoDTO> list = photoService.listTest(params);
         
         List<PhotoCommentDTO> clist = photocommentService.commentList(mem_id);
         
         
+        model.addAttribute("params",params);
         model.addAttribute("list", list);
         model.addAttribute("clist",clist);
+        model.addAttribute("today", today);
         
         return "mini/photo/photo_list";
     }
@@ -72,11 +87,13 @@ public class PhotoController {
     
     /* 리스트화면에서 삭제 버튼 클릭 시 delete 실행 */
     @PostMapping(value="/delete/{mem_id}/{photo_num}")
-    public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, Model model) {
+    public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, PhotoDTO params, Model model) {
         
             photoService.deleteTest(photo_num);
             
-            List<PhotoDTO> list = photoService.listTest(mem_id);
+            params.setMem_id(mem_id);
+            
+            List<PhotoDTO> list = photoService.listTest(params);
             
             model.addAttribute("list", list);
             

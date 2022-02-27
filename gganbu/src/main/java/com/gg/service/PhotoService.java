@@ -7,9 +7,11 @@ import com.gg.domain.PhotoDTO;
 
 public interface PhotoService {
     
-    public PhotoDTO selectTest(int photo_num);
+    public List<PhotoDTO> listTest(PhotoDTO params);
     
-    public List<PhotoDTO> listTest(String mem_id);
+    public int selectBoardTotalCount(PhotoDTO params);
+    
+    public PhotoDTO selectTest(int photo_num);
     
     public int updateTest(PhotoDTO params);
     
