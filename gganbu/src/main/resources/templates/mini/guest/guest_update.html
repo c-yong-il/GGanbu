@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/guest.css" />
 <script src="/js/guest.js"></script>
 </head>
 <body>
@@ -11,12 +12,23 @@
 		
 	</div>	
 	<form name="guestUpdateForm" id="guestUpdateForm" >
-		<input type="hidden" name="book_num" th:value=${dto.book_num}> <!-- {session.loginUser.mem_id} -->
+		<input type="hidden" name="book_num" th:value=${dto.book_num}>
+		<th:block th:if="${dto.book_secret == null}"> 
+		<div class="secret"><input type="checkbox" name="book_secret" value="Y">비밀글여부</div>
+		</th:block>
+		<th:block th:unless="${dto.book_secret == null}"> 
+		<div class="secret"><input type="checkbox" name="book_secret" value="Y" checked>비밀글여부</div>
+		</th:block>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<div class="col mb-5">
-				<div class="card h-100">
-					 <div class="book-date">
-						<span th:text="|${dto.book_date}📝|"  ></span>
+				<div class="card h-100 guest_form">
+					 <div class="guest-1">
+						<div>
+							<span th:text="|작성자 : ${dto.mem_id2} |"></span>
+						</div>
+						 <div class="guest-date">
+							<span th:text="|작성일 : ${dto.book_date} |"></span>
+						</div> 
 					</div> 
 
 					<div class="card-body3 ">
@@ -26,7 +38,7 @@
 					</div>
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
 				</div>
-				<div class="text-center">  
+				<div class="text-center button1">  
 					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestUpdate('/guestUpdate/${dto.mem_id}')|">수정완료</button>
 					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestWrite('/mini/guest/guest/${dto.mem_id}')|">취소</button>
 				</div>

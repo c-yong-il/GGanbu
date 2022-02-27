@@ -9,12 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Criteria {
-    
+
     /** 페이징 정보 */
     private PaginationInfo paginationInfo;
-    
+
     private String mem_id;
-    
+
     /** 현재 페이지 번호 */
     private int currentPageNo;
 
@@ -38,12 +38,8 @@ public class Criteria {
 
     public String makeQueryString(int pageNo) {
 
-        UriComponents uriComponents = UriComponentsBuilder.newInstance()
-                .queryParam("currentPageNo", pageNo)
-                .queryParam("recordsPerPage", recordsPerPage)
-                .queryParam("pageSize", pageSize)
-                .build()
-                .encode();
+        UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("currentPageNo", pageNo)
+                .queryParam("recordsPerPage", recordsPerPage).queryParam("pageSize", pageSize).build().encode();
 
         return uriComponents.toUriString();
     }

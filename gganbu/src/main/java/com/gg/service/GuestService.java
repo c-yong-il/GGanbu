@@ -8,6 +8,8 @@ public interface GuestService {
 
     public List<GuestDTO> selectGuest(GuestDTO params);
 
+    public List<GuestDTO> selectGuest2(GuestDTO params);
+
     public int selectGuestTotalCount(GuestDTO params);
 
     public String now();

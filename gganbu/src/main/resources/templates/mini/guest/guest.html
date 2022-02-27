@@ -24,40 +24,120 @@
 			</a>
 		</div>
 		
+		<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
 		<th:block th:if="${not #lists.isEmpty(guestList)}" th:each="list : ${guestList}">
 		<form name="guestForm" id="guestForm" >
-			<input type="hidden" name="book_num" th:value=${list.book_num} >
-			<input type="hidden" name="mem_id" th:value=${mem_id} >  
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<div class="col mb-5">
-			<div class="card h-100">
-				<div>
-					<div class="guest-1">
-						<div>
-							<span th:text="|No.${list.rno}|" class="guest_num"></span>
-							<span th:text="|작성자 : ${list.mem_id2}|" class="guest_mem_id2"></span>
-						</div>
-				        <div> 		
-				           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
-							<span id="book-date2" th:text="|작성일 : ${list.book_date}|" class="guest_date"></span>
-						</div>
-		            </div>
+				<input type="hidden" name="book_num" th:value=${list.book_num} >
+				<input type="hidden" name="mem_id" th:value=${mem_id} >  
+				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div class="col mb-5">
+				<div class="card h-100">
 					<div>
-					<div class="card-body2 ">
-						<div class="guestListContent"  th:text="${list.book_content}"></div>
-					</div>
-					<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
-						<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
-							<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
-							<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
+						<th:block th:if="${list.book_secret == null}">
+						<div class="guest-1">
+							<div>
+								<span th:text="|No.${list.rno}|" class="guest_num"></span>
+								<span th:text="${list.mem_id2}" class="guest_mem_id2"></span>
+							</div>
+					        <div> 		
+					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+								<span id="book-date2" th:text="${list.book_date}" class="guest_date"></span>
+							</div>
+			            </div>
+			            </th:block>
+			            <th:block th:unless="${list.book_secret == null}">
+			            <div class="guest-2">
+							<div>
+								<span th:text="|No.${list.rno}|" class="guest_num"></span>
+								<span th:text="${list.mem_id2}" class="guest_mem_id2"></span>
+								<span>🔒</span>
+							</div>
+					        <div> 		
+					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+								<span id="book-date2" th:text="${list.book_date}" class="guest_date"></span>
+							</div>
+			            </div>
+			            </th:block>
+			            
+			            
+						<div>
+						<div class="card-body2 ">
+							<div class="guestListContent"  th:text="${list.book_content}"></div>
 						</div>
-					</th:block>
+						<!-- <th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}"> -->
+							<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+								<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
+								<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
+							</div>
+						<!-- </th:block> -->
+						</div>
 					</div>
 				</div>
-			</div>
-			</div>
-			</div>	
-		</form>	
+				</div>
+				</div>	
+		 </form>
+		 </th:block>
+		 <th:block th:unless="${not #lists.isEmpty(guestList)}">
+			<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </span>
+		</th:block>
+		 
+		 </th:block>
+		 <th:block th:unless="${#strings.equals(mem_id, session.loginUser.mem_id)}">	
+		 <th:block th:if="${not #lists.isEmpty(guestList2)}" th:each="list : ${guestList2}">
+		 		<form name="guestForm" id="guestForm" >
+				<input type="hidden" name="book_num" th:value=${list.book_num} >
+				<input type="hidden" name="mem_id" th:value=${mem_id} >  
+				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<div class="col mb-5">
+				<div class="card h-100">
+					<div>
+						<th:block th:if="${list.book_secret == null}">
+						<div class="guest-1">
+							<div>
+								<span th:text="|No.${list.rno}|" class="guest_num"></span>
+								<span th:text="${list.mem_id2}" class="guest_mem_id2"></span>
+							</div>
+					        <div> 		
+					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+								<span id="book-date2" th:text="${list.book_date}" class="guest_date"></span>
+							</div>
+			            </div>
+			            </th:block>
+			            <th:block th:unless="${list.book_secret == null}">
+			            <div class="guest-2">
+							<div>
+								<span th:text="|No.${list.rno}|" class="guest_num"></span>
+								<span th:text="${list.mem_id2}" class="guest_mem_id2"></span>
+								<span>🔒</span>
+							</div>
+					        <div> 		
+					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+								<span id="book-date2" th:text="${list.book_date}" class="guest_date"></span>
+							</div>
+			            </div>
+			            </th:block>
+			            
+			            
+						<div>
+						<div class="card-body2 ">
+							<div class="guestListContent"  th:text="${list.book_content}"></div>
+						</div>
+						<th:block th:if="${#strings.equals(list.mem_id2, session.loginUser.mem_id)}">
+							<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+								<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
+								<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
+							</div>
+						</th:block>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>	
+		 </form>
+		 </th:block>
+		 <th:block th:unless="${not #lists.isEmpty(guestList2)}">
+			<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </span>
+		</th:block>
 	</th:block>
 	
 		<nav th:if="${params != null and params.paginationInfo.totalRecordCount > 0}" th:object="${params.paginationInfo}" th:with="info=${params.paginationInfo}" aria-label="Page navigation" class="text-center">
@@ -79,10 +159,6 @@
 				</li>
 			</ul>
 		</nav>
-	
-	<th:block th:unless="${not #lists.isEmpty(guestList)}">
-		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </span>
-	</th:block>
 </div>
 
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>

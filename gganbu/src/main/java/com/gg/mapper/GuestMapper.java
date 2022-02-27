@@ -10,6 +10,8 @@ import com.gg.domain.GuestDTO;
 public interface GuestMapper {
     public List<GuestDTO> selectGuest(GuestDTO params);
 
+    public List<GuestDTO> selectGuest2(GuestDTO params);
+
     public int selectGuestTotalCount(GuestDTO params);
 
     public List<GuestDTO> getList();

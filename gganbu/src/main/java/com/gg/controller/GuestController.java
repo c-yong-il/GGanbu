@@ -3,6 +3,8 @@ package com.gg.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.GuestDTO;
+import com.gg.domain.MemberDTO;
 import com.gg.paging.PaginationInfo;
 import com.gg.service.GuestService;
 
@@ -24,8 +27,12 @@ public class GuestController {
 
     /* 방명록 메뉴 클릭 시 방명록 리스트 출력 */
     @RequestMapping(value = "/mini/guest/guest/{mem_id}")
-    public String selectGuest(Model model, @PathVariable("mem_id") String mem_id,
+    public String selectGuest(Model model, @PathVariable("mem_id") String mem_id, HttpSession session,
             @ModelAttribute("params") GuestDTO params) {
+        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
+        params.setMem_id2(dto.getMem_id());
+
         LocalDate today = LocalDate.now();
 
         int guestTotalCount = guestService.selectGuestTotalCount(params);
@@ -37,9 +44,11 @@ public class GuestController {
         params.setMem_id(mem_id);
 
         List<GuestDTO> list = guestService.selectGuest(params);
+        List<GuestDTO> list2 = guestService.selectGuest2(params);
 
         model.addAttribute("params", params);
         model.addAttribute("guestList", list);
+        model.addAttribute("guestList2", list2);
         model.addAttribute("today", today);
 
         return "mini/guest/guest";

@@ -51,4 +51,10 @@ public class GuestServiceImpl implements GuestService {
         return guestmapper.selectGuestTotalCount(params);
     }
 
+    @Override
+    public List<GuestDTO> selectGuest2(GuestDTO params) {
+
+        return guestmapper.selectGuest2(params);
+    }
+
 }
