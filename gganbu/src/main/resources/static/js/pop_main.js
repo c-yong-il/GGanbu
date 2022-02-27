@@ -68,3 +68,18 @@ function deleteGganbuComment(url){
     });
     }
     
+ /* 미니홈피에서 깐부신청하기 */ 
+ function requestGganbu(url){
+	if(confirm("깐부신청을 하시겠습니까?")){
+		$.ajax({
+			url:url,
+			success:function(result){
+				if(result == 0){
+					alert("깐부 신청이 완료되었습니다.");
+					window.location.href=window.location.href;
+				}
+			}
+		})
+	}
+}
+	

@@ -11,6 +11,8 @@
 					window.location.href ="/mgm/mgm";
 				}else if(result == 1){
 					alert("이미 깐부관계입니다 :D \n우린 깐부잖아~");
+				}else if(result == 2){
+					alert("깐부 수락 대기 중입니다! ");
 				}
 			}
 		})

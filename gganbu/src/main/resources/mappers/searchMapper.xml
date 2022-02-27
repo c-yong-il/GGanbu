@@ -28,7 +28,9 @@
 	
 	
 	<select id="ggCheck" parameterType="String" resultType="_int">
-		select count(*) from gganbu_table where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
+		SELECT IFNULL(gganbu_relation, 2) AS gganbu_relation 
+		FROM gganbu_table RIGHT OUTER JOIN (SELECT '') AS m_dual ON 
+		(mem_id=#{myid} and mem_id2=#{yid}) OR (mem_id=#{yid} and mem_id2=#{myid})
 	</select>
 	
 	<!-- <select id="search" parameterType="String" resultType="SearchDTO">

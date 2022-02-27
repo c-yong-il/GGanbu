@@ -12,10 +12,10 @@
     <script defer type="text/javascript" th:src="@{/js/ajax.js}"></script>
     <script defer type="text/javascript" th:src="@{/js/pop_main.js}"></script>
     <script defer type="text/javascript" th:src="@{/js/gganbucomment.js}"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<!--     <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> -->
   </head>
   <body id="test">
     <div class="background">
@@ -39,18 +39,28 @@
                   />
                   <div class="desc-wrap">
                     <p class="text-desc">
-                      사람좋은 사람들 <br />
+                      사이좋은 사람들 <br />
                       깐부월드<br />
                       ^-^
                     </p>
                     <a class="link-history" href="#">EDIT</a>
                   </div>
                   <div class="info-wrap">
-                    <a class="info-name" href="#" th:text="${mem_id}"></a>
+                    <a class="info-name"  th:text="|${mem_id}(${hostInfo.mem_name})|"></a>
                         <ul class="hide">
-                            <li>깐부신청</li>
+                        <th:block th:if="${hostInfo.mem_id != session.loginUser.mem_id}">
+	                        <th:block th:if="${ggRelationCheck == 2}">
+	                            <li><a th:attr="onclick=|requestGganbu('/requestGganbu/${hostInfo.mem_id}')|">깐부 신청</a></li>
+	                        </th:block> 
+	                      <th:block th:if="${ggRelationCheck == 0}">
+	                            <li>깐부 대기중..</li>
+	                        </th:block> 
+	                        <th:block th:if="${ggRelationCheck == 1}">
+	                            <li>우린 깐부사이 :D</li>
+	                        </th:block>
+	                    </th:block> 
                         </ul>
-                    <p class="text-email">gksals6464@naver.com</p>
+                    <p class="text-email" th:text="|${hostInfo.mem_email1}@${hostInfo.mem_email2}|"></p>
                     <!-- <img src="./source/img/b+.png" alt="b+" />
                     <img src="./source/img/dotol.jpeg" alt="dotol" /> -->
                   </div>
@@ -68,7 +78,7 @@
             <div class="main-paper">
               <div class="main-wrap">
                 <div class="title-wrap">
-                  <p class="title title1">사이좋은 사람들, 깐부월드</p>
+                  <p class="title title1" th:text="|${hostInfo.mem_name}님의 미니홈피|"></p>
                   <!-- <div class="link-wrap">
                     <a href="#"><span>일촌맺기</span></a>
                     <a href="#"><span>팬되기</span></a>
@@ -147,14 +157,14 @@
                         <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
                           <input id="gganbu_comment_content" name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!">
-                          <div id="GBCMsg" class="Msg"></div>
                           <button type="button" th:attr="onclick=|insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}')|">등록</button>
+                          <div id="GBCMsg" class="Msg"></div>
                         </div>
                        </div>
                        <div th:unless="${gganbuCheck}==1">
                        <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
-                          <input type="text" placeholder="깐부만 남길 수 있다고하자" disabled>
+                          <input type="text" placeholder="깐부평은 깐부만 남길수 있어요!" disabled>
                         </div>
                         </div>
                        </form>

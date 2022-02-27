@@ -51,16 +51,18 @@ public class SearchController {
     @RequestMapping(value = "/requestGganbu/{mem_id}")
     public int requestGganbu(@PathVariable("mem_id") String yid, Model model, HttpSession session, RedirectAttributes rttr) {
         MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-        int result = -1;
-        int ggCheck = searchservice.ggCheck(dto.getMem_id(), yid);
 
-        if (ggCheck == 0) { //insert
+        int ggCheck = searchservice.ggCheck(dto.getMem_id(), yid);
+        int result = -1;
+        if (ggCheck == 2) { //insert
             searchservice.insertGganbu(dto.getMem_id(), yid);
             result = 0;
             //System.out.println("깐부 신청 insert");
         } else if (ggCheck == 1) {
             result = 1;
             //System.out.println("이미 깐부야!!");
+        } else if (ggCheck == 0) {
+            result = 2;
         }
         return result;
     }

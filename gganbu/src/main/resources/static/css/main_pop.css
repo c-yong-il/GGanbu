@@ -346,8 +346,13 @@ h2 {
   text-decoration: none;
   color: #356fa8;
   font-weight: 900;
+  font-size:12pt;
+  cursor:pointer;
 }
-
+.hide li  {
+	font-size:11pt;
+	margin-top:5px;
+}
 .info-name:hover {
   text-decoration: underline;
 }
@@ -500,12 +505,12 @@ td a:hover {
 .friends-say-section label {
   color: #4bb6d6;
   font-weight: 700;
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
 .friends-say-section input {
-  width: 60%;
-  margin-right: 20px;
+  width: 65%;
+  margin-right: 5px;
 }
 
 .friends-say-list {
@@ -670,3 +675,13 @@ aside > button {
 .clicked {
         background-color: blue;
       }
+     
+.hide a {
+	cursor:pointer;
+}
+/* .hide li{
+	 visibility:collapse; 
+} */
+/* #gg-comment {
+	padding-bottom:5px;
+} */

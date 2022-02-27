@@ -13,6 +13,11 @@
 	
 	</select>
 	
+	<select id="selectMemInfo" parameterType="String" resultType="MemberDTO">
+		select mem_id, mem_pass, mem_name, mem_email1, mem_email2, mem_hp, mem_birth, mem_gender, mem_date, mem_status
+		from member_table where mem_id=#{mem_id}
+	</select>
+	
     <!-- mem_id2의 미니홈피를 mem_id가 접속했을때 mem_id가 작성한거 SELECT?
 	<select id="" parameterType="String" resultType="GganbuCommentDTO">
 	
@@ -51,6 +56,12 @@
 	
 	   SELECT COUNT(*) FROM gganbu_table WHERE ((mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id})) and gganbu_relation=1
 	
+	</select>
+	
+	<select id="ggRelationCheck" parameterType="String" resultType="_int">
+		SELECT IFNULL(gganbu_relation, 2) AS gganbu_relation 
+		FROM gganbu_table RIGHT OUTER JOIN (SELECT '') AS m_dual ON 
+		(mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id})
 	</select>
 
 </mapper>
