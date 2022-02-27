@@ -15,8 +15,8 @@ public class GuestServiceImpl implements GuestService {
     private GuestMapper guestmapper;
 
     @Override
-    public List<GuestDTO> selectGuest(String mem_id) {
-        return guestmapper.selectGuest(mem_id);
+    public List<GuestDTO> selectGuest(GuestDTO params) {
+        return guestmapper.selectGuest(params);
     }
 
     @Override
@@ -43,6 +43,12 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public int deleteGuest(int book_num) {
         return guestmapper.deleteGuest(book_num);
+    }
+
+    @Override
+    public int selectGuestTotalCount(GuestDTO params) {
+
+        return guestmapper.selectGuestTotalCount(params);
     }
 
 }

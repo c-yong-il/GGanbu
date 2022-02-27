@@ -83,10 +83,22 @@ function guestDelete(url) {
 			dataType: "html",
 			success: function(data) {
 				// Contents 영역 삭제
-				$('#geust_change').children().remove();
+				$('#guest_change').children().remove();
 				// Contents 영역 교체
 				$('#guest_change').html(data);
 			}
 		});
 	}
+}
+
+function movePage(uri, queryString){
+	$.ajax({
+	    url : uri + queryString,
+	    type : 'POST', 
+	    }).done(function(data){
+	        // Contents 영역 삭제
+	        $('#guest_change').children().remove();
+	        // Contents 영역 교체
+	        $('#guest_change').html(data);
+		 });
 }

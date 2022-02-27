@@ -8,7 +8,9 @@ import com.gg.domain.GuestDTO;
 
 @Mapper
 public interface GuestMapper {
-    public List<GuestDTO> selectGuest(String mem_id);
+    public List<GuestDTO> selectGuest(GuestDTO params);
+
+    public int selectGuestTotalCount(GuestDTO params);
 
     public List<GuestDTO> getList();
 

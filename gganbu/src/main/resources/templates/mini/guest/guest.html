@@ -7,6 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>guest_book</title>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/css/guest.css" />
 <link rel="stylesheet" href="/css/main.css" />
@@ -14,13 +17,14 @@
 </head>
 <body>
 	<div id="guest_change">
+	
 		<div class="btn_write">
 			<a th:attr="onclick=|guestWrite('/mini/guest/guest_write/${mem_id}/${session.loginUser.mem_id}')|">
 				<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
 			</a>
 		</div>
 		
-		<th:block th:if="${not #lists.isEmpty( guestList )}" th:each="list, i : ${guestList}">
+		<th:block th:if="${not #lists.isEmpty(guestList)}" th:each="list : ${guestList}">
 		<form name="guestForm" id="guestForm" >
 			<input type="hidden" name="book_num" th:value=${list.book_num} >
 			<input type="hidden" name="mem_id" th:value=${mem_id} >  
@@ -28,36 +32,57 @@
 			<div class="col mb-5">
 			<div class="card h-100">
 				<div>
-						<div class="guest-1">
-							<!-- <span th:text="${i}"></span>  -->
-							<div>
-								<span th:text="|No.${list.rno}|" class="guest_num"></span>
-								<span th:text="|작성자 : ${list.mem_id2}|" class="guest_mem_id2"></span>
-							</div>
-					        <div> 		
-					           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
-								<span id="book-date2" th:text="|작성일 : ${list.book_date}|" class="guest_date"></span>
-							</div>
-			            </div>
+					<div class="guest-1">
 						<div>
-						<div class="card-body2 ">
-							<div class="guestListContent"  th:text="${list.book_content}"></div>
+							<span th:text="|No.${list.rno}|" class="guest_num"></span>
+							<span th:text="|작성자 : ${list.mem_id2}|" class="guest_mem_id2"></span>
 						</div>
-						<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
-							<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
-								<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
-								<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
-							</div>
-						</th:block>
+				        <div> 		
+				           	<span th:if="${#strings.equals(today, list.book_date)}" class="badge" >NEW</span>
+							<span id="book-date2" th:text="|작성일 : ${list.book_date}|" class="guest_date"></span>
 						</div>
+		            </div>
+					<div>
+					<div class="card-body2 ">
+						<div class="guestListContent"  th:text="${list.book_content}"></div>
+					</div>
+					<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+						<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+							<a th:attr="onclick=|guestUpdateMove('/guest_update/${mem_id}/${list.book_num}')|">수정</a>
+							<a th:attr="onclick=|guestDelete('/guestDelete/${mem_id}/${list.book_num}')|">삭제</a>
+						</div>
+					</th:block>
+					</div>
 				</div>
 			</div>
 			</div>
 			</div>	
 		</form>	
 	</th:block>
-	<th:block th:unless="${not #lists.isEmpty( guestList)}">
-		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </th:block>
+	
+		<nav th:if="${params != null and params.paginationInfo.totalRecordCount > 0}" th:object="${params.paginationInfo}" th:with="info=${params.paginationInfo}" aria-label="Page navigation" class="text-center">
+			<ul class="pagination">
+				<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(1)} ]])">
+					<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+				</li>
+				<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.firstPage - 1)} ]])">
+					<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a>
+				</li>
+				<li th:each="pageNo : *{#numbers.sequence( firstPage, lastPage )}" th:class="${pageNo == params.currentPageNo} ? 'active'">
+					<a href="javascript:void(0)" th:text="${pageNo}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(pageNo)} ]])"></a>
+				</li>
+				<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.lastPage + 1)} ]])">
+					<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a>
+				</li>
+				<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${params.makeQueryString(info.totalPageCount)} ]])">
+					<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+				</li>
+			</ul>
+		</nav>
+	
+	<th:block th:unless="${not #lists.isEmpty(guestList)}">
+		<span class="infoMsg"> 방명록에 글이 없어요. 글 작성좀 해주세요. (￣y▽￣)╭ </span>
+	</th:block>
 </div>
 
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>

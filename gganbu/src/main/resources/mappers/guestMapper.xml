@@ -10,15 +10,25 @@
 		book_num, mem_id, mem_id2, book_content, book_date, book_updatedate, book_status
 	</sql>
 	
-	<select id="selectGuest" parameterType="String" resultType="GuestDTO">
+	<select id="selectGuest" parameterType="GuestDTO" resultType="GuestDTO">
 		select 
 			<include refid="guestColumns" /> 
 		from 
-			(select @rownum:= @rownum+1 as rno, guest_book_table.*
+			(select @rno:= @rno+1 as rno, guest_book_table.*
 		from 
 		guest_book_table, 
-		(select @rownum :=0 )a where mem_id=#{mem_id} and book_status ='N' order by book_date)sub 
-		order by sub.rno desc
+		(select @rno :=0 )a where mem_id=#{mem_id} and book_status ='N' order by book_date)sub 
+		order by sub.rno desc 
+		limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
+	</select>
+	
+	<select id="selectGuestTotalCount" parameterType="GuestDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			guest_book_table
+		WHERE
+			book_status = 'N' and mem_id=#{mem_id}
 	</select>
 	
 	<select id="getList" resultType="GuestDTO">

@@ -4794,11 +4794,11 @@ textarea.form-control-lg {
   color: #6c757d;
 }
 
-.pagination {
+/* .pagination {
   display: flex;
   padding-left: 0;
   list-style: none;
-}
+} */
 
 .page-link {
   position: relative;

@@ -6,7 +6,9 @@ import com.gg.domain.GuestDTO;
 
 public interface GuestService {
 
-    public List<GuestDTO> selectGuest(String mem_id);
+    public List<GuestDTO> selectGuest(GuestDTO params);
+
+    public int selectGuestTotalCount(GuestDTO params);
 
     public String now();
 
