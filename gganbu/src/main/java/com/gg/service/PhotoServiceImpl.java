@@ -58,10 +58,10 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public int selectBoardTotalCount(PhotoDTO params) {
+    public int selectPhotoTotalCount(PhotoDTO params) {
         
         
-        return photomapper.selectBoardTotalCount(params);
+        return photomapper.selectPhotoTotalCount(params);
     }
 
 }

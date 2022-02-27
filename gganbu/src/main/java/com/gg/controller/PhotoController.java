@@ -32,9 +32,9 @@ public class PhotoController {
     public String listTest(@PathVariable("mem_id") String mem_id, @ModelAttribute("params") PhotoDTO params, Model model) {
         LocalDate today = LocalDate.now();
         
-        int boardTotalCount = photoService.selectBoardTotalCount(params);
+        int PhotoTotalCount = photoService.selectPhotoTotalCount(params);
         PaginationInfo paginationInfo = new PaginationInfo(params);
-        paginationInfo.setTotalRecordCount(boardTotalCount);
+        paginationInfo.setTotalRecordCount(PhotoTotalCount);
         
         params.setPaginationInfo(paginationInfo);
         
@@ -87,16 +87,17 @@ public class PhotoController {
     
     /* 리스트화면에서 삭제 버튼 클릭 시 delete 실행 */
     @PostMapping(value="/delete/{mem_id}/{photo_num}")
-    public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, PhotoDTO params, Model model) {
+    public String delete(@PathVariable("photo_num") int photo_num, @PathVariable("mem_id") String mem_id, @ModelAttribute("params") PhotoDTO params, Model model) {
         
             photoService.deleteTest(photo_num);
             
-            params.setMem_id(mem_id);
-            
-            List<PhotoDTO> list = photoService.listTest(params);
-            
-            model.addAttribute("list", list);
-            
+            /*
+             * params.setMem_id(mem_id);
+             * 
+             * List<PhotoDTO> list = photoService.listTest(params);
+             * 
+             * model.addAttribute("list", list);
+             */
             return "redirect:/mini/photo/photo_list/{mem_id}";
     }
     

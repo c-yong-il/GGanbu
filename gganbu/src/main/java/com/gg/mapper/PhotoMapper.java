@@ -11,7 +11,7 @@ public interface PhotoMapper {
     
     public List<PhotoDTO> listTest(PhotoDTO params); 
     
-    public int selectBoardTotalCount(PhotoDTO params);
+    public int selectPhotoTotalCount(PhotoDTO params);
     
     public PhotoDTO selectTest(int photo_num);
     

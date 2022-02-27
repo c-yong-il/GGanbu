@@ -29,13 +29,13 @@
 	
 	</select>
 	
-	<select id="selectBoardTotalCount" parameterType="PhotoDTO" resultType="int">
+	<select id="selectPhotoTotalCount" parameterType="PhotoDTO" resultType="int">
 		SELECT
 			COUNT(*)
 		FROM
 			photo_table
 		WHERE
-			photo_status = 'N'
+			photo_status = 'N' and mem_id = #{mem_id}
 	</select>
 	
 	<insert id="insertTest" parameterType="PhotoDTO">
