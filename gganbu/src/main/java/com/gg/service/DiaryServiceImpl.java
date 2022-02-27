@@ -30,6 +30,11 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public List<DiaryDTO> selectDiary2(String mem_id) {
+        return diarymapper.selectDiary2(mem_id);
+    }
+
+    @Override
     public String now() {
         return diarymapper.now();
     }

@@ -25,9 +25,11 @@ public class DiaryController {
     @RequestMapping(value = "/mini/diary/diary/{mem_id}")
     public String selectDiary(Model model, @PathVariable("mem_id") String mem_id) {
         LocalDate today = LocalDate.now();
-        List<DiaryDTO> list = diaryService.selectDiary(mem_id);
+        List<DiaryDTO> list = diaryService.selectDiary(mem_id); //내홈피 다이어리 볼 때
+        List<DiaryDTO> list2 = diaryService.selectDiary2(mem_id); //다른 사람 홈피 다이어리 볼 때
 
         model.addAttribute("diaryList", list);
+        model.addAttribute("diaryList2", list2);
         model.addAttribute("today", today);
         return "mini/diary/diary";
     }

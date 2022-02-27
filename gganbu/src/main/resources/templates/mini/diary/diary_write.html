@@ -7,9 +7,7 @@
 </head>
 <body>
 <div id="diary_change">  
-	<div class="text-center" >
-		<div>달력!</div>
-	</div>	
+		
 	<form name="diaryWriteForm" id="diaryWriteForm"  method="post"> <!-- action="/diaryInsert/${session.loginUser.mem_id}"--><!-- diaryWrite2()에서 url써서 serialize()해서 그런지 필요없는듯 -->
 		<input type="hidden" name="mem_id" th:value=${mem_id} >
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -17,8 +15,11 @@
 				<div class="card h-100">
 					 <div class="diary-date">
 						<span th:text="|😍 Today is ${todayDate} |"></span>
+						<div>
+							<input class="form-check-input" type="checkbox" id="checkbox" name="diary_secret" value="Y">
+							<span>비밀글로 하기</span>
+						</div>
 					</div> 
-
 					<div class="card-body3 ">
 						<div>
 							<!-- <span th:text="${dto?.diary_content}"></span> -->

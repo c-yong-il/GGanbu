@@ -31,6 +31,15 @@
 	display:flex;
 	justify-content:space-between;
 }
+.diary-date2{
+	background:#999;
+	padding:7px 0;
+	font-size:11pt;
+	font-weight:bold;
+	display:flex;
+	justify-content:space-between;
+}
+
 #rightdate {
 	text-align:right;
 	display:inline-block;	
@@ -105,13 +114,19 @@
 Form[name="diaryForm"] {
 	margin-top:20px;
 }
+Form[name="diaryUpdateForm"], Form[name="diaryWriteForm"] {
+	margin-top:40px;
+}
+ 
 .write-btn {
 	float:right;
 }
 .badge {
 	background:#4bb6d6;
 }
-
+#checkbox {
+	zoom: 1.2;
+}
 
 /* 달력  
  .ui-widget-header { border: 0px solid #dddddd; background: #fff; } 

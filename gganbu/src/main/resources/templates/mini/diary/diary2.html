@@ -31,13 +31,31 @@
 				
 				<div class="col mb-5">
 					<div class="card h-100">
-						<div class="diary-date">
-							<span th:text="|No.${list.rno}|"></span>
-							<div>
-			             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge">NEW</span>
-								<span id="diary-date2" th:text="${list.diary_date}"></span>
-		             		</div>
-						</div>
+							<th:block th:if="${list.diary_secret} == Y">
+								<div class="diary-date2">
+									<!-- <span th:text="${i}"></span>  -->
+									<div>
+										<span th:text="|No.${list.rno}|"></span>
+										<span> 🔒 비밀글</span> 
+									</div>
+									<div>
+					             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
+										<span id="diary-date2" th:text="${list.diary_date}"></span>
+				             		</div>
+								</div>
+							</th:block>
+							<th:block th:unless="${list.diary_secret} == Y">
+								<div class="diary-date">
+									<!-- <span th:text="${i}"></span>  -->
+									<div>
+										<span th:text="|No.${list.rno}|"></span>
+									</div>
+									<div>
+					             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
+										<span id="diary-date2" th:text="${list.diary_date}"></span>
+				             		</div>
+								</div>
+							</th:block>
 						<div class="card-body2 ">
 							<div class="diaryListContent" th:text="${list.diary_content}"></div>
 								<!-- <pre th:text="${list.diary_content}" ></pre> -->

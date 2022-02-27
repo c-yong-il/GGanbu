@@ -15,6 +15,8 @@ public interface DiaryMapper {
 
     public List<DiaryDTO> selectDiary(String mem_id);
 
+    public List<DiaryDTO> selectDiary2(String mem_id);
+
     //    public List<DiaryDTO> selectDate(String mem_id, String diary_date);
     public List<DiaryDTO> selectDate(DiaryDTO dto);
 

@@ -23,40 +23,97 @@
 			</a>
 		</th:block>
 	</div>	
-	<th:block th:if="${not #lists.isEmpty( diaryList )}" th:each="list, i : ${diaryList}" >
-		<form name="diaryForm" id="diaryForm" >
-			<input type="hidden" name="diary_num" th:value=${list.diary_num} >  <!--  ${dto.diary_num} -->
-			<input type="hidden" name="mem_id" th:value=${mem_id} >  
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				
-				<div class="col mb-5">
-					<div class="card h-100">
-						<div class="diary-date">
-							<!-- <span th:text="${i}"></span>  -->
-								<span th:text="|No.${list.rno}|"></span>
-							<div>
-			             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
-								<span id="diary-date2" th:text="${list.diary_date}"></span>
-		             		</div>
-						</div>
-						<div class="card-body2 ">
-							<div class="diaryListContent"  th:text="${list.diary_content}"></div>
-						</div>
-						<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
-							<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
-								<a th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</a>
-								<!--  </a> -->
-								<a th:attr="onclick=|diaryDelete('/diaryDelete/${mem_id}/${list.diary_num}')|">삭제</a>
+	<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+		<th:block th:if="${not #lists.isEmpty( diaryList )}" th:each="list, i : ${diaryList}" >
+			<form name="diaryForm" id="diaryForm" >
+				<input type="hidden" name="diary_num" th:value=${list.diary_num} >  <!--  ${dto.diary_num} -->
+				<input type="hidden" name="mem_id" th:value=${mem_id} >  
+				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					
+					<div class="col mb-5">
+						<div class="card h-100">
+							<th:block th:if="${list.diary_secret} == Y">
+								<div class="diary-date2">
+									<!-- <span th:text="${i}"></span>  -->
+									<div>
+										<span th:text="|No.${list.rno}|"></span>
+										<span> 🔒 비밀글</span> 
+									</div>
+									<div>
+					             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
+										<span id="diary-date2" th:text="${list.diary_date}"></span>
+				             		</div>
+								</div>
+							</th:block>
+							<th:block th:unless="${list.diary_secret} == Y">
+								<div class="diary-date">
+									<!-- <span th:text="${i}"></span>  -->
+									<div>
+										<span th:text="|No.${list.rno}|"></span>
+									</div>
+									<div>
+					             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
+										<span id="diary-date2" th:text="${list.diary_date}"></span>
+				             		</div>
+								</div>
+							</th:block>
+							<div class="card-body2 ">
+								<div class="diaryListContent"  th:text="${list.diary_content}"></div>
 							</div>
-						</th:block>
+							<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+								<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+									<a th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</a>
+									<a th:attr="onclick=|diaryDelete('/diaryDelete/${mem_id}/${list.diary_num}')|">삭제</a>
+								</div>
+							</th:block>
+						</div>
 					</div>
-				</div>
-			</div>	
-		</form>	
+				</div>	
+			</form>	
+		</th:block>
+		<th:block th:unless="${not #lists.isEmpty( diaryList)}">
+			<span class="infoMsg"> 다이어리글이 없어요.😮</span>		
+		</th:block>
 	</th:block>
-	<th:block th:unless="${not #lists.isEmpty( diaryList)}">
-		<span class="infoMsg"> 다이어리글이 없어요.😮</span>		
-	</th:block>
+	<th:block th:unless="${#strings.equals(mem_id, session.loginUser.mem_id)}" >
+		<th:block th:if="${not #lists.isEmpty( diaryList2 )}" th:each="list, i : ${diaryList2}" >
+			<th:block th:if="${list.diary_secret} == null">
+				<form name="diaryForm" id="diaryForm" >
+					<input type="hidden" name="diary_num" th:value=${list.diary_num} >  <!--  ${dto.diary_num} -->
+					<input type="hidden" name="mem_id" th:value=${mem_id} >  
+					<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+						<div class="col mb-5">
+							<div class="card h-100">
+								<div class="diary-date">
+									<!-- <span th:text="${i}"></span>  -->
+									<div>
+										<span th:text="|No.${list.rno}|"></span>
+										<!-- <span class="" th:if="${list.diary_secret} == Y">     비밀글</span> -->
+									</div>
+									<div>
+					             		<span th:if="${#strings.equals(today, list.diary_date)}" class="badge" >NEW</span>
+										<span id="diary-date2" th:text="${list.diary_date}"></span>
+				             		</div>
+								</div>
+								<div class="card-body2">
+									<div class="diaryListContent"  th:text="${list.diary_content}"></div>
+								</div>
+								<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+									<div class="card-footer  pt-2 border-top-0 bg-transparent updel">
+										<a th:attr="onclick=|diaryUpdateMove('/diary_update/${mem_id}/${list.diary_num}')|">수정</a>
+										<!--  </a> -->
+										<a th:attr="onclick=|diaryDelete('/diaryDelete/${mem_id}/${list.diary_num}')|">삭제</a>
+									</div>
+								</th:block>
+							</div>
+						</div>
+					</div>	
+				</form>	
+			</th:block>
+		</th:block>
+		<th:block th:unless="${not #lists.isEmpty( diaryList2)}">
+			<span class="infoMsg"> 다이어리글이 없어요.😮</span>		
+		</th:block>
 </div>
 
 
