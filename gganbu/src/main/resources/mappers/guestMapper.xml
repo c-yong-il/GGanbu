@@ -29,7 +29,7 @@
 			(select @rno:= @rno+1 as rno, guest_book_table.*
 		from 
 		guest_book_table, 
-		(select @rno :=0 )a where ((mem_id=#{mem_id} and book_status ='N' and book_secret is null) or (mem_id2=#{mem_id2} and book_status = 'N' and book_secret='y')) order by book_date)sub 
+		(select @rno :=0 )a where ((mem_id=#{mem_id} and book_status ='N' and book_secret is null) or (mem_id=#{mem_id} and mem_id2=#{mem_id2} and book_status = 'N' and book_secret='y')) order by book_date)sub 
 		order by sub.rno desc 
 		limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
 	</select>
