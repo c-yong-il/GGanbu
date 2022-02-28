@@ -2,6 +2,7 @@ package com.gg.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,20 @@ public class PhotoServiceImpl implements PhotoService{
         
         return list; 
     }
+    
+    @Override
+    public int gganbu_relation(@Param(value = "mem_id") String mem_id, @Param(value = "mem_id2") String mem_id2) {
+        int result = 0;
+        result = photomapper.gganbu_relation(mem_id,mem_id2);
+        return result;
+    }
+    
+    /*
+     * @Override public int ggcheck(@Param(value = "mem_id") String
+     * mem_id, @Param(value = "mem_id2") String mem_id2) { int result = 0; result =
+     * photomapper.ggcheck(mem_id,mem_id2); return result; };
+     */
+    
     
     @Override
     public int updateTest(PhotoDTO params) {

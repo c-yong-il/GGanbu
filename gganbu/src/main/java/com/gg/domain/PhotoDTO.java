@@ -16,6 +16,9 @@ public class PhotoDTO extends Criteria{
     
     /* rno */
     private int rownum;
+    
+    /* 공개여부 */
+    private int photo_open;
 
     /* 내용 */
     private String photo_content;
@@ -28,5 +31,11 @@ public class PhotoDTO extends Criteria{
     
     /* 삭제 여부 */
     private String photo_status;
+    
+    /* 깐부 여부 확인용 */
+    private int gganbu_relation;
+    
+    /* private int ggcheck; */
+    
     
 }

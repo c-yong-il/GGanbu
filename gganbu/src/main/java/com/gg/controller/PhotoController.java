@@ -3,6 +3,8 @@ package com.gg.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gg.domain.MemberDTO;
 import com.gg.domain.PhotoCommentDTO;
 import com.gg.domain.PhotoDTO;
 import com.gg.paging.PaginationInfo;
@@ -29,8 +32,13 @@ public class PhotoController {
     
     /* 사진첩 버튼 클릭 시 게시글 리스트 출력 */
     @RequestMapping(value="/mini/photo/photo_list/{mem_id}")
-    public String listTest(@PathVariable("mem_id") String mem_id, @ModelAttribute("params") PhotoDTO params, Model model) {
+    public String listTest(@PathVariable("mem_id") String mem_id, @ModelAttribute("params") PhotoDTO params, Model model, HttpSession session) {
         LocalDate today = LocalDate.now();
+        MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+        
+        int ggrelation = photoService.gganbu_relation(mem_id,dto.getMem_id());
+        
+        params.setGganbu_relation(ggrelation);
         
         int PhotoTotalCount = photoService.selectPhotoTotalCount(params);
         PaginationInfo paginationInfo = new PaginationInfo(params);
@@ -49,6 +57,7 @@ public class PhotoController {
         model.addAttribute("list", list);
         model.addAttribute("clist",clist);
         model.addAttribute("today", today);
+        model.addAttribute("ggrelation", ggrelation);
         
         return "mini/photo/photo_list";
     }

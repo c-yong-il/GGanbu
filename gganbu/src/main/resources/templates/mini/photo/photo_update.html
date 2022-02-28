@@ -18,6 +18,21 @@
 <body>
 <div class="container">
 	<form id="updateForm">
+		<th:block th:if="${params.photo_open} == 0">
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="0" checked>전체공개
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="1">비밀글
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="2">깐부공개
+		</th:block>
+		<th:block th:if="${params.photo_open} == 1">
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="0">전체공개
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="1" checked>비밀글
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="2">깐부공개
+		</th:block>
+		<th:block th:if="${params.photo_open} == 2">
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="0">전체공개
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="1">비밀글
+			<input type="checkbox" class="photo_open" id="photo_open" name="photo_open" value="2" checked>깐부공개
+		</th:block>
 		<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
 	    <!-- <div class="card-body p-4"> -->
 	        <div class="text-center">

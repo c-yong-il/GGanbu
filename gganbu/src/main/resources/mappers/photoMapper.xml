@@ -5,19 +5,6 @@
 
 	<select id="listTest" parameterType="PhotoDTO" resultType="PhotoDTO">
 	
-		<!-- SELECT
-			*
-		FROM
-			photo_table
-		WHERE
-			photo_status = 'N'
-		ORDER BY
-			photo_num desc,
-			photo_date DESC
-		LIMIT
-			#{paginationInfo.firstRecordIndex}, #{recordsPerPage} -->
-		
-		
 		select * from (select @rownum:=@rownum+1 as rownum, photo_table.*
 		from photo_table, (select @rownum:=0) r where mem_id=#{mem_id} and photo_status='n' order by photo_date)sub 
 		order by sub.rownum desc LIMIT
@@ -28,6 +15,20 @@
 		order by sub.rownum desc -->
 	
 	</select>
+	
+	<select id="gganbu_relation" parameterType="String" resultType="int">
+	
+		SELECT IFNULL(gganbu_relation, 2) AS gganbu_relation 
+		FROM gganbu_table RIGHT OUTER JOIN (SELECT '') AS m_dual ON 
+		((mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id})) and gganbu_relation=1
+	
+	</select>
+	
+	<!-- <select id="ggcheck" parameterType="String" resultType="int">
+	
+	   SELECT COUNT(*) FROM gganbu_table WHERE ((mem_id=#{mem_id} and mem_id2=#{mem_id2}) OR (mem_id=#{mem_id2} and mem_id2=#{mem_id})) and gganbu_relation=1
+	
+	</select> -->
 	
 	<select id="selectPhotoTotalCount" parameterType="PhotoDTO" resultType="int">
 		SELECT
@@ -40,9 +41,10 @@
 	
 	<insert id="insertTest" parameterType="PhotoDTO">
 	
-		INSERT INTO photo_table (photo_num, mem_id, photo_content, photo_date, photo_updatedate, photo_status) VALUES (
+		INSERT INTO photo_table (photo_num, mem_id, photo_open, photo_content, photo_date, photo_updatedate, photo_status) VALUES (
 			  photo_num
 			, #{mem_id}
+			, #{photo_open}
 			, #{photo_content}
 			, NOW()
 			, NOW()
@@ -61,6 +63,7 @@
 		UPDATE photo_table
 		SET
 		 	  photo_content = #{photo_content}
+		 	, photo_open = #{photo_open}
 			, photo_updatedate = NOW()
 		WHERE
 			photo_num = #{photo_num}

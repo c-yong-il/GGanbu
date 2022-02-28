@@ -27,11 +27,13 @@
 		    <!-- </a> -->  
 	    </div>  
     </div>
-    <div class="card h-100">
+    <!-- 내가 내 미니홈피 갔을때 모든 게시글 출력 -->
 	    <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
+    	<th:block th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+    	<div class="card h-100">
     		<div class="box">
 			    <form id="update" name="update">
-			    	<div class="container mt-5">        
+			    	<div class="container mt-5">   
 						<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
 						<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
 				        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -89,8 +91,152 @@
 				           	</th:block>
          				</div>
 				</div>
+			</div>
 			</th:block>
-		</div>
+			</th:block>
+		
+		<!-- 내가 깐부관계가 아닌 다른 미니홈피 갔을때 전체공개글만 보임 -->
+		    <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
+		    <th:block th:unless="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+			<th:block th:if="${ggrelation} == 2 and ${params.photo_open} == 0">
+    		<div class="card h-100">
+	    		<div class="box">
+				    <form id="update" name="update">
+				    	<div class="container mt-5"> 
+							<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
+							<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
+					        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					            <div class="col mb-5">
+					                <div class="date">
+					                	<span th:text="|no.${params.rownum}|"></span>
+					                	<div>
+					                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
+					                		<span th:text="${params.photo_date}"></span>               
+					                	</div> 
+					                </div>
+				                    <div class="card-body p-4">
+				                        <div class="text-center">
+				                            <div class="d-flex justify-content-center small mb-2">
+				                                <div class="bi-star-fill" th:utext=${params.photo_content}></div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+			                    	<!-- <a href="javascript:updatee('/photo_update/${session.loginUser.mem_id}')"> -->
+						                <button type="button" class="btn btn-primary btn-sm" th:attr="onclick=|updatee('/photo_update/${mem_id}/${params.photo_num}')|">수정</button>
+						            <!-- </a> -->
+						                <button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|deletee('/delete/${session.loginUser.mem_id}/${params.photo_num}')|">삭제</button>
+					                </div>
+							    </div>
+							</div>
+						</div>
+					</form>
+					
+					<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
+				        <div class="border-top-0 bg-transparent">
+				            <div class="d-center">
+				            	<label>댓글</label>
+				            	<input type="text" id="comment_content" name="comment_content">
+				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+				            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
+				            </div>
+				        </div>
+			        </form>
+	        		<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
+        			<div id="Contentt">
+				        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
+					        	<form id="cdelete">
+					           		<table style="word-break:break-all">
+					           			<tr>
+					           				<td width=15% th:text=${clist.mem_id2}></td>
+					           				<td th:text=${clist.comment_content}></td>
+					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
+					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
+					           				</td>
+					           				<td width=15% th:text=${clist.comment_date}></td>
+					           			</tr>
+					           		</table>
+				           		</form>
+			           	</th:block>
+        			</div>
+				</div>
+			</div>
+			</th:block>
+			</th:block>
+			</th:block>
+		
+		
+		<!-- 내가 깐부관계인 사람 미니홈피 갔을때 비밀글 제외하고 출력 -->
+		    <th:block th:if="${not #lists.isEmpty(list)}" th:each="params : ${list}">
+		    <th:block th:if="${mem_id} != ${session.loginUser.mem_id}">
+			<th:block th:if="${ggrelation} == 1 and (${params.photo_open} == 2 or ${params.photo_open} == 0)">
+    		<div class="card h-100">
+	    		<div class="box">
+				    <form id="update" name="update">
+				    	<div class="container mt-5">   
+				    	<input type="text" th:value="${params.photo_open}">
+				    	<input type="text" th:value="${ggrelation}">     
+							<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
+							<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
+					        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					            <div class="col mb-5">
+					                <div class="date">
+					                	<span th:text="|no.${params.rownum}|"></span>
+					                	<div>
+					                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
+					                		<span th:text="${params.photo_date}"></span>               
+					                	</div> 
+					                </div>
+				                    <div class="card-body p-4">
+				                        <div class="text-center">
+				                            <div class="d-flex justify-content-center small mb-2">
+				                                <div class="bi-star-fill" th:utext=${params.photo_content}></div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}">
+			                    	<!-- <a href="javascript:updatee('/photo_update/${session.loginUser.mem_id}')"> -->
+						                <button type="button" class="btn btn-primary btn-sm" th:attr="onclick=|updatee('/photo_update/${mem_id}/${params.photo_num}')|">수정</button>
+						            <!-- </a> -->
+						                <button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|deletee('/delete/${session.loginUser.mem_id}/${params.photo_num}')|">삭제</button>
+					                </div>
+							    </div>
+							</div>
+						</div>
+					</form>
+					
+					<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
+				        <div class="border-top-0 bg-transparent">
+				            <div class="d-center">
+				            	<label>댓글</label>
+				            	<input type="text" id="comment_content">
+				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+				            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
+				            </div>
+				        </div>
+			        </form>
+				        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
+	        			<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
+        				<div id="Contentt">
+					        	<form id="cdelete">
+					           		<table style="word-break:break-all">
+					           			<tr>
+					           				<td width=15% th:text=${clist.mem_id2}></td>
+					           				<td th:text=${clist.comment_content}></td>
+					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
+					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
+					           				</td>
+					           				<td width=15% th:text=${clist.comment_date}></td>
+					           			</tr>
+					           		</table>
+				           		</form>
+						</div>
+			           	</th:block>
+        			</div>
+			</div>
+			</th:block>
+			</th:block>
+			</th:block>
 		
 		<nav th:if="${params != null and params.paginationInfo.totalRecordCount > 0}" th:object="${params.paginationInfo}" th:with="info=${params.paginationInfo}" aria-label="Page navigation" class="text-center">
 			<ul class="pagination">
