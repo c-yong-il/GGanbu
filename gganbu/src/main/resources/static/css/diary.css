@@ -127,7 +127,9 @@ Form[name="diaryUpdateForm"], Form[name="diaryWriteForm"] {
 #checkbox {
 	zoom: 1.2;
 }
-
+.paging-center {
+	text-align:center;
+}
 /* 달력  
  .ui-widget-header { border: 0px solid #dddddd; background: #fff; } 
 

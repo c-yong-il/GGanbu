@@ -62,7 +62,7 @@
 	
 	
 	<select id="selectDiaryTotalCount" parameterType="DiaryDTO" resultType="_int">
-		select count(*) from diary_table where (mem_id=#{mem_id} and diary_status='N') or diary_secret='Y'
+		select count(*) from diary_table where (mem_id=#{mem_id} and diary_status='N') or (mem_id=#{mem_id} and diary_status='N' and diary_secret='Y')
 	</select>
 
 </mapper>
