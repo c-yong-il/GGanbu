@@ -25,7 +25,7 @@ var menu = document.getElementsByClassName("menu-item");
 
 let menu = document.getElementsByClassName("menu-item");
  for (var i = 0; i < menu.length; i++) {
-	$( 'a' ).click( function() {
+	$( '.menu-item a' ).click( function() {
 	  	$('.menu-item').removeClass('menu-checked');
 	  	$(this).parent().addClass('menu-checked');
 } );
