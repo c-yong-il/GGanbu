@@ -25,18 +25,11 @@ public class LoginServiceImpl implements LoginService {
     /* 로그인 */
     @Override
     public MemberDTO loginCheck(String mem_id, String mem_pass) {
-        System.out.println("로그인시작");
-        System.out.println("아이디= " + mem_id + "pass= " + mem_pass);
-
         MemberDTO matchDTO = loginMapper.loginAction(mem_id);
 
-        System.out.println("dto= " + matchDTO);
-
         if (!pwdEncoder.matches(mem_pass, matchDTO.getMem_pass())) {
-            System.out.println("로그인 실패");
+            return null;
         }
-        System.out.println("2아이디= " + mem_id + "2pass= " + mem_pass);
-        System.out.println("이게 되냐?= " + matchDTO.getMem_pass());
         return loginMapper.loginCheck(mem_id, matchDTO.getMem_pass());
     }
 

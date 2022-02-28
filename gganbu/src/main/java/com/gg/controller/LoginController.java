@@ -36,7 +36,7 @@ public class LoginController {
         return "/login/forgotPass";
     }
 
-    @GetMapping(value = "/logout")
+    @GetMapping(value = "/logout/logout")
     public String logoutAction(HttpSession session) {
         session.invalidate();
         return "main";
