@@ -19,7 +19,12 @@ repositories {
 }
 
 dependencies {
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'   //SHA256 라이브러리 추가
+    implementation 'org.springframework.boot:spring-boot-starter-mail'          //이메일 의존성 추가 1
+    implementation 'org.springframework:spring-context-support'                 //이메일 의존성 추가 2
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'  //이메일 의존성 추가 3
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'//뷰 단에서 현재 로그인된 사용자의 정보를 가져오기 위해 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'//스프링 시큐리티를 사용하기 위해 추가
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

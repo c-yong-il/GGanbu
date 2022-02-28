@@ -7,7 +7,7 @@
         mem_hp, mem_birth, mem_gender, mem_date, mem_status
     </sql>
     
-    <select id="loginAction" parameterType="MemberDTO" resultType="MemberDTO">
+    <select id="loginAction" parameterType="String" resultType="MemberDTO">
     
     	select 
     		<include refid="memberColumns"></include>

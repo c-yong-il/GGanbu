@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,97 +15,98 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.gg.domain.MemberDTO;
 import com.gg.service.LoginService;
 
-@Controller 
-public class LoginController { 
-	
-	@Autowired
-	private LoginService loginService; 
-    
-    @GetMapping(value = "/login/login") 
-    public String login(){ 
-        return "/login/login"; 
+@Controller
+public class LoginController {
+
+    @Autowired
+    private LoginService loginService;
+
+    @GetMapping(value = "/login/login")
+    public String login() {
+        return "/login/login";
     }
-    @GetMapping(value = "/login/forgotId") 
-    public String forgotId(){ 
-    	return "/login/forgotId"; 
+
+    @GetMapping(value = "/login/forgotId")
+    public String forgotId() {
+        return "/login/forgotId";
     }
-    @GetMapping(value = "/login/forgotPass") 
-    public String forgotPass(){ 
-    	return "/login/forgotPass"; 
+
+    @GetMapping(value = "/login/forgotPass")
+    public String forgotPass() {
+        return "/login/forgotPass";
     }
-    
-    @GetMapping(value = "/logout") 
-    public String logoutAction(HttpSession session){ 
-    	session.invalidate();
-    	return "main"; 
+
+    @GetMapping(value = "/logout")
+    public String logoutAction(HttpSession session) {
+        session.invalidate();
+        return "main";
     }
-    
+
     /* 로그인 체크 */
     @ResponseBody
     @PostMapping(value = "/login/loginCheck")
-    public int loginCheck(@RequestParam(required = false) String mem_id, @RequestParam(required = false) String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {
+    public int loginCheck(@RequestParam(required = false) String mem_id,
+            @RequestParam(required = false) String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {
         int result;
-    	MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
+        MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
         HttpSession session = request.getSession();
-        
-        if(loginUser == null) {
-    		session.setAttribute("loginUser", null);
-    		rttr.addFlashAttribute("result", "login fail");
-    		result = 0; 
-    	}else if(loginUser.getMem_status().equals("Y")){
-    		session.setAttribute("loginUser", null);
-    		rttr.addFlashAttribute("result", "login fail");
-    		result = 2; 
-    	}else {
-    		session.setAttribute("loginUser", loginUser);
-    		rttr.addFlashAttribute("result", "login success");
-    		result = 1; 
-    	}
-        
+
+        if (loginUser == null) {
+            session.setAttribute("loginUser", null);
+            rttr.addFlashAttribute("result", "login fail");
+            result = 0;
+        } else if (loginUser.getMem_status().equals("Y")) {
+            session.setAttribute("loginUser", null);
+            rttr.addFlashAttribute("result", "login fail");
+            result = 2;
+        } else {
+            session.setAttribute("loginUser", loginUser);
+            rttr.addFlashAttribute("result", "login success");
+            result = 1;
+        }
+
         return result;
     }
-    
+
     /* 아이디 찾기 체크 */
     @ResponseBody
     @PostMapping(value = "/login/forgotIdCheck")
-    public String forgotIdCheck(@RequestParam(required = false) String mem_name, @RequestParam(required = false) String mem_hp, RedirectAttributes rttr, Model model) {
-    	String result;
-    	String userId = loginService.forgotIdCheck(mem_name, mem_hp);
-    	
-    	if(userId == null) {
-    		model.addAttribute("userId", null);
-    		rttr.addFlashAttribute("result", "forgotId fail");
-    		result = ""; 
-    	}else {
-    		model.addAttribute("userId", userId);
-    		rttr.addFlashAttribute("result", "forgotId success");
-    		result = userId;
-    	}
-    	
-    	return result;
+    public String forgotIdCheck(@RequestParam(required = false) String mem_name,
+            @RequestParam(required = false) String mem_hp, RedirectAttributes rttr, Model model) {
+        String result;
+        String userId = loginService.forgotIdCheck(mem_name, mem_hp);
+
+        if (userId == null) {
+            model.addAttribute("userId", null);
+            rttr.addFlashAttribute("result", "forgotId fail");
+            result = "";
+        } else {
+            model.addAttribute("userId", userId);
+            rttr.addFlashAttribute("result", "forgotId success");
+            result = userId;
+        }
+
+        return result;
     }
-    
+
     /* 비밀번호 찾기 체크 */
     @ResponseBody
     @PostMapping(value = "/login/forgotPassCheck")
     public String forgotPassCheck(MemberDTO dto, RedirectAttributes rttr, Model model) {
-    	String result;
-    	String userPass = loginService.forgotPassCheck(dto);
-    	
-    	if(userPass == null) {
-    		model.addAttribute("userPass", null);
-    		rttr.addFlashAttribute("result", "forgotId fail");
-    		result = ""; 
-    	}else {
-    		model.addAttribute("userPass", userPass);
-    		rttr.addFlashAttribute("result", "forgotId success");
-    		result = userPass;
-    	}
-    	
-    	return result;
+        String result;
+        String userPass = loginService.forgotPassCheck(dto);
+
+        if (userPass == null) {
+            model.addAttribute("userPass", null);
+            rttr.addFlashAttribute("result", "forgotId fail");
+            result = "";
+        } else {
+            model.addAttribute("userPass", userPass);
+            rttr.addFlashAttribute("result", "forgotId success");
+            result = userPass;
+        }
+
+        return result;
     }
-    
+
 }
-
-
-

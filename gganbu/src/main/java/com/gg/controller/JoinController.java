@@ -1,6 +1,7 @@
 package com.gg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,9 @@ public class JoinController {
     @Autowired
     private JoinService joinService;
 
+    @Autowired
+    private PasswordEncoder pwdEncoder;
+
     @GetMapping(value = "/join/join")
     public String join() {
         return "join/join";
@@ -24,7 +28,14 @@ public class JoinController {
 
     @PostMapping(value = "/login/join")
     public String registerMember(MemberDTO dto) {
-        int result = joinService.joinProc(dto);
+
+        int result = 0;
+        try {
+            result = joinService.joinProc(dto);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         if (result == 0) {
             System.out.println("가입 실패");
         }
