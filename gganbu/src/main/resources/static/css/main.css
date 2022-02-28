@@ -11336,16 +11336,18 @@ form[name="searchResultForm"] a {
   background-color: rgba(239, 236, 201);
 }
 .relative {
-	display:relative;
-	/* border:1px solid blue; */
-	margin-right:470px;
+	position:relative;
+	display:block;
+	height:85px; 
 }
-.relative> div {
+.relative div {
 	position:absolute;
-	top:76px;
-	left:800px;
-/* 	border:1px solid red; */
+	left:510px;
+	top:-5px;
 }
-/* .aa {
-	margin-right:500px;
-} */
+.relative > img{
+	position:absolute;
+	left:370px;
+	top:5px;
+}
+
