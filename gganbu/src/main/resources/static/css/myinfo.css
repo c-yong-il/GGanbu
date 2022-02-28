@@ -104,8 +104,9 @@
         margin-right:10px;
         margin-bottom:7px;
         font-weight:bold;
-        border-right:3px solid linen;
-        border-bottom:3px solid linen;
+        border-right:3px solid #8c8cbe;
+        border-bottom:3px solid #8c8cbe;  
+		border-radius:20px;
     }
     form[name="myinfoForm"] ul li  { clear:left; }    
    /*  input:focus {
@@ -132,6 +133,9 @@
     form[name="myinfoForm"] input[name="email2"] +select, select[name="hp1"] {
         margin-left:10px;
     }
+    form[name="myinfoForm"] input {
+    	border-radius:20px;
+    } 
     
     /*성별 */
     .gender {

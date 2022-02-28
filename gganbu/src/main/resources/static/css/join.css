@@ -25,7 +25,7 @@
 		padding-right: 0px;
 	}
 	section.join h2 {
-		 margin:0 0 40px 430px; 
+		 margin:0 0 40px 450px; 
 		/*  text-align:center; */
 		
 	}
@@ -103,12 +103,16 @@
         margin-right:10px;
         margin-bottom:7px;
         font-weight:bold;
-        border-right:3px solid linen;
-        border-bottom:3px solid linen;
+        border-right:3px solid #8c8cbe;
+        border-bottom:3px solid #8c8cbe;  
+		border-radius:20px;
     }
     form[name="joinForm"] ul li  { 
    		clear:left; 
-    }    
+    }   
+    form[name="joinForm"] input {
+    	border-radius:20px;
+    } 
    /*  input:focus {
 	  box-shadow: none;
 	  border: 1px solid #534bae;
@@ -140,6 +144,7 @@
     /*성별 */
     .gender {
     	font-size:13pt;
+    	padding:7px;
     }
     #gender {
     	margin-top:13px;
