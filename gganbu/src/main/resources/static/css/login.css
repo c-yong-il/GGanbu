@@ -9,6 +9,10 @@
 	width: 280px;
 }
 
+.mt-1 {
+  margin-top: 3rem !important;
+}
+
 #loginBtn {
 	width:100%;
 }
