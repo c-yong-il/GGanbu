@@ -125,7 +125,7 @@
                     </div>
                     <img
                       class="img-miniroom"
-                      src="/image/mini_room.png"
+                      src="/image/mini_room2.gif"
                       alt="mini-room"
                     />
                     <!-- <div class="info-miniroom-wrap">
@@ -247,6 +247,7 @@
    <script>
     // html dom 이 다 로딩된 후 실행된다.
     $(document).ready(function(){
+    	$(".info-wrap ul").css("display","none");
         // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
         $(".info-wrap>a").click(function(){
             var submenu = $(this).next("ul");
