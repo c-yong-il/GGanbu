@@ -40,7 +40,7 @@
 		FROM
 			guest_book_table
 		WHERE
-			(mem_id=#{mem_id} and book_status ='N' and book_secret is null) or (mem_id2=#{mem_id2} and book_status = 'N' and book_secret='y')
+			(mem_id=#{mem_id} and book_status ='N' and book_secret is null) or (mem_id=#{mem_id} and mem_id2=#{mem_id2} and book_status = 'N' and book_secret='y')
 	</select>
 	
 	<select id="getList" resultType="GuestDTO">
