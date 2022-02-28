@@ -26,7 +26,8 @@
         padding-right: 0px;
     }
     section.myinfo h2 {
-         margin:0 0 40px 430px; 
+         margin:0 0 40px 500px; 
+         font-weight:bold;
         /*  text-align:center; */
         
     }
@@ -128,12 +129,12 @@
     form[name="myinfoForm"] li:last-child {
         /*text-align:center;*/
         margin-top:30px;
-        margin-left:140px;
+        margin-left:220px;
     }
     form[name="myinfoForm"] input[name="email2"] +select, select[name="hp1"] {
         margin-left:10px;
     }
-    form[name="myinfoForm"] input {
+    form[name="myinfoForm"] input, form[name="myinfoForm"] select {
     	border-radius:20px;
     } 
     

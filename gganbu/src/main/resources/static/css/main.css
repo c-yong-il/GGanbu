@@ -11321,6 +11321,7 @@ form[name="searchResultForm"] a {
 }
 .pageTitle {
 	text-align:center;
+	font-weight:bold;
 }
 .mgm a:hover {
 	font-weight:bold;
@@ -11332,7 +11333,19 @@ form[name="searchResultForm"] a {
 }
 .bg-mint {
   --bs-bg-opacity: 1;
-  background-color: #8c8cbe;
+  background-color: rgba(239, 236, 201);
 }
-
-
+.relative {
+	display:relative;
+	/* border:1px solid blue; */
+	margin-right:470px;
+}
+.relative> div {
+	position:absolute;
+	top:76px;
+	left:800px;
+/* 	border:1px solid red; */
+}
+/* .aa {
+	margin-right:500px;
+} */

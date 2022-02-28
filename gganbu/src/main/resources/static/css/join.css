@@ -25,7 +25,8 @@
 		padding-right: 0px;
 	}
 	section.join h2 {
-		 margin:0 0 40px 450px; 
+		 margin:0 0 40px 500px; 
+		 font-weight:bold;
 		/*  text-align:center; */
 		
 	}
@@ -110,14 +111,14 @@
     form[name="joinForm"] ul li  { 
    		clear:left; 
     }   
-    form[name="joinForm"] input {
+    form[name="joinForm"] input, form[name="joinForm"] select {
     	border-radius:20px;
     } 
    /*  input:focus {
 	  box-shadow: none;
 	  border: 1px solid #534bae;
 	} */
-	 
+	
     .form-control {
         width:45%;
        	display:inline-block;
@@ -132,8 +133,9 @@
     form[name="joinForm"] li:last-child {
         /*text-align:center;*/
         margin-top:30px;
-        margin-left:140px;
+        margin-left:220px;
     }
+   
     form[name="joinForm"] input[name="email2"] +select, select[name="hp1"] {
         margin-left:10px;
     }
