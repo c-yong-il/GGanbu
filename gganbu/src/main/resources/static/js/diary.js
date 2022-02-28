@@ -137,7 +137,17 @@ function diarySelect(url) {
 
 }
 
-
+function movePage(uri, queryString){
+	$.ajax({
+	    url : uri + queryString,
+	    type : 'POST', 
+	    }).done(function(data){
+	        // Contents 영역 삭제
+	        $('#diary_change').children().remove();
+	        // Contents 영역 교체
+	        $('#diary_change').html(data);
+		 });
+}
 
 
 

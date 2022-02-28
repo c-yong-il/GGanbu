@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mini homepage</title>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/css/diary.css" />
 <link rel="stylesheet" href="/css/main.css" />
@@ -111,9 +114,29 @@
 				</form>	
 			</th:block>
 		</th:block>
+		<nav th:if="${dto != null and dto.paginationInfo.totalRecordCount > 0}" th:object="${dto.paginationInfo}" th:with="info=${dto.paginationInfo}" aria-label="Page navigation" class="text-center">
+			<ul class="pagination">
+				<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${dto.makeQueryString(1)} ]])">
+					<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+				</li>
+				<li th:if="*{hasPreviousPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${dto.makeQueryString(info.firstPage - 1)} ]])">
+					<a href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a>
+				</li>
+				<li th:each="pageNo : *{#numbers.sequence( firstPage, lastPage )}" th:class="${pageNo == dto.currentPageNo} ? 'active'">
+					<a href="javascript:void(0)" th:text="${pageNo}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${dto.makeQueryString(pageNo)} ]])"></a>
+				</li>
+				<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${dto.makeQueryString(info.lastPage + 1)} ]])">
+					<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a>
+				</li>
+				<li th:if="*{hasNextPage == true}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${dto.makeQueryString(info.totalPageCount)} ]])">
+					<a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+				</li>
+			</ul>
+		</nav>
 		<th:block th:unless="${not #lists.isEmpty( diaryList2)}">
 			<span class="infoMsg"> 다이어리글이 없어요.😮</span>		
 		</th:block>
+		
 </div>
 
 

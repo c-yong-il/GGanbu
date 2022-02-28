@@ -11,14 +11,16 @@
 	</sql>
 	
 	
-	<select id="selectDiary" parameterType="String" resultType="DiaryDTO">
+	<select id="selectDiary" parameterType="DiaryDTO" resultType="DiaryDTO">
 		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
-		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' order by diary_date)sub order by sub.rno desc limit 5
+		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' order by diary_date)sub order by sub.rno desc 
+		limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
 	</select>
 	
-	<select id="selectDiary2" parameterType="String" resultType="DiaryDTO">
+	<select id="selectDiary2" parameterType="DiaryDTO" resultType="DiaryDTO">
 		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
-		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' and diary_secret is null order by diary_date)sub order by sub.rno desc limit 5
+		from diary_table, (select @rownum :=0 )a where mem_id=#{mem_id} and diary_status ='N' and diary_secret is null order by diary_date)sub order by sub.rno desc
+		limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
 	</select>
  	
 	
@@ -56,6 +58,11 @@
 	<select id="selectResultDiary" parameterType="_int" resultType="DiaryDTO">
 		select <include refid="diaryColumns" /> from (select @rownum:= @rownum+1 as rno, diary_table.*
 		from diary_table, (select @rownum :=0 )a where diary_num=#{diary_num} and diary_status='N' order by diary_date)sub order by sub.rno desc 
+	</select>
+	
+	
+	<select id="selectDiaryTotalCount" parameterType="DiaryDTO" resultType="_int">
+		select count(*) from diary_table where (mem_id=#{mem_id} and diary_status='N') or diary_secret='Y'
 	</select>
 
 </mapper>

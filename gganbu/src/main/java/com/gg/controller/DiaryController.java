@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gg.domain.DiaryDTO;
+import com.gg.paging.PaginationInfo;
 import com.gg.service.DiaryService;
 
 @Controller
@@ -23,14 +25,24 @@ public class DiaryController {
 
     /* 다이어리 메뉴 클릭 시 다이어리 리스트 출력 */
     @RequestMapping(value = "/mini/diary/diary/{mem_id}")
-    public String selectDiary(Model model, @PathVariable("mem_id") String mem_id) {
+    public String selectDiary(Model model, @PathVariable("mem_id") String mem_id, @ModelAttribute("dto") DiaryDTO dto) {
+
         LocalDate today = LocalDate.now();
-        List<DiaryDTO> list = diaryService.selectDiary(mem_id); //내홈피 다이어리 볼 때
-        List<DiaryDTO> list2 = diaryService.selectDiary2(mem_id); //다른 사람 홈피 다이어리 볼 때
+
+        int diaryTotalCount = diaryService.selectDiaryTotalCount(dto);
+        PaginationInfo paginationInfo = new PaginationInfo(dto);
+        paginationInfo.setTotalRecordCount(diaryTotalCount);
+
+        dto.setPaginationInfo(paginationInfo);
+        dto.setMem_id(mem_id);
+
+        List<DiaryDTO> list = diaryService.selectDiary(dto); //내홈피 다이어리 볼 때
+        List<DiaryDTO> list2 = diaryService.selectDiary2(dto); //다른 사람 홈피 다이어리 볼 때
 
         model.addAttribute("diaryList", list);
         model.addAttribute("diaryList2", list2);
         model.addAttribute("today", today);
+        model.addAttribute("dto", dto);
         return "mini/diary/diary";
     }
 

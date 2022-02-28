@@ -25,13 +25,13 @@ public class DiaryServiceImpl implements DiaryService {
     //    }
 
     @Override
-    public List<DiaryDTO> selectDiary(String mem_id) {
-        return diarymapper.selectDiary(mem_id);
+    public List<DiaryDTO> selectDiary(DiaryDTO dto) {
+        return diarymapper.selectDiary(dto);
     }
 
     @Override
-    public List<DiaryDTO> selectDiary2(String mem_id) {
-        return diarymapper.selectDiary2(mem_id);
+    public List<DiaryDTO> selectDiary2(DiaryDTO dto) {
+        return diarymapper.selectDiary2(dto);
     }
 
     @Override
@@ -69,6 +69,11 @@ public class DiaryServiceImpl implements DiaryService {
     public List<DiaryDTO> selectResultDiary(int diary_num) {
 
         return diarymapper.selectResultDiary(diary_num);
+    }
+
+    @Override
+    public int selectDiaryTotalCount(DiaryDTO dto) {
+        return diarymapper.selectDiaryTotalCount(dto);
     }
 
 }

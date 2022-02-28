@@ -1,11 +1,15 @@
 package com.gg.domain;
 
-import lombok.Data;
+import com.gg.paging.Criteria;
 
-@Data
-public class DiaryDTO {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class DiaryDTO extends Criteria {
 
     private int diary_num, rno;
-    private String mem_id, diary_content, diary_secret, diary_status, diary_date, diary_updatedate;
+    private String diary_content, diary_secret, diary_status, diary_date, diary_updatedate;
 
 }
