@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="icon" href="/image/gganbuLogo.png"> <!-- 파비콘 -->
+<link rel="stylesheet" href="/css/main.css" />
 <link rel="stylesheet" href="/css/login.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
@@ -15,18 +16,13 @@
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5">
 	            <!-- Product name-->
-	            <h2 class="fw-bolder">아이디 찾기</h2>
-                <div class="card ">
-                    <!-- Product image
-                    <img class="card-img-top" src="/image/basic.jpg" alt="...">-->
-                    <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product reviews-->
                             <div class="d-flex justify-content-center small text-warning mb-2">
                             	
                     <form name="loginForm" id="loginForm" action="/login/forgotId" method="post">
-					    <img src="/image/basic.jpg">
+					    <img src="/image/basic_id.jpg">
 					    <h1 class="h3 mb-3 fw-normal"><br></h1>
 					
 						<!-- 이름 입력 -->
@@ -53,12 +49,16 @@
 						<div class="input-group mb-3 bg-transparent">
 		                    <button type="button" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="forgotIdCheck()">ID 찾기</button>
 		                </div>
+		                <div class="login-menu">
+						        <a href="/login/forgotId">아이디 찾기</a>
+						        <a href="/login/forgotPass">비밀번호 찾기</a>
+						        <a href="/join/join">회원가입</a>    
+						</div>
 					</form>
                             	
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                       </div>
+                   </div>
+               </div>
             </div>
         </div>
     </div>
