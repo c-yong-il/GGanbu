@@ -1,34 +1,5 @@
-var index = {
-	init: function(){
-		$("#btn-save").on("click", ()=>{ 
-			this.save();
-		});
-	},
-	
-	save: function(){
-		
-		var insertsubmit = $("#insertForm").serialize();
 
-		$.ajax({
-			type: "POST",
-			url: "/photoInsert/${session.loginUser.mem_id}",
-			data: insertsubmit,
-			dataType: "html" 
-		}).done(function(data){
-			// Contents 영역 삭제
-	        $('#photo').children().remove();
-	        // Contents 영역 교체
-	        $('#photo').html(data);
-	        
-		});
-	}
-}
-
-index.init();
-
-
-
-
+/* 글쓰기 화면 이동 */
 function photo(url){
     // ajax option
     var ajaxOption = {
@@ -68,8 +39,15 @@ function photo(url){
     });
 }
 
-
+/* 수정화면 이동 and 수정하기 */
 function updatee(url){
+	var ucontent = $("#photo_content").val();
+	if(ucontent == ""){
+		alert("수정할 내용을 입력해 주세요");
+		$("#photo_content").focus();
+		return false;
+	}
+	
 	var submit = $("#updateForm").serialize();
 	
     $.ajax({
@@ -106,7 +84,11 @@ function updatee(url){
    		 });
  	}
  	
+/* 게시글 삭제 */
  function deletee(url){
+	
+	if (confirm("정말로 삭제하시겠습니까?\n(삭제된 글은 복구되지 않습니다)")){
+	
 	var deletesubmit = $("#update").serialize();
 	
     $.ajax({
@@ -120,11 +102,18 @@ function updatee(url){
 	        // Contents 영역 교체
 	        $('#photo').html(data);
    		 });
+   		 }
  	}
  	
- 	
+ /* 게시글 등록 */
  function inserte(url){
-	var submit = $("#insertForm").serialize();
+	var content = $("#photo_content").val();
+	if(content == ""){
+		alert("글을 입력해 주세요");
+		$("#photo_content").focus();
+		return false;
+	}
+		var submit = $("#insertForm").serialize();
 	
     $.ajax({
         url : url,
@@ -139,10 +128,17 @@ function updatee(url){
    		 });
  	}
  
-
+  /* 댓글 등록 */
   function cinsert(url){
 	
-	var csubmit = $("#cinsertForm").serialize();
+	var c_content = $("#comment_content").val();
+	if(c_content == ""){
+		alert("댓글을 입력해 주세요");
+		$("#comment_content").focus();
+		return false;
+	}
+	
+		var csubmit = $("#cinsertForm").serialize();
 	
     $.ajax({
         url : url,
@@ -158,9 +154,9 @@ function updatee(url){
  	}
  	
  	
- 	
- 	function cdeletee(url){
-	
+/* 댓글 삭제 */
+function cdeletee(url){
+	if (confirm("정말로 삭제하시겠습니까?\n(삭제된 글은 복구되지 않습니다)")){
 		var cdeletesubmit = $("#cdelete").serialize();
 	
     $.ajax({
@@ -174,11 +170,11 @@ function updatee(url){
 	        // Contents 영역 교체
 	        $('#photo').html(data);
    		 });
+   		 }
  	}
  	
- 	
+ 	/* 페이징 */
  	function movePage(uri, queryString){
-	
 	
     $.ajax({
         url : uri + queryString,
@@ -193,6 +189,8 @@ function updatee(url){
  	
  	
 /*****************************************************/
+
+/* 댓글 보이기/숨기기 */
 function openCloseToc() {
     if(document.getElementById('Contentt').style.display === 'block') {
       document.getElementById('Contentt').style.display = 'none';
