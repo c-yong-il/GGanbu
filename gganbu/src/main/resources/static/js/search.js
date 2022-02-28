@@ -1,8 +1,8 @@
 /**
- * 깐부 신청하기
+ * 깐부 맺기
  */
  function requestGganbu(url){
-	if(confirm("깐부신청을 하시겠습니까?")){
+	if(confirm("깐부를 맺으겠습니까?")){
 		$.ajax({
 			url:url,
 			success:function(result){

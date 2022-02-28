@@ -50,7 +50,7 @@
                         <ul class="hide">
                         <th:block th:if="${hostInfo.mem_id != session.loginUser.mem_id}">
 	                        <th:block th:if="${ggRelationCheck == 2}">
-	                            <li><a th:attr="onclick=|requestGganbu('/requestGganbu/${hostInfo.mem_id}')|">깐부 신청</a></li>
+	                            <li><a th:attr="onclick=|requestGganbu('/requestGganbu/${hostInfo.mem_id}')|">깐부 맺기</a></li>
 	                        </th:block> 
 	                      <th:block th:if="${ggRelationCheck == 0}">
 	                            <li>깐부 대기중..</li>
