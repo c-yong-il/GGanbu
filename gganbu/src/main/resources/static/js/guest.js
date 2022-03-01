@@ -1,6 +1,6 @@
 
 /* 글쓰기 버튼 눌렀을 때*/
-function guestWrite(url) {
+function guest(url) {
 	var option = {
 		type: "POST",
 		url: url,
@@ -18,6 +18,13 @@ function guestWrite(url) {
 
 /* 글쓰고 등록 버튼 눌렀을 때*/
 function guestWrite(url) {
+	var content = $("#guest_write").val();
+	if(content == "") {
+		alert("내용을 입력해주세요");
+		$("#guest_write").focus();
+		return false;
+	}
+	
 	$.ajax({
 		cache: false,
 		url: url,
@@ -36,6 +43,7 @@ function guestWrite(url) {
 
 /* 방명록 수정 버튼 눌렀을 때 */
 function guestUpdateMove(url) {
+	
 	$.ajax({
 		cache: false,
 		url: url,
@@ -53,7 +61,13 @@ function guestUpdateMove(url) {
 }
 
 /** 수정하고 수정완료 버튼 눌렀을 때  */
-function guestUpdate(url) {
+	function guestUpdate(url) {
+		var content = $("#guest_write").val();
+	if(content == "") {
+		alert("내용을 입력해주세요");
+		$("#guest_write").focus();
+		return false;
+	}
 	$.ajax({
 		cache: false,
 		url: url,
@@ -71,7 +85,7 @@ function guestUpdate(url) {
 
 }
 
-/** 방명록 삭제 버튼 눌렀을 때 */
+/* 방명록 삭제 버튼 눌렀을 때 */
 function guestDelete(url) {
 	if (confirm("정말로 삭제하시겠습니까?\n(삭제된 글은 복구되지 않습니다)")) {
 		$.ajax({
@@ -90,7 +104,7 @@ function guestDelete(url) {
 		});
 	}
 }
-
+/* 페이징 이동 */ 
 function movePage(uri, queryString){
 	$.ajax({
 	    url : uri + queryString,

@@ -40,7 +40,7 @@
 				</div>
 				<div class="text-center button1">  
 					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestUpdate('/guestUpdate/${dto.mem_id}')|">수정완료</button>
-					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guestWrite('/mini/guest/guest/${dto.mem_id}')|">취소</button>
+					<button type="button" class="btn btn-outline-dark btn-sm btn-set" th:attr="onclick=|guest('/mini/guest/guest/${dto.mem_id}')|">취소</button>
 				</div>
 			</div>
 		</div>

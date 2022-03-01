@@ -19,7 +19,7 @@
 	<div id="guest_change">
 	
 		<div class="btn_write">
-			<a th:attr="onclick=|guestWrite('/mini/guest/guest_write/${mem_id}/${session.loginUser.mem_id}')|">
+			<a th:attr="onclick=|guest('/mini/guest/guest_write/${mem_id}/${session.loginUser.mem_id}')|">
 				<button type="button" class="btn btn-outline-dark btn-sm">글쓰기</button>
 			</a>
 		</div>
