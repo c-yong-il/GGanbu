@@ -28,12 +28,12 @@
                             </li>
                             <li>
                                 <label>*비밀번호</label>
-                                 <input class="form-control" type="password" name="mem_pass" id="pass" th:value="${dto.mem_pass}" onblur="passSameCheck()" onKeyup="passCheck()">
+                                 <input class="form-control" type="password" name="mem_pass" id="pass" onblur="passSameCheck()" onKeyup="passCheck()">
                                 <div id="passMsg" class="Msg"></div>
                             </li>
                             <li>
                                 <label>*비밀번호 확인</label>
-                                <input class="form-control" type="password" name="mem_cpass" id="cpass" th:value="${dto.mem_pass}" onblur="passSameCheck()" onKeyup="cpassCheck()">
+                                <input class="form-control" type="password" name="mem_cpass" id="cpass" onblur="passSameCheck()" onKeyup="cpassCheck()">
                                 <div id="cpassMsg" class="Msg"></div>
                             </li>
                             <li>

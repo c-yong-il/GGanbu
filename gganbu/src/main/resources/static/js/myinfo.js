@@ -61,6 +61,7 @@ function editFormCheck(){
         return false;
     }else{
         myinfoForm.submit();
+        alert("수정이 완료되었습니다\n메인화면으로 이동합니다");
     }
 }
 /*

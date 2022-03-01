@@ -66,6 +66,10 @@ document.addEventListener("DOMContentLoaded", function() {
 					$('#loginMsg').text('탈퇴한 회원입니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
+                }else if(result==3){
+                    $('#loginMsg').text('없는 회원입니다');
+                    $('#loginMsg').attr('style','visibility:visible');
+                    $('#loginMsg').attr('style','color:#FF1493');
                 }else{
 					alert(mem_id.val()+"님 어서 오세요~");
 					location.href="/main";

@@ -19,7 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'   //SHA256 라이브러리 추가
     implementation 'org.springframework.boot:spring-boot-starter-mail'          //이메일 의존성 추가 1
     implementation 'org.springframework:spring-context-support'                 //이메일 의존성 추가 2
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'  //이메일 의존성 추가 3

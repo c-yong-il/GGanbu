@@ -7,6 +7,4 @@ public interface JoinService {
 
     public int checkId(String mem_id);
 
-    public boolean pwdInsert(MemberDTO dto);
-
 }

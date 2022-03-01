@@ -40,15 +40,13 @@
     
     </select>
     
-    <select id="forgotPassCheck" parameterType="MemberDTO" resultType="String">
+    <update id="forgotPassCheck" parameterType="MemberDTO">
     
-    	select 
-    		replace(mem_pass,right(mem_pass,2),'**')
-    	from
-    		member_table
-    	where 
+    	UPDATE member_table SET
+    		mem_pass=#{mem_pass}
+    	WHERE 
     		mem_name = #{mem_name} and mem_id = #{mem_id} and mem_birth = #{mem_birth} and mem_hp = #{mem_hp} and mem_status = 'n'
-    
-    </select>
+    		
+    </update>
 
 </mapper>
