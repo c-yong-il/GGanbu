@@ -63,7 +63,7 @@
 .card-body2 {
   flex: 1 1 auto;
  /*  padding: 0.5rem 1rem 1rem 1rem;  */
-   padding: 1.5rem 1rem;  
+   padding: 1rem 0.5rem;  
   font-size:12pt;
   line-height:25px;
 }
@@ -121,6 +121,7 @@ Form[name="diaryUpdateForm"], Form[name="diaryWriteForm"] {
  
 .write-btn {
 	float:right;
+	margin-left:10px;
 }
 .badge {
 	background:#4bb6d6;

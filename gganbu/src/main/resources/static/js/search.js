@@ -2,13 +2,15 @@
  * 깐부 맺기
  */
  function requestGganbu(url){
-	if(confirm("깐부를 맺으겠습니까?")){
+	
 		$.ajax({
 			url:url,
 			success:function(result){
 				if(result == 0){
+					if(confirm("깐부를 맺으겠습니까?")){
 					alert("깐부 신청이 완료되었습니다.");
 					window.location.href ="/mgm/mgm";
+					}
 				}else if(result == 1){
 					alert("이미 깐부관계입니다 :D \n우린 깐부잖아~");
 				}else if(result == 2){
@@ -16,8 +18,8 @@
 				}
 			}
 		})
-	}
 }
+
 		
 		
 /** 검색했을 때 */
