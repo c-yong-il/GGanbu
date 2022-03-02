@@ -13,7 +13,7 @@
 
 
 	<insert id="insertGganbu" parameterType="String">
-		insert into gganbu_table values(#{myid}, #{yid}, now(), now(), 0)
+		insert into gganbu_table values(#{myid}, #{yid}, null, now(), 0)
 	</insert>
 
 
