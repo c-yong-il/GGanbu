@@ -7,8 +7,8 @@
 	section.join {
 		/* border:1px solid red; */
 		height:auto;
-		margin: 0px 0px -150px 76px;
-		padding-bottom: 100px;
+		margin: 0px 0px 10px 76px;
+		/* padding-bottom: 100px; */
 	}
 	section.join > h1 {
 	/*	border-left:15px solid #333;
