@@ -23,7 +23,7 @@
 	<div th:if="${#strings.equals(mem_id, session.loginUser.mem_id)}" >
 		<div class="container button">
 		    <!-- <a href="javascript:photo('/mini/photo/photo_write/${mem_id}');"> -->
-		        <button class="btn btn-primary btn-sm" th:attr="onclick=|photo('/mini/photo/photo_write/${mem_id}')|">글쓰기</button>
+		        <button class="btn btn-outline-dark btn-sm" th:attr="onclick=|photo('/mini/photo/photo_write/${mem_id}')|">글쓰기</button>
 		    <!-- </a> -->  
 	    </div>  
     </div>

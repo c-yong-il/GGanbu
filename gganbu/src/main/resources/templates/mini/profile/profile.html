@@ -13,7 +13,7 @@
 <div id="profile-content" >
 	<div th:if="${session.loginUser.mem_id}==${id} and ${dto == null}" class="btn-insert">
 		<a th:attr="onclick=|profileWrite('/mini/profile/profile_write/${id}')|">
-			<button id="btn-insert" class="btn btn-primary btn-sm">등록</button>
+			<button id="btn-insert" class="btn btn-outline-dark btn-sm">등록</button>
 		</a>	
 	</div>
 	<div th:if="${#strings.isEmpty(dto)}" id="profileForm">
@@ -50,7 +50,7 @@
 				</div>
 			</form>
 				<div th:if="${session.loginUser.mem_id}==${id}" id="button" class="row justify-content-center">
-					<a class="btn btn-primary btn-sm" th:attr="onclick=|profileWrite('/mini/profile/profile_write/${id}')|">수정</a>
+					<a class="btn btn-outline-dark btn-sm" th:attr="onclick=|profileWrite('/mini/profile/profile_write/${id}')|">수정</a>
 				</div>
 		</div>
 	</div>

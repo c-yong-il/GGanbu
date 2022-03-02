@@ -319,6 +319,11 @@ h2 {
   text-align: center;
   padding-bottom: 90px;
 }
+.text-desc2 {
+  text-align: center;
+  padding-bottom: 90px;
+  line-height:25px;
+}
 
 .link-history {
   text-decoration: none;
