@@ -84,7 +84,7 @@ public class DiaryController {
         return "mini/diary/diary_update";
     }
 
-    /* 글 수정이나 삭제 완료 후 그 글만 출력(즉, 삭제는 화면에 띄워지는게 없음) */
+    /* 글 수정 완료 후 그 글만 출력 */
     @RequestMapping(value = "/showResultDiary/{mem_id}")
     public String selectResultDiary(@PathVariable("mem_id") String mem_id, @RequestParam("diary_num") int diary_num, Model model) {
         List<DiaryDTO> list = diaryService.selectResultDiary(diary_num);
@@ -96,14 +96,13 @@ public class DiaryController {
 
     /* 다이어리 글 삭제 버튼 눌렀을 때 */
     @PostMapping(value = "/diaryDelete/{mem_id}/{diary_num}")
-    public String DeleteDiary(@PathVariable("diary_num") int diary_num, @PathVariable("mem_id") String mem_id, Model model,
-            RedirectAttributes redirect) {
-        int result = diaryService.deleteDiary(diary_num);
-        if (result == 1) {
-            redirect.addAttribute("diary_num", diary_num);
-        }
-        return "redirect:/showResultDiary/{mem_id}";
-        // return "redirect:/mini/diary/diary/{mem_id}";
+    public String DeleteDiary(@PathVariable("diary_num") int diary_num, @PathVariable("mem_id") String mem_id, Model model) {
+        diaryService.deleteDiary(diary_num);
+        //if (result == 1) {
+        //redirect.addAttribute("diary_num", diary_num);
+        //}
+        //return "redirect:/showResultDiary/{mem_id}";
+        return "redirect:/mini/diary/diary/{mem_id}";
     }
 
     /* 다이어리 날짜선택 했을 때 */

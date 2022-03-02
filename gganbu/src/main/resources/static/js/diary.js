@@ -43,6 +43,12 @@ function diaryWrite(url) {
 
 /* 글쓰고 등록 버튼 눌렀을 때*/
 function diaryWrite2(url) {
+	let diary_content = document.getElementById("diary_write");
+	if(diary_content.value == ""){
+		alert("내용을 입력해주세요.");
+		diary_content.focus();
+		return false;
+	}
 	$.ajax({
 		cache: false,
 		url: url,
@@ -61,6 +67,12 @@ function diaryWrite2(url) {
 
 /** 수정하고 수정완료 버튼 눌렀을 때  */
 function diaryUpdate(url) {
+	let diary_content = document.getElementById("diary_update");
+	if(diary_content.value == ""){
+		alert("내용을 입력해주세요.");
+		diary_content.focus();
+		return false;
+	}
 	$.ajax({
 		cache: false,
 		url: url,

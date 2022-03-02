@@ -16,14 +16,14 @@
 					 <div class="diary-date">
 						<span th:text="|😍 Today is ${todayDate} |"></span>
 						<div>
-							<input class="form-check-input" type="checkbox" id="checkbox" name="diary_secret" value="Y">
+							<input type="checkbox" id="checkbox" name="diary_secret" value="Y">
 							<span>비밀글로 하기</span>
 						</div>
 					</div> 
 					<div class="card-body3 ">
 						<div>
 							<!-- <span th:text="${dto?.diary_content}"></span> -->
-							<textarea id="diary_write" name="diary_content" ></textarea>
+							<textarea id="diary_write" name="diary_content" placeholder="내 이야기를 써보세요!" ></textarea>
 						</div>
 					</div>
 					<div class="card-footer  pt-0 border-top-0 bg-transparent"></div>
