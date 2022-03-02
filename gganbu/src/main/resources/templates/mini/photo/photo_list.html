@@ -102,7 +102,7 @@
 						        	<form id="cdelete">
 						           		<table style="word-break:break-all">
 						           			<tr>
-						           				<td width=15% th:text=${name}></td>
+						           				<td width=15% th:text=${clist.mem_id2}></td>
 						           				<td th:text=${clist.comment_content}></td>
 						           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 						           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
@@ -194,7 +194,7 @@
 					        	<form id="cdelete">
 					           		<table style="word-break:break-all">
 					           			<tr>
-					           				<td width=15% th:text=${name}></td>
+					           				<td width=15% th:text=${clist.mem_id2}></td>
 					           				<td th:text=${clist.comment_content}></td>
 					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
@@ -276,7 +276,7 @@
 				        <div class="border-top-0 bg-transparent">
 				            <div class="d-center">
 				            	<label>댓글</label>
-				            	<input type="text" th:id="|comment_content${params.photo_num}|">
+				            	<input type="text" th:id="|comment_content${params.photo_num}|" name="comment_content">
 				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}',${params.photo_num})|">등록</button>
 				            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 				            </div>
@@ -288,7 +288,7 @@
 					        	<form id="cdelete">
 					           		<table style="word-break:break-all">
 					           			<tr>
-					           				<td width=15% th:text=${name}></td>
+					           				<td width=15% th:text=${clist.mem_id2}></td>
 					           				<td th:text=${clist.comment_content}></td>
 					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
