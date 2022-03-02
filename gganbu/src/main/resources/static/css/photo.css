@@ -156,8 +156,8 @@ legend + * {
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.7 * var(--bs-gutter-x));
-  margin-left: calc(-0.7 * var(--bs-gutter-x));
+  margin-right: calc(-1 * var(--bs-gutter-x));
+  margin-left: calc(-1 * var(--bs-gutter-x));
 }
 .row > * {
   flex-shrink: 0;
@@ -4502,6 +4502,7 @@ legend + * {
 .hand{
 	cursor:pointer;
 	text-decoration: none !important;
+	padding:5px 0; 
 }
 
 .hand:hover {

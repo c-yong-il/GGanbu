@@ -87,7 +87,7 @@ function updatee(url){
 /* 게시글 삭제 */
  function deletee(url){
 	
-	if (confirm("정말로 삭제하시겠습니까?\n(삭제된 글은 복구되지 않습니다)")){
+	if (confirm("정말로 삭제하시겠습니까?")){
 	
 	var deletesubmit = $("#update").serialize();
 	
@@ -156,7 +156,7 @@ function updatee(url){
  	
 /* 댓글 삭제 */
 function cdeletee(url){
-	if (confirm("정말로 삭제하시겠습니까?\n(삭제된 글은 복구되지 않습니다)")){
+	if (confirm("정말로 삭제하시겠습니까?")){
 		var cdeletesubmit = $("#cdelete").serialize();
 	
     $.ajax({

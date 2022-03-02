@@ -40,7 +40,7 @@
 				            <div class="col mb-5">
 				            <th:block th:if="${params.photo_open} == 0">
 				                <div class="date">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 전체공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -50,7 +50,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 1">
 				                <div class="date1">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 비밀글</span> 
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -60,7 +60,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 2">
 				                <div class="date2">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 깐부공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -132,7 +132,7 @@
 					            <div class="col mb-5">
 					                <th:block th:if="${params.photo_open} == 0">
 				                <div class="date">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 전체공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -142,7 +142,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 1">
 				                <div class="date1">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 비밀글</span> 
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -152,7 +152,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 2">
 				                <div class="date2">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 깐부공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -220,15 +220,13 @@
 	    		<div class="box">
 				    <form id="update" name="update">
 				    	<div class="container mt-5">   
-				    	<input type="text" th:value="${params.photo_open}">
-				    	<input type="text" th:value="${ggrelation}">     
 							<input type="hidden" id="mem_id" name="mem_id" th:value=${session.loginUser.mem_id}>
 							<input type="hidden" id="photo_num" name="photo_num" th:value=${params.photo_num}>
 					        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					            <div class="col mb-5">
 					                <th:block th:if="${params.photo_open} == 0">
 				                <div class="date">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 전체공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -238,7 +236,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 1">
 				                <div class="date1">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 비밀글</span> 
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -248,7 +246,7 @@
 				            </th:block>
 				            <th:block th:if="${params.photo_open} == 2">
 				                <div class="date2">
-				                	<span th:text="|no.${params.rownum}|"></span>
+				                	<!-- <span th:text="|no.${params.rownum}|"></span> -->
 				                	<span> 🔒 깐부공개</span>
 				                	<div>
 				                		<span th:if="${#strings.equals(today, params.photo_date)}" class="badge" >NEW</span>
@@ -284,9 +282,9 @@
 				            </div>
 				        </div>
 			        </form>
-				        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
 	        			<a class="hand" th:id="|toc-toggle${params.photo_num}|" th:attr="onclick=|openCloseToc(${params.photo_num})|">댓글숨기기</a>
         				<div id="Contentt">
+				        	<th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
 					        	<form id="cdelete">
 					           		<table style="word-break:break-all">
 					           			<tr>
@@ -299,10 +297,10 @@
 					           			</tr>
 					           		</table>
 				           		</form>
+			           		</th:block>
 						</div>
-			           	</th:block>
         			</div>
-			</div>
+        		</div>
 			</th:block>
 			</th:block>
 			</th:block>
