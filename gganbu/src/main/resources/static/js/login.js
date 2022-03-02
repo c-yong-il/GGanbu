@@ -174,12 +174,12 @@ document.addEventListener("DOMContentLoaded", function() {
            type:"post",
            data: loginFormData,
            success:function(result){
-				if(result==""){
+				if(result==0){
 					$('#loginMsg').text('입력한 정보와 일치하는 회원이 없습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
                 }else{
-					$('#loginMsg').text('비밀번호: '+result);
+					$('#loginMsg').text('해당 이메일로 임시비밀번호가 발송되었습니다');
 					$('#loginMsg').attr('style','visibility:visible');
 					$('#loginMsg').attr('style','color:#FF1493');
 				}

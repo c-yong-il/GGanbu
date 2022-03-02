@@ -55,6 +55,8 @@ function deleteGganbuComment(url){
     
     let delsubmit = $("#gganbucommentForm").serialize();
     
+    if(confirm("깐부평을 삭제 하시겠습니까?")){
+    
     $.ajax({
         url : url,
         type : 'POST',
@@ -63,10 +65,12 @@ function deleteGganbuComment(url){
     }).done(function(data){
         $('#test').children().remove();
         $('#test').html(data);
-        //location.href = '/mini/pop_main/${mem_id}';
         
-    });
+    })
+    
     }
+    
+}
     
  /* 미니홈피에서 깐부신청하기 */ 
  function requestGganbu(url){

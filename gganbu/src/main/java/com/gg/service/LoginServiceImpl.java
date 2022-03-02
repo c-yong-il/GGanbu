@@ -3,6 +3,9 @@ package com.gg.service;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,15 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     PasswordEncoder pwdEncoder;
+
+    @Autowired
+    EmailService mailservice;
+
+    @Autowired
+    JavaMailSender emailSender;// 자체적으로 지원하는 기능
+
+    @Value("${spring.mail.username}")
+    private String sender;
 
     /* 로그인 임시 */
     @Override
@@ -48,11 +60,16 @@ public class LoginServiceImpl implements LoginService {
 
     /* 비밀번호 찾기 */
     @Override
-    public String forgotPassCheck(MemberDTO dto) {
+    public int forgotPassCheck(MemberDTO dto) {
+        MemberDTO mailDTO = loginMapper.mailAction(dto);
 
+        if (mailDTO == null) {
+            System.out.println("null");
+            return 0;
+        }
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
-        int targetStringLength = 8;
+        int targetStringLength = 10;
         Random random = new Random();
 
         String generatedString = random.ints(leftLimit, rightLimit + 1)
@@ -66,9 +83,24 @@ public class LoginServiceImpl implements LoginService {
         String encNewPassword = pwdEncoder.encode(newPass); // 암호화
         dto.setMem_pass(encNewPassword);
 
-        System.out.println(dto);
+        loginMapper.forgotPassCheck(dto);
+        System.out.println("1" + dto);
 
-        return loginMapper.forgotPassCheck(dto);
+        String toyou = mailDTO.getMem_email1() + "@" + mailDTO.getMem_email2();
+        System.out.println(toyou);
+
+        // 메세지를 생성하고 보낼 메일 설정 저장
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toyou);
+        message.setFrom(sender);
+        message.setSubject("안녕! " + dto.getMem_name() + "야 임시비밀번호를 알려줄게~~");
+        message.setText("임시비밀번호는 " + newPass + " 입니다.");
+        emailSender.send(message);
+
+        System.out.println(dto);
+        System.out.println(message);
+
+        return 1;
 
     }
 

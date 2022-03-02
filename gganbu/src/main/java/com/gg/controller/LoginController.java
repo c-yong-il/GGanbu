@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import com.gg.service.LoginService;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    private JavaMailSender emailSender;
 
     @Autowired
     private LoginService loginService;
@@ -96,14 +100,14 @@ public class LoginController {
     /* 비밀번호 찾기 체크 */
     @ResponseBody
     @PostMapping(value = "/login/forgotPassCheck")
-    public String forgotPassCheck(MemberDTO dto, RedirectAttributes rttr, Model model) {
-        String result;
-        String userPass = loginService.forgotPassCheck(dto);
+    public int forgotPassCheck(MemberDTO dto, RedirectAttributes rttr, Model model) {
+        int result;
+        int userPass = loginService.forgotPassCheck(dto);
 
-        if (userPass == null) {
+        if (userPass == 0) {
             model.addAttribute("userPass", null);
             rttr.addFlashAttribute("result", "forgotId fail");
-            result = "";
+            result = 0;
         } else {
             model.addAttribute("userPass", userPass);
             rttr.addFlashAttribute("result", "forgotId success");

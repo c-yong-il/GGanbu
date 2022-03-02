@@ -157,7 +157,7 @@
                        <div th:if="${gganbuCheck}==1">
                         <div class="friends-say-section">
                           <label for="friends-say">GGANBUs say</label>
-                          <input id="gganbu_comment_content" name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!" maxlength="20">
+                          <input id="gganbu_comment_content" name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!" onkeypress="if(event.keyCode==13){insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}');}" maxlength="20">
                           <button type="button" th:attr="onclick=|insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}')|">등록</button>
                           <div id="GBCMsg" class="Msg"></div>
                         </div>

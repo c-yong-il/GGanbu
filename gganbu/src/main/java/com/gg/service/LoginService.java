@@ -10,5 +10,5 @@ public interface LoginService {
 
     public String forgotIdCheck(String mem_name, String mem_hp);
 
-    public String forgotPassCheck(MemberDTO dto);
+    public int forgotPassCheck(MemberDTO dto);
 }

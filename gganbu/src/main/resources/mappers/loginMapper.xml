@@ -48,5 +48,16 @@
     		mem_name = #{mem_name} and mem_id = #{mem_id} and mem_birth = #{mem_birth} and mem_hp = #{mem_hp} and mem_status = 'n'
     		
     </update>
+    
+    <select id="mailAction" parameterType="MemberDTO" resultType="MemberDTO">
+    
+        select 
+            <include refid="memberColumns"></include>
+        from
+            member_table
+        where 
+            mem_name = #{mem_name} and mem_id = #{mem_id} and mem_birth = #{mem_birth} and mem_hp = #{mem_hp} and mem_status = 'n'
+    
+    </select>
 
 </mapper>
