@@ -86,23 +86,23 @@
 					</div>
 				</form>
 				
-				<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
+				<form th:id="|cinsertForm${params.photo_num}|" name="cinsertForm" class="cinsertForm">
 			        <div class="border-top-0 bg-transparent">
 			            <div class="d-center">
 			            	<label>댓글</label>
-			            	<input type="text" id="comment_content" name="comment_content">
-			            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+			            	<input type="text" th:id="|comment_content${params.photo_num}|" name="comment_content">
+			            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}',${params.photo_num})|">등록</button>
 			            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 			            </div>
 			        </div>
 		        </form>
-		        		<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
-	        			<div id="Contentt">
+		        	<a class="hand" th:id="|toc-toggle${params.photo_num}|" th:attr="onclick=|openCloseToc(${params.photo_num})|">댓글숨기기</a>
+	        			<div th:id="|Contentt${params.photo_num}|">
 					        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
 						        	<form id="cdelete">
 						           		<table style="word-break:break-all">
 						           			<tr>
-						           				<td width=15% th:text=${clist.mem_id2}></td>
+						           				<td width=15% th:text=${name}></td>
 						           				<td th:text=${clist.comment_content}></td>
 						           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 						           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
@@ -178,23 +178,23 @@
 						</div>
 					</form>
 					
-					<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
+					<form th:id="|cinsertForm${params.photo_num}|" name="cinsertForm" class="cinsertForm">
 				        <div class="border-top-0 bg-transparent">
 				            <div class="d-center">
 				            	<label>댓글</label>
-				            	<input type="text" id="comment_content" name="comment_content">
-				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+				            	<input type="text" th:id="|comment_content${params.photo_num}|" name="comment_content">
+				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}',${params.photo_num})|">등록</button>
 				            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 				            </div>
 				        </div>
 			        </form>
-	        		<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
+	        		<a class="hand" th:id="|toc-toggle${params.photo_num}|" th:attr="onclick=|openCloseToc(${params.photo_num})|">댓글숨기기</a>
         			<div id="Contentt">
 				        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
 					        	<form id="cdelete">
 					           		<table style="word-break:break-all">
 					           			<tr>
-					           				<td width=15% th:text=${clist.mem_id2}></td>
+					           				<td width=15% th:text=${name}></td>
 					           				<td th:text=${clist.comment_content}></td>
 					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
@@ -274,23 +274,23 @@
 						</div>
 					</form>
 					
-					<form id="cinsertForm" name="cinsertForm" class="cinsertForm">
+					<form th:id="|cinsertForm${params.photo_num}|" name="cinsertForm" class="cinsertForm">
 				        <div class="border-top-0 bg-transparent">
 				            <div class="d-center">
 				            	<label>댓글</label>
-				            	<input type="text" id="comment_content">
-				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}')|">등록</button>
+				            	<input type="text" th:id="|comment_content${params.photo_num}|">
+				            	<button type="button" class="btn btn-outline-dark mt-auto btn-sm" th:attr="onclick=|cinsert('/cinsert/${mem_id}/${params.photo_num}/${session.loginUser.mem_id}',${params.photo_num})|">등록</button>
 				            	<!-- th:attr="onclick=|cinsert('/cinsert/${params.mem_id}/${params.photo_num}/${params.mem_id2}')|" -->
 				            </div>
 				        </div>
 			        </form>
 				        <th:block th:if="${params.photo_num} == ${clist.photo_num}" th:each="clist : ${clist}">
-	        			<span id="toc-toggle" onclick="openCloseToc()">댓글숨기기</span>
+	        			<a class="hand" th:id="|toc-toggle${params.photo_num}|" th:attr="onclick=|openCloseToc(${params.photo_num})|">댓글숨기기</a>
         				<div id="Contentt">
 					        	<form id="cdelete">
 					           		<table style="word-break:break-all">
 					           			<tr>
-					           				<td width=15% th:text=${clist.mem_id2}></td>
+					           				<td width=15% th:text=${name}></td>
 					           				<td th:text=${clist.comment_content}></td>
 					           				<td th:if="${session.loginUser.mem_id} == ${clist.mem_id2} or ${session.loginUser.mem_id} == ${clist.mem_id}" width=10%>
 					           					<button type="button" class="btn btn-warning btn-sm" th:attr="onclick=|cdeletee('/cdelete/${mem_id}/${clist.mem_id2}/${clist.photo_comment_num}')|">삭제</button>
@@ -329,7 +329,7 @@
 		
 		
 	<th:block  th:unless="${not #lists.isEmpty(list)}">
-			<span>게시글을 써라</span>
+			<span class="date">게시글을 작성하십쇼</span>
 	</th:block>
 </div>
 

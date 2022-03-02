@@ -129,16 +129,15 @@ function updatee(url){
  	}
  
   /* 댓글 등록 */
-  function cinsert(url){
-	
-	var c_content = $("#comment_content").val();
+  function cinsert(url,num){
+	var c_content = $("#comment_content"+num).val();
 	if(c_content == ""){
 		alert("댓글을 입력해 주세요");
-		$("#comment_content").focus();
+		$("#comment_content"+num).focus();
 		return false;
 	}
 	
-		var csubmit = $("#cinsertForm").serialize();
+		var csubmit = $("#cinsertForm"+num).serialize();
 	
     $.ajax({
         url : url,
@@ -151,7 +150,8 @@ function updatee(url){
 	        // Contents 영역 교체
 	        $('#photo').html(data);
    		 });
- 	}
+    }
+ 	
  	
  	
 /* 댓글 삭제 */
@@ -191,16 +191,18 @@ function cdeletee(url){
 /*****************************************************/
 
 /* 댓글 보이기/숨기기 */
-function openCloseToc() {
-    if(document.getElementById('Contentt').style.display === 'block') {
-      document.getElementById('Contentt').style.display = 'none';
-      document.getElementById('toc-toggle').textContent = '댓글보이기';
-    } else {
-      document.getElementById('Contentt').style.display = 'block';
-      document.getElementById('toc-toggle').textContent = '댓글숨기기';
-    }
+function openCloseToc(num) {
+	/*var con = document.getElementById('Contentt'+num);*/
+	var submenu = $("#toc-toggle"+num).next("div");
+	
+	if( submenu.is(":visible") ){
+                submenu.slideUp();
+                document.getElementById('toc-toggle'+num).textContent = '댓글보이기';
+            }else{
+                submenu.slideDown();
+                document.getElementById('toc-toggle'+num).textContent = '댓글숨기기';
+            }
   }
 
  
 /************************************************************************************/
-

@@ -58,6 +58,7 @@ public class PhotoController {
         model.addAttribute("clist",clist);
         model.addAttribute("today", today);
         model.addAttribute("ggrelation", ggrelation);
+        model.addAttribute("name", dto.getMem_name());
         
         return "mini/photo/photo_list";
     }
