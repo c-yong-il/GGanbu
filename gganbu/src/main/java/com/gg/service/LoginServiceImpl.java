@@ -22,9 +22,6 @@ public class LoginServiceImpl implements LoginService {
     PasswordEncoder pwdEncoder;
 
     @Autowired
-    EmailService mailservice;
-
-    @Autowired
     JavaMailSender emailSender;// 자체적으로 지원하는 기능
 
     @Value("${spring.mail.username}")
@@ -64,19 +61,16 @@ public class LoginServiceImpl implements LoginService {
         MemberDTO mailDTO = loginMapper.mailAction(dto);
 
         if (mailDTO == null) {
-            System.out.println("null");
             return 0;
         }
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
+        int targetStringLength = 5;
         Random random = new Random();
 
         String generatedString = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97)).limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-
-        System.out.println(generatedString);
 
         String newPass = generatedString;
 
@@ -84,10 +78,8 @@ public class LoginServiceImpl implements LoginService {
         dto.setMem_pass(encNewPassword);
 
         loginMapper.forgotPassCheck(dto);
-        System.out.println("1" + dto);
 
         String toyou = mailDTO.getMem_email1() + "@" + mailDTO.getMem_email2();
-        System.out.println(toyou);
 
         // 메세지를 생성하고 보낼 메일 설정 저장
         SimpleMailMessage message = new SimpleMailMessage();
@@ -96,9 +88,6 @@ public class LoginServiceImpl implements LoginService {
         message.setSubject("안녕! " + dto.getMem_name() + "야 임시비밀번호를 알려줄게~~");
         message.setText("임시비밀번호는 " + newPass + " 입니다.");
         emailSender.send(message);
-
-        System.out.println(dto);
-        System.out.println(message);
 
         return 1;
 
