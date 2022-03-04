@@ -37,12 +37,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public MemberDTO loginCheck(String mem_id, String mem_pass) {
         MemberDTO matchDTO = loginMapper.loginAction(mem_id);
-        MemberDTO anonDTO = new MemberDTO();
 
-        if (matchDTO == null) {
-            anonDTO.setMem_id("없는아이디");
-            return anonDTO;
-        } else if (!pwdEncoder.matches(mem_pass, matchDTO.getMem_pass())) {
+        if (!pwdEncoder.matches(mem_pass, matchDTO.getMem_pass())) {
             return null;
         }
 

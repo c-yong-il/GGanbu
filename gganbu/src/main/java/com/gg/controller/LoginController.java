@@ -59,10 +59,6 @@ public class LoginController {
             session.setAttribute("loginUser", null);
             rttr.addFlashAttribute("result", "login fail");
             result = 0;
-        } else if (loginUser.getMem_id().equals("없는아이디")) {
-            session.setAttribute("loginUser", null);
-            rttr.addFlashAttribute("result", "login fail");
-            result = 3;
         } else if (loginUser.getMem_status().equals("Y")) {
             session.setAttribute("loginUser", null);
             rttr.addFlashAttribute("result", "login fail");
