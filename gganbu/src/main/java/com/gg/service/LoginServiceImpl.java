@@ -27,22 +27,23 @@ public class LoginServiceImpl implements LoginService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    /* 로그인 임시 */
+    /* 로그인 성공 시 정보가져오기 */
     @Override
     public MemberDTO loginAction(String mem_id) {
         return loginMapper.loginAction(mem_id);
     }
 
-    /* 로그인 */
+    /* 로그인 성공여부 판단 체크 */
     @Override
-    public MemberDTO loginCheck(String mem_id, String mem_pass) {
+    public int loginCheck(String mem_id, String mem_pass) {
         MemberDTO matchDTO = loginMapper.loginAction(mem_id);
 
-        if (!pwdEncoder.matches(mem_pass, matchDTO.getMem_pass())) {
-            return null;
+        if (matchDTO == null) {
+            return 2;
+        } else if (!pwdEncoder.matches(mem_pass, matchDTO.getMem_pass())) {
+            return 0;
         }
-
-        return loginMapper.loginCheck(mem_id, matchDTO.getMem_pass());
+        return 1;
     }
 
     /* 아이디 찾기 */

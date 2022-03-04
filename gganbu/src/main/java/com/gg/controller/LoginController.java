@@ -52,18 +52,23 @@ public class LoginController {
     public int loginCheck(@RequestParam(required = false) String mem_id,
             @RequestParam(required = false) String mem_pass, RedirectAttributes rttr, HttpServletRequest request) {
         int result;
-        MemberDTO loginUser = loginService.loginCheck(mem_id, mem_pass);
+        MemberDTO loginUser = loginService.loginAction(mem_id);
+        int resultCheck = loginService.loginCheck(mem_id, mem_pass);
         HttpSession session = request.getSession();
-
-        if (loginUser == null) {
+        
+        if (resultCheck == 0) {	//아이디 혹은 비밀번호가 일치하지 않습니다
             session.setAttribute("loginUser", null);
             rttr.addFlashAttribute("result", "login fail");
             result = 0;
-        } else if (loginUser.getMem_status().equals("Y")) {
+        } else if (resultCheck==2) {	//존재하지 않는 아이디입니다
+            session.setAttribute("loginUser", null);
+            rttr.addFlashAttribute("result", "login fail");
+            result = 3;
+        } else if (loginUser.getMem_status().equals("Y")) {	//탈퇴한 회원입니다
             session.setAttribute("loginUser", null);
             rttr.addFlashAttribute("result", "login fail");
             result = 2;
-        } else {
+        } else {	//로그인 성공
             session.setAttribute("loginUser", loginUser);
             rttr.addFlashAttribute("result", "login success");
             result = 1;
