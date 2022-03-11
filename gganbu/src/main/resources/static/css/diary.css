@@ -2,7 +2,6 @@
 .text-center {
 	display:flex;
 	justify-content:flex-end; 
-	
 }
 .updel{
 	display:flex;
@@ -16,14 +15,11 @@
 .updel a:first-child {
 	border-right:1.5px solid black;
 }
- .updel a:hover{
-	/* background:linen; */
+.updel a:hover{
 	font-weight: bold;
 	cursor:pointer;
 } 
-
 .diary-date {
-	/* border: 1px solid rgba(0, 0, 0, 0.125); */
 	background:#EEEEEE;
 	padding:7px 0;
 	font-size:11pt;
@@ -39,7 +35,6 @@
 	display:flex;
 	justify-content:space-between;
 }
-
 #rightdate {
 	text-align:right;
 	display:inline-block;	
@@ -61,11 +56,10 @@
 	margin-left:8px;
 }
 .card-body2 {
-  flex: 1 1 auto;
- /*  padding: 0.5rem 1rem 1rem 1rem;  */
-   padding: 1rem 0.5rem;  
-  font-size:12pt;
-  line-height:25px;
+	 flex: 1 1 auto;
+	 padding: 1rem 0.5rem;  
+	 font-size:12pt;
+	 line-height:25px;
 }
 #diary_write, #diary_update {
 	width: 100%;
@@ -73,18 +67,11 @@
     resize: none;
     line-height:25px;
 }
-/* #diary_write2 {
-	width: 100%;
-	resize: none;
-	line-height:25px;
-	border:1px solid white;
-} */
 .card-body3 {
 	flex: 1 1 auto;
   	padding: 0.5rem 0.5rem 0 0.5rem;
 }
 #dateSelect {
-	/* padding:5px 0; */
 	width:100px;
 }
 .infoMsg {
@@ -118,7 +105,6 @@ Form[name="diaryForm"] {
 Form[name="diaryUpdateForm"], Form[name="diaryWriteForm"] {
 	margin-top:40px;
 }
- 
 .write-btn {
 	float:right;
 	margin-left:10px;
